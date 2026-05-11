@@ -1,4 +1,4 @@
-package com.example.a38_collaboration_android_kakaopay.ui.theme
+package com.example.a38_collaboration_android_kakaopay.core.designsystem.theme
 
 import androidx.compose.ui.graphics.Color
 
