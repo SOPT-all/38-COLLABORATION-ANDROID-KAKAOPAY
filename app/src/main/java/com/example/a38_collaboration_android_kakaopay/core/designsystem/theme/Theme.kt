@@ -1,57 +1,77 @@
 package com.example.a38_collaboration_android_kakaopay.core.designsystem.theme
 
-import android.os.Build
-import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
-import androidx.compose.material3.lightColorScheme
+import androidx.compose.ui.graphics.Color
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.ReadOnlyComposable
+import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.text.TextStyle
 
-private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+data class KakaoColors(
+    val grey100: Color, val grey200: Color, val grey300: Color,
+    val grey400: Color, val grey500: Color, val grey600: Color,
+    val white: Color, val black: Color, val brandPrimaryYellow: Color,
+    val highlightPrimaryBlue: Color, val highlightPrimaryRed: Color,
+    val highlightPrimaryGradient: Brush, val highlightSecondaryGrey: Color,
+    val backgroundDefaultGrey: Color, val backgroundSubtleGrey: Color,
+    val buttonPrimaryPressed: Color, val buttonSecondaryPressed: Color, val buttonInlinePressed: Color,
+    val segmentBackgroundSelected: Color, val toggleActive: Color, val toggleInactive: Color
 )
 
-private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
-
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+data class KakaoTypography(
+    val titleB26: TextStyle, val titleB24: TextStyle, val titleB20: TextStyle,
+    val titleB18: TextStyle, val titleM18: TextStyle, val bodyB16: TextStyle,
+    val bodyM16: TextStyle, val bodyB14: TextStyle, val bodyM14: TextStyle,
+    val bodyR14: TextStyle, val labelB12: TextStyle, val labelM12: TextStyle,
+    val labelR12: TextStyle, val labelR10: TextStyle
 )
+
+private val defaultKakaoColors = KakaoColors(
+    grey100 = Grey100, grey200 = Grey200, grey300 = Grey300,
+    grey400 = Grey400, grey500 = Grey500, grey600 = Grey600,
+    white = White, black = Black, brandPrimaryYellow = BrandPrimaryYellow,
+    highlightPrimaryBlue = HighlightPrimaryBlue, highlightPrimaryRed = HighlightPrimaryRed,
+    highlightPrimaryGradient = HighlightPrimaryGradient,
+    highlightSecondaryGrey = HighlightSecondaryGrey, backgroundDefaultGrey = BackgroundDefaultGrey,
+    backgroundSubtleGrey = BackgroundSubtleGrey, buttonPrimaryPressed = ButtonPrimaryPressed,
+    buttonSecondaryPressed = ButtonSecondaryPressed, buttonInlinePressed = ButtonInlinePressed,
+    segmentBackgroundSelected = SegmentBackgroundSelected,
+    toggleActive = ToggleActive, toggleInactive = ToggleInactive
+)
+
+private val defaultKakaoTypography = KakaoTypography(
+    titleB26 = TitleB26, titleB24 = TitleB24, titleB20 = TitleB20,
+    titleB18 = TitleB18, titleM18 = TitleM18,
+    bodyB16 = BodyB16, bodyM16 = BodyM16,
+    bodyB14 = BodyB14, bodyM14 = BodyM14, bodyR14 = BodyR14,
+    labelB12 = LabelB12, labelM12 = LabelM12, labelR12 = LabelR12,
+    labelR10 = LabelR10
+)
+
+private val LocalKakaoColors = staticCompositionLocalOf { defaultKakaoColors }
+private val LocalKakaoTypography = staticCompositionLocalOf { defaultKakaoTypography }
+
+object KakaoTheme {
+    val colors: KakaoColors
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalKakaoColors.current
+
+    val typography: KakaoTypography
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalKakaoTypography.current
+}
 
 @Composable
 fun _38COLLABORATIONANDROIDKAKAOPAYTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
-
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
+    CompositionLocalProvider(
+        LocalKakaoColors provides defaultKakaoColors,
+        LocalKakaoTypography provides defaultKakaoTypography
+    ) {
+        content()
     }
-
-    MaterialTheme(
-        colorScheme = colorScheme,
-        typography = Typography,
-        content = content
-    )
 }
