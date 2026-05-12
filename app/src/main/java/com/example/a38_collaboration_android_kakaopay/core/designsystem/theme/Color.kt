@@ -22,7 +22,7 @@ val HighlightPrimaryGradient = Brush.horizontalGradient(
         Color(0xFF8A76ED)  // 100%
     )
 )
-val HighlightSecondary = Color(0xFFCED4DB)
+val HighlightSecondaryGrey = Color(0xFFCED4DB)
 
 
 val BackgroundDefaultGrey = Color(0xFFF3F4F6)
