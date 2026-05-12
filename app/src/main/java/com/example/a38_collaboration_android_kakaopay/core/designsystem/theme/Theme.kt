@@ -15,8 +15,7 @@ data class KakaoColors(
     val highlightPrimaryBlue: Color, val highlightPrimaryRed: Color,
     val highlightPrimaryGradient: Brush, val highlightSecondaryGrey: Color,
     val backgroundDefaultGrey: Color, val backgroundSubtleGrey: Color,
-    val buttonPrimaryPressed: Color, val buttonSecondaryPressed: Color,
-    val buttonInlineDefault: Color, val buttonInlinePressed: Color,
+    val buttonPrimaryPressed: Color, val buttonSecondaryPressed: Color, val buttonInlinePressed: Color,
     val segmentBackgroundSelected: Color, val toggleActive: Color, val toggleInactive: Color
 )
 
@@ -36,8 +35,8 @@ private val defaultKakaoColors = KakaoColors(
     highlightPrimaryGradient = HighlightPrimaryGradient,
     highlightSecondaryGrey = HighlightSecondaryGrey, backgroundDefaultGrey = BackgroundDefaultGrey,
     backgroundSubtleGrey = BackgroundSubtleGrey, buttonPrimaryPressed = ButtonPrimaryPressed,
-    buttonSecondaryPressed = ButtonSecondaryPressed, buttonInlineDefault = ButtonInlineDefault,
-    buttonInlinePressed = ButtonInlinePressed, segmentBackgroundSelected = SegmentBackgroundSelected,
+    buttonSecondaryPressed = ButtonSecondaryPressed, buttonInlinePressed = ButtonInlinePressed,
+    segmentBackgroundSelected = SegmentBackgroundSelected,
     toggleActive = ToggleActive, toggleInactive = ToggleInactive
 )
 

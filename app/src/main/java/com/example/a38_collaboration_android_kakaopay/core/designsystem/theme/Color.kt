@@ -30,7 +30,6 @@ val BackgroundSubtleGrey = Color(0xFFE8ECEE)
 
 val ButtonPrimaryPressed = Color(0xFFE1E1E1)
 val ButtonSecondaryPressed = Color(0xFFF0F0F0)
-val ButtonInlineDefault = Color(0xFFE1E1E1)
 val ButtonInlinePressed = Color(0xFFDADEE1)
 
 val SegmentBackgroundSelected = Color(0xFF444B53)
