@@ -11,14 +11,13 @@ import androidx.compose.ui.text.TextStyle
 data class KakaoColors(
     val grey100: Color, val grey200: Color, val grey300: Color,
     val grey400: Color, val grey500: Color, val grey600: Color,
-    val white: Color, val black: Color, val brandPrimary: Color,
-    val actionPrimary: Color, val highlightPrimary: Color,
+    val white: Color, val black: Color, val brandPrimaryYellow: Color,
+    val highlightPrimaryBlue: Color, val highlightPrimaryRed: Color,
     val highlightPrimaryGradient: Brush, val highlightSecondary: Color,
-    val feedbackPositive: Color, val feedbackNegative: Color,
-    val backgroundDefault: Color, val backgroundSubtle: Color,
+    val backgroundDefaultGrey: Color, val backgroundSubtleGrey: Color,
     val buttonPrimaryPressed: Color, val buttonSecondaryPressed: Color,
     val buttonInlineDefault: Color, val buttonInlinePressed: Color,
-    val segmentSelected: Color, val toggleActive: Color, val toggleInactive: Color
+    val segmentBackgroundSelected: Color, val toggleActive: Color, val toggleInactive: Color
 )
 
 data class KakaoTypography(
@@ -32,14 +31,13 @@ data class KakaoTypography(
 private val defaultKakaoColors = KakaoColors(
     grey100 = Grey100, grey200 = Grey200, grey300 = Grey300,
     grey400 = Grey400, grey500 = Grey500, grey600 = Grey600,
-    white = White, black = Black, brandPrimary = BrandPrimary,
-    actionPrimary = ActionPrimary, highlightPrimary = HighlightPrimary,
+    white = White, black = Black, brandPrimaryYellow = BrandPrimaryYellow,
+    highlightPrimaryBlue = HighlightPrimaryBlue, highlightPrimaryRed = HighlightPrimaryRed,
     highlightPrimaryGradient = HighlightPrimaryGradient,
-    highlightSecondary = HighlightSecondary, feedbackPositive = FeedbackPositive,
-    feedbackNegative = FeedbackNegative, backgroundDefault = BackgroundDefault,
-    backgroundSubtle = BackgroundSubtle, buttonPrimaryPressed = ButtonPrimaryPressed,
+    highlightSecondary = HighlightSecondary, backgroundDefaultGrey = BackgroundDefaultGrey,
+    backgroundSubtleGrey = BackgroundSubtleGrey, buttonPrimaryPressed = ButtonPrimaryPressed,
     buttonSecondaryPressed = ButtonSecondaryPressed, buttonInlineDefault = ButtonInlineDefault,
-    buttonInlinePressed = ButtonInlinePressed, segmentSelected = SegmentSelected,
+    buttonInlinePressed = ButtonInlinePressed, segmentBackgroundSelected = SegmentBackgroundSelected,
     toggleActive = ToggleActive, toggleInactive = ToggleInactive
 )
 
