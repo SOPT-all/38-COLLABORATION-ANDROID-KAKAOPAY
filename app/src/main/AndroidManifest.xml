@@ -11,12 +11,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme._38COLLABORATIONANDROIDKAKAOPAY">
+        android:theme="@style/Theme.KakaoPay">
         <activity
             android:name=".app.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme._38COLLABORATIONANDROIDKAKAOPAY">
+            android:theme="@style/Theme.KakaoPay">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

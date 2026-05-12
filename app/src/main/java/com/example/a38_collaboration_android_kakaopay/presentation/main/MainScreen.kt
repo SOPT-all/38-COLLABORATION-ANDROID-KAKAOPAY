@@ -6,7 +6,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme._38COLLABORATIONANDROIDKAKAOPAYTheme
+import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
 import com.example.a38_collaboration_android_kakaopay.app.navigation.Benefits
 import com.example.a38_collaboration_android_kakaopay.app.navigation.FinancialOverview
 import com.example.a38_collaboration_android_kakaopay.app.navigation.Home
@@ -44,7 +44,7 @@ fun MainScreen(modifier: Modifier = Modifier)  {
 @Preview(showBackground = true)
 @Composable
 fun MainScreenPreview() {
-    _38COLLABORATIONANDROIDKAKAOPAYTheme {
+    KakaoPayTheme {
         MainScreen()
     }
 }
