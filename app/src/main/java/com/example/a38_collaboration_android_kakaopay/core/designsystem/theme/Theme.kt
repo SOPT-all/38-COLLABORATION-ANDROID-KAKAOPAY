@@ -65,7 +65,7 @@ object KakaoTheme {
 }
 
 @Composable
-fun _38COLLABORATIONANDROIDKAKAOPAYTheme(
+fun KakaoPayTheme(
     content: @Composable () -> Unit
 ) {
     CompositionLocalProvider(
