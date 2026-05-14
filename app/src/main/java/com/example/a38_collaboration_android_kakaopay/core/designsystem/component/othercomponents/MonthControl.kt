@@ -44,7 +44,7 @@ fun MonthControl(
                 } else {
                     painterResource(id = R.drawable.ic_chevron_left_black_24px)
                 },
-                contentDescription = "4월"
+                contentDescription = "4월입니다"
             )
 
         }
@@ -76,7 +76,7 @@ fun MonthControl(
                 } else {
                     painterResource(id = R.drawable.ic_chevron_right_black_24px)
                 },
-                contentDescription = "5월"
+                contentDescription = "5월입니다"
             )
         }
     }
