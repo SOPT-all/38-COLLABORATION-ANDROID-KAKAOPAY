@@ -27,7 +27,6 @@ import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.Ka
 fun KakaoPaySubTopBar(
     title: String = "",
     modifier: Modifier = Modifier,
-    showHomeIcon: Boolean = true,
     isCenterTitle: Boolean = false,
     titleStyle: TextStyle = KakaoTheme.typography.bodyB16,
     onBackClick: () -> Unit = {},
@@ -40,6 +39,7 @@ fun KakaoPaySubTopBar(
         color = KakaoTheme.colors.white
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
+
             // 1. 뒤로가기 버튼
             IconButton(
                 onClick = onBackClick,
@@ -62,32 +62,38 @@ fun KakaoPaySubTopBar(
                         .fillMaxHeight()
                         .align(Alignment.Center)
                         .padding(horizontal = 52.dp),
-                    contentAlignment = if (isCenterTitle) Alignment.Center else Alignment.CenterStart
+                    contentAlignment = if (isCenterTitle) {
+                        Alignment.Center
+                    } else {
+                        Alignment.CenterStart
+                    }
                 ) {
                     Text(
                         text = title,
                         style = titleStyle,
                         color = KakaoTheme.colors.black,
-                        modifier = if (isCenterTitle) Modifier else Modifier.fillMaxWidth()
+                        modifier = if (isCenterTitle) {
+                            Modifier
+                        } else {
+                            Modifier.fillMaxWidth()
+                        }
                     )
                 }
             }
 
             // 3. 우측 홈 버튼
-            if (showHomeIcon) {
-                IconButton(
-                    onClick = onHomeClick,
-                    modifier = Modifier
-                        .align(Alignment.CenterEnd)
-                        .padding(end = 4.dp)
-                        .size(48.dp)
-                ) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.ic_top_bar_home_24px),
-                        contentDescription = "홈",
-                        tint = KakaoTheme.colors.black
-                    )
-                }
+            IconButton(
+                onClick = onHomeClick,
+                modifier = Modifier
+                    .align(Alignment.CenterEnd)
+                    .padding(end = 4.dp)
+                    .size(48.dp)
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_top_bar_home_24px),
+                    contentDescription = "홈",
+                    tint = KakaoTheme.colors.black
+                )
             }
         }
     }
@@ -121,6 +127,6 @@ fun PreviewTypeB() {
 @Composable
 fun PreviewTypeC() {
     KakaoPayTheme {
-        KakaoPaySubTopBar(title = "", showHomeIcon = true)
+        KakaoPaySubTopBar(title = "")
     }
 }
