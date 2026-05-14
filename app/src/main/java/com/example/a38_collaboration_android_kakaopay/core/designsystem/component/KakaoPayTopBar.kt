@@ -113,7 +113,7 @@ fun KakaoPayTopBar(
 
 @Preview(showBackground = true)
 @Composable
-fun KakaoPayTopBarPreview() {
+private fun KakaoPayTopBarPreview() {
     KakaoPayTheme {
         KakaoPayTopBar()
     }
