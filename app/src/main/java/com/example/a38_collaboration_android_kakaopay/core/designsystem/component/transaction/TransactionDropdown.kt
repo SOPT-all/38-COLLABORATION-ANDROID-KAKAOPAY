@@ -11,6 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -37,7 +38,7 @@ fun TransactionDropdown(
         horizontalArrangement = Arrangement.spacedBy(2.dp)
     ){
         Text(
-            text = "전체",
+            text = stringResource(R.string.transaction_dropdown_all),
             color = colors.black,
             style = typography.bodyB16,
             textAlign = TextAlign.Center
