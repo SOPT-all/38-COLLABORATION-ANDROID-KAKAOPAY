@@ -23,15 +23,15 @@ fun AppNaviHost(
         startDestination = FinancialOverview::class ,
         modifier = Modifier.fillMaxSize()
     ){
-        composable<FinancialOverview>{ FinancialOverviewRoute(navController) }
+        composable<FinancialOverview>{ FinancialOverviewRoute(innerPadding, navController) }
 
-        composable<SpendingAnalysis>{SpendingAnalysisRoute(navController) }
+        composable<SpendingAnalysis>{SpendingAnalysisRoute(innerPadding, navController) }
 
-        composable<SpendingDetails>{ SpendingDetailsRoute(navController) }
+        composable<SpendingDetails>{ SpendingDetailsRoute(innerPadding, navController) }
 
-        composable<SpendingOverview>{ SpendingOverviewRoute(navController) }
+        composable<SpendingOverview>{ SpendingOverviewRoute(innerPadding, navController) }
 
-        composable<Splash>{ SplashRoute(navController) }
+        composable<Splash>{ SplashRoute(innerPadding, navController) }
 
         composable<Home>{}
 
