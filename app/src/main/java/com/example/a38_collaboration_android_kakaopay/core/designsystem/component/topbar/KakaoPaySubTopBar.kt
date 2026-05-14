@@ -121,7 +121,7 @@ fun PreviewTypeB() {
 
 @Preview(showBackground = true)
 @Composable
-fun PreviewTypeC() {
+private fun PreviewTypeC() {
     KakaoPayTheme {
         KakaoPaySubTopBar(title = "")
     }
