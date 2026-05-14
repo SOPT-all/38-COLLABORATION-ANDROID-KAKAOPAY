@@ -2,6 +2,7 @@ package com.example.a38_collaboration_android_kakaopay.core.designsystem.compone
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,6 +21,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.a38_collaboration_android_kakaopay.R
@@ -60,20 +62,19 @@ fun KakaoPaySubTopBar(
             }
 
             // 제목 영역
-            Box(
-                modifier = Modifier
-                    .weight(1f)
-                    .fillMaxHeight(),
-                contentAlignment = if (isCenterTitle) Alignment.Center else Alignment.CenterStart
-            ) {
-                if (title.isNotEmpty()) {
-                    Text(
-                        text = title,
-                        style = titleStyle,
-                        color = KakaoTheme.colors.black,
-                        maxLines = 1
-                    )
-                }
+            if (title.isNotEmpty()) {
+                Text(
+                    text = title,
+                    style = titleStyle,
+                    color = KakaoTheme.colors.black,
+                    textAlign = if (isCenterTitle) TextAlign.Center else TextAlign.Start, // ✅ 정렬 처리
+                    modifier = Modifier
+                        .weight(1f) // ✅ Row 내에서 남는 공간을 모두 차지
+                        .fillMaxWidth(), // ✅ 텍스트가 차지한 영역 내에서 꽉 채움
+                    maxLines = 1
+                )
+            } else {
+                Spacer(modifier = Modifier.weight(1f))
             }
 
             // 우측 홈 버튼
