@@ -39,17 +39,19 @@ fun KakaoPayBottomNavigation(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            val navItems = listOf(
-                Triple(R.string.nav_home, R.drawable.ic_bottom_bar_home_default_24px, R.drawable.ic_bottom_bar_home_pressed_24px),
-                Triple(R.string.nav_benefits, R.drawable.ic_bottom_bar_giftbox_default_24px, R.drawable.ic_bottom_bar_giftbox_pressed_24px),
-                Triple(R.string.nav_payment, R.drawable.ic_bottom_bar_payment_default_24px, R.drawable.ic_bottom_bar_payment_pressed_24px),
-                Triple(R.string.nav_assets, R.drawable.ic_bottom_bar_asset_default_24px, R.drawable.ic_bottom_bar_asset_pressed_24px),
-                Triple(R.string.nav_stock, R.drawable.ic_bottom_bar_securities_default_24px, R.drawable.ic_bottom_bar_securities_pressed_24px)
-            )
+            val navItems = remember {
+                listOf(
+                    NavigationItem(R.string.nav_home, R.drawable.ic_bottom_bar_home_default_24px, R.drawable.ic_bottom_bar_home_pressed_24px),
+                    NavigationItem(R.string.nav_benefits, R.drawable.ic_bottom_bar_giftbox_default_24px, R.drawable.ic_bottom_bar_giftbox_pressed_24px),
+                    NavigationItem(R.string.nav_payment, R.drawable.ic_bottom_bar_payment_default_24px, R.drawable.ic_bottom_bar_payment_pressed_24px),
+                    NavigationItem(R.string.nav_assets, R.drawable.ic_bottom_bar_asset_default_24px, R.drawable.ic_bottom_bar_asset_pressed_24px),
+                    NavigationItem(R.string.nav_stock, R.drawable.ic_bottom_bar_securities_default_24px, R.drawable.ic_bottom_bar_securities_pressed_24px)
+                )
+            }
 
-            navItems.forEachIndexed { index, (labelRes, defaultIcon, pressedIcon) ->
+            navItems.forEachIndexed { index, item ->
                 val isSelected = selectedTab == index
-                val label = stringResource(id = labelRes)
+                val label = stringResource(id = item.labelRes)
 
                 Column(
                     modifier = Modifier
@@ -65,7 +67,7 @@ fun KakaoPayBottomNavigation(
                     verticalArrangement = Arrangement.Center
                 ) {
                     Icon(
-                        imageVector = ImageVector.vectorResource(id = if (isSelected) pressedIcon else defaultIcon),
+                        imageVector = ImageVector.vectorResource(id = if (isSelected) item.pressedIconRes else item.defaultIconRes),
                         contentDescription = label,
                         modifier = Modifier.size(24.dp),
                         tint = Color.Unspecified
