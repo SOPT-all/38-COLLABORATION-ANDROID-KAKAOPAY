@@ -11,7 +11,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
@@ -49,7 +48,7 @@ fun TransactionDropdown(
         Icon(
             imageVector = ImageVector.vectorResource(R.drawable.ic_chevron_down_black_16px),
             contentDescription = null,
-            tint = Color.Unspecified
+            tint = colors.black
         )
     }
 }
