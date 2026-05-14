@@ -1,4 +1,4 @@
-package com.example.a38_collaboration_android_kakaopay.core.designsystem.component
+package com.example.a38_collaboration_android_kakaopay.core.designsystem.component.topbar
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -34,7 +34,7 @@ fun KakaoPayTopBar(
     Surface(
         modifier = modifier
             .fillMaxWidth()
-            .height(48.dp), // 상단바 전체 높이 48dp
+            .height(48.dp),
         color = KakaoTheme.colors.white
     ) {
         Row(
@@ -43,7 +43,7 @@ fun KakaoPayTopBar(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            // 1. 로고 영역 (왼쪽 패딩 16dp 적용)
+            // 1. 로고 영역
             Box(
                 modifier = Modifier
                     .padding(start = 16.dp)
@@ -60,7 +60,7 @@ fun KakaoPayTopBar(
                 )
             }
 
-            // 2. 오른쪽 아이콘 영역 (아이콘끼리 간격 없이 48dp씩 차지)
+            // 2. 오른쪽 아이콘 영역
             Row(
                 modifier = Modifier.fillMaxHeight(),
                 verticalAlignment = Alignment.CenterVertically
@@ -68,13 +68,13 @@ fun KakaoPayTopBar(
                 // 검색 아이콘 버튼
                 IconButton(
                     onClick = onSearchClick,
-                    modifier = Modifier.size(48.dp) // 전체 영역 48x48 (12+24+12)
+                    modifier = Modifier.size(48.dp)
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_top_bar_search_24px),
                         contentDescription = "검색",
                         tint = KakaoTheme.colors.black,
-                        modifier = Modifier.size(24.dp) // 실제 아이콘 크기 24x24
+                        modifier = Modifier.size(24.dp)
                     )
                 }
 
@@ -104,7 +104,6 @@ fun KakaoPayTopBar(
                     )
                 }
 
-                // 마지막 오른쪽 여백 4dp 처리 (피그마 수치 반영)
                 Box(modifier = Modifier.width(4.dp))
             }
         }
