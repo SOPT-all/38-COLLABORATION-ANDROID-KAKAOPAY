@@ -1,6 +1,7 @@
 package com.example.a38_collaboration_android_kakaopay.core.designsystem.component.topbar
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,14 +16,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.a38_collaboration_android_kakaopay.R
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
-
 @Composable
 fun KakaoPaySubTopBar(
     title: String = "",
@@ -38,61 +40,54 @@ fun KakaoPaySubTopBar(
             .height(48.dp),
         color = KakaoTheme.colors.white
     ) {
-        Box(modifier = Modifier.fillMaxSize()) {
-
-            // 1. 뒤로가기 버튼
+        Row(
+            modifier = Modifier.fillMaxSize(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            // 뒤로가기 버튼
             IconButton(
                 onClick = onBackClick,
                 modifier = Modifier
-                    .align(Alignment.CenterStart)
                     .padding(start = 4.dp)
                     .size(48.dp)
             ) {
                 Icon(
-                    painter = painterResource(id = R.drawable.ic_top_bar_arrow_left_24px),
-                    modifier = Modifier.size(24.dp),
+                    imageVector = ImageVector.vectorResource(id = R.drawable.ic_top_bar_arrow_left_24px),
                     contentDescription = "뒤로가기",
+                    tint = KakaoTheme.colors.black,
+                    modifier = Modifier.size(24.dp)
                 )
             }
 
-            // 2. 제목 영역
-            if (title.isNotEmpty()) {
-                Box(
-                    modifier = Modifier
-                        .fillMaxHeight()
-                        .align(Alignment.Center)
-                        .padding(horizontal = 52.dp),
-                    contentAlignment = if (isCenterTitle) {
-                        Alignment.Center
-                    } else {
-                        Alignment.CenterStart
-                    }
-                ) {
+            // 제목 영역
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxHeight(),
+                contentAlignment = if (isCenterTitle) Alignment.Center else Alignment.CenterStart
+            ) {
+                if (title.isNotEmpty()) {
                     Text(
                         text = title,
                         style = titleStyle,
                         color = KakaoTheme.colors.black,
-                        modifier = if (isCenterTitle) {
-                            Modifier
-                        } else {
-                            Modifier.fillMaxWidth()
-                        }
+                        maxLines = 1
                     )
                 }
             }
 
-            // 3. 우측 홈 버튼
+            // 우측 홈 버튼
             IconButton(
                 onClick = onHomeClick,
                 modifier = Modifier
-                    .align(Alignment.CenterEnd)
                     .padding(end = 4.dp)
                     .size(48.dp)
             ) {
                 Icon(
-                    painter = painterResource(id = R.drawable.ic_top_bar_home_24px),
+                    imageVector = ImageVector.vectorResource(id = R.drawable.ic_top_bar_home_24px),
                     contentDescription = "홈",
-                    tint = KakaoTheme.colors.black
+                    tint = KakaoTheme.colors.black,
+                    modifier = Modifier.size(24.dp)
                 )
             }
         }
