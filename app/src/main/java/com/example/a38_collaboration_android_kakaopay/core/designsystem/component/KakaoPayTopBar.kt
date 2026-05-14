@@ -17,7 +17,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.a38_collaboration_android_kakaopay.R
@@ -71,8 +73,7 @@ fun KakaoPayTopBar(
                     modifier = Modifier.size(48.dp) // 전체 영역 48x48 (12+24+12)
                 ) {
                     Icon(
-                        painter = painterResource(id = R.drawable.ic_top_bar_search_24px),
-                        contentDescription = "검색",
+                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_top_bar_search_24px),                        contentDescription = "검색",
                         tint = KakaoTheme.colors.black,
                         modifier = Modifier.size(24.dp) // 실제 아이콘 크기 24x24
                     )
@@ -84,8 +85,7 @@ fun KakaoPayTopBar(
                     modifier = Modifier.size(48.dp)
                 ) {
                     Icon(
-                        painter = painterResource(id = R.drawable.ic_top_bar_notification_24px),
-                        contentDescription = "알림",
+                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_top_bar_notification_24px),                        contentDescription = "알림",
                         tint = KakaoTheme.colors.black,
                         modifier = Modifier.size(24.dp)
                     )
@@ -97,8 +97,7 @@ fun KakaoPayTopBar(
                     modifier = Modifier.size(48.dp)
                 ) {
                     Icon(
-                        painter = painterResource(id = R.drawable.ic_top_bar_hamburger_24px),
-                        contentDescription = "메뉴",
+                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_top_bar_hamburger_24px),                        contentDescription = "메뉴",
                         tint = KakaoTheme.colors.black,
                         modifier = Modifier.size(24.dp)
                     )
