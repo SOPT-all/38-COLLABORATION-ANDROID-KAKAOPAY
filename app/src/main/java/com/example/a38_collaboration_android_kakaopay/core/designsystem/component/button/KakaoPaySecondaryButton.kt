@@ -33,7 +33,8 @@ fun KakaoPaySecondaryButton(
             .background(KakaoTheme.colors.backgroundSubtleGrey)
             .noRippleClickableWithPressedColor(
                 pressedColor = KakaoTheme.colors.buttonInlinePressed,
-                onClick = onClick)
+                onClick = onClick
+            )
             .padding(
                 horizontal = 12.dp,
                 vertical = 6.dp
