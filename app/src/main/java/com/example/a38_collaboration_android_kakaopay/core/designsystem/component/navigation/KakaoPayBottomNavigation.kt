@@ -3,14 +3,7 @@ package com.example.a38_collaboration_android_kakaopay.core.designsystem.compone
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
@@ -20,7 +13,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.a38_collaboration_android_kakaopay.R
@@ -45,15 +40,16 @@ fun KakaoPayBottomNavigation(
             verticalAlignment = Alignment.CenterVertically
         ) {
             val navItems = listOf(
-                Triple("홈", R.drawable.ic_bottom_bar_home_default_24px, R.drawable.ic_bottom_bar_home_pressed_24px),
-                Triple("혜택", R.drawable.ic_bottom_bar_giftbox_default_24px, R.drawable.ic_bottom_bar_giftbox_pressed_24px),
-                Triple("결제", R.drawable.ic_bottom_bar_payment_default_24px, R.drawable.ic_bottom_bar_payment_pressed_24px),
-                Triple("자산", R.drawable.ic_bottom_bar_asset_default_24px, R.drawable.ic_bottom_bar_asset_pressed_24px),
-                Triple("증권", R.drawable.ic_bottom_bar_securities_default_24px, R.drawable.ic_bottom_bar_securities_pressed_24px)
+                Triple(R.string.nav_home, R.drawable.ic_bottom_bar_home_default_24px, R.drawable.ic_bottom_bar_home_pressed_24px),
+                Triple(R.string.nav_benefits, R.drawable.ic_bottom_bar_giftbox_default_24px, R.drawable.ic_bottom_bar_giftbox_pressed_24px),
+                Triple(R.string.nav_payment, R.drawable.ic_bottom_bar_payment_default_24px, R.drawable.ic_bottom_bar_payment_pressed_24px),
+                Triple(R.string.nav_assets, R.drawable.ic_bottom_bar_asset_default_24px, R.drawable.ic_bottom_bar_asset_pressed_24px),
+                Triple(R.string.nav_stock, R.drawable.ic_bottom_bar_securities_default_24px, R.drawable.ic_bottom_bar_securities_pressed_24px)
             )
 
-            navItems.forEachIndexed { index, (label, defaultIcon, pressedIcon) ->
+            navItems.forEachIndexed { index, (labelRes, defaultIcon, pressedIcon) ->
                 val isSelected = selectedTab == index
+                val label = stringResource(id = labelRes)
 
                 Column(
                     modifier = Modifier
@@ -61,6 +57,7 @@ fun KakaoPayBottomNavigation(
                         .fillMaxHeight()
                         .clickable(
                             interactionSource = remember { MutableInteractionSource() },
+                            indication = null
                         ) {
                             onTabSelected(index)
                         },
@@ -68,7 +65,7 @@ fun KakaoPayBottomNavigation(
                     verticalArrangement = Arrangement.Center
                 ) {
                     Icon(
-                        painter = painterResource(id = if (isSelected) pressedIcon else defaultIcon),
+                        imageVector = ImageVector.vectorResource(id = if (isSelected) pressedIcon else defaultIcon),
                         contentDescription = label,
                         modifier = Modifier.size(24.dp),
                         tint = Color.Unspecified
@@ -86,7 +83,7 @@ fun KakaoPayBottomNavigation(
 
 @Preview(showBackground = true)
 @Composable
-fun KakaoPayBottomNavigationPreview() {
+private fun KakaoPayBottomNavigationPreview() {
     KakaoPayTheme {
         Box(
             modifier = Modifier

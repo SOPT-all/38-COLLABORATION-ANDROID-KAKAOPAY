@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">38-COLLABORATION-ANDROID-KAKAOPAY</string>
+
+    <string name="nav_home">홈</string>
+    <string name="nav_benefits">혜택</string>
+    <string name="nav_payment">결제</string>
+    <string name="nav_assets">자산</string>
+    <string name="nav_stock">증권</string>
+
     <!-- TransactionDropdown -->
     <string name="transaction_dropdown_all">전체</string>
     <!-- SegmentDropdownControl -->
