@@ -27,6 +27,7 @@ inline fun Modifier.noRippleClickable(
 
 inline fun Modifier.noRippleClickableWithPressedColor(
     pressedColor: Color? = null,
+    enabled : Boolean = true,
     crossinline onClick: () -> Unit,
 ): Modifier = composed {
 
@@ -44,7 +45,8 @@ inline fun Modifier.noRippleClickableWithPressedColor(
         )
         .clickable(
             indication = null,
-            interactionSource = interactionSource
+            interactionSource = interactionSource,
+            enabled = enabled
         ) {
             onClick()
         }

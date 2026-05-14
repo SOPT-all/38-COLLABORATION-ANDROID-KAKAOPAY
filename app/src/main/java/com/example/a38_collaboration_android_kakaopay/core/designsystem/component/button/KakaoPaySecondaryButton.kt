@@ -16,6 +16,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.a38_collaboration_android_kakaopay.core.common.extension.noRippleClickable
+import com.example.a38_collaboration_android_kakaopay.core.common.extension.noRippleClickableWithPressedColor
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
 
@@ -30,7 +31,9 @@ fun KakaoPaySecondaryButton(
         modifier = modifier
             .clip(RoundedCornerShape(999.dp))
             .background(KakaoTheme.colors.backgroundSubtleGrey)
-            .noRippleClickable(onClick)
+            .noRippleClickableWithPressedColor(
+                pressedColor = KakaoTheme.colors.buttonInlinePressed,
+                onClick = onClick)
             .padding(
                 horizontal = 12.dp,
                 vertical = 6.dp
