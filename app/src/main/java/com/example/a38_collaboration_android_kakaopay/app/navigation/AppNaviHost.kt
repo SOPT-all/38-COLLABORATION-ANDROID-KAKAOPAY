@@ -16,30 +16,55 @@ import com.example.a38_collaboration_android_kakaopay.presentation.splash.Splash
 @Composable
 fun AppNaviHost(
     navController: NavHostController,
-    innerPadding : PaddingValues
-){
+    innerPadding: PaddingValues = PaddingValues(),
+) {
     NavHost(
         navController = navController,
-        startDestination = FinancialOverview::class ,
+        startDestination = FinancialOverview::class,
         modifier = Modifier.fillMaxSize()
-    ){
-        composable<FinancialOverview>{ FinancialOverviewRoute(innerPadding, navController) }
+    ) {
+        composable<FinancialOverview> {
+            FinancialOverviewRoute(
+                paddingValues = innerPadding,
+                navController = navController
+            )
+        }
 
-        composable<SpendingAnalysis>{SpendingAnalysisRoute(innerPadding, navController) }
+        composable<SpendingAnalysis> {
+            SpendingAnalysisRoute(
+                paddingValues = innerPadding,
+                navController = navController
+            )
+        }
 
-        composable<SpendingDetails>{ SpendingDetailsRoute(innerPadding, navController) }
+        composable<SpendingDetails> {
+            SpendingDetailsRoute(
+                paddingValues = innerPadding,
+                navController = navController
+            )
+        }
 
-        composable<SpendingOverview>{ SpendingOverviewRoute(innerPadding, navController) }
+        composable<SpendingOverview> {
+            SpendingOverviewRoute(
+                paddingValues = innerPadding,
+                navController = navController
+            )
+        }
 
-        composable<Splash>{ SplashRoute(innerPadding, navController) }
+        composable<Splash> {
+            SplashRoute(
+                paddingValues = innerPadding,
+                navController = navController
+            )
+        }
 
-        composable<Home>{}
+        composable<Home> {}
 
-        composable<Benefits>{}
+        composable<Benefits> {}
 
-        composable<Pay>{}
+        composable<Pay> {}
 
-        composable<Invest>{}
+        composable<Invest> {}
 
     }
 }
