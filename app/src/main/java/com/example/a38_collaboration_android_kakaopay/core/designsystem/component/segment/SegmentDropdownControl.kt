@@ -11,6 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -26,7 +27,7 @@ fun SegmentDropdownControl(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val text = if (isExpanded) "닫기" else "상세"
+    val text = if (isExpanded) R.string.segment_dropdown_control_close else R.string.segment_dropdown_control_detail
     val icon =
         if (isExpanded) R.drawable.ic_chevron_up_grey500_16px else R.drawable.ic_chevron_down_grey500_16px
 
@@ -38,7 +39,7 @@ fun SegmentDropdownControl(
         horizontalArrangement = Arrangement.spacedBy(2.dp)
     ) {
         Text(
-            text = text,
+            text = stringResource(text),
             color = colors.grey500,
             style = typography.bodyR14,
         )
