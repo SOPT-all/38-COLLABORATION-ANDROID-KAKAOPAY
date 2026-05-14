@@ -23,9 +23,9 @@ import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.Ka
 
 @Composable
 fun SegmentDropdownControl(
-    isExpanded: Boolean,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    isExpanded: Boolean = false,
 ) {
     val text = if (isExpanded) R.string.segment_dropdown_control_close else R.string.segment_dropdown_control_detail
     val icon =
