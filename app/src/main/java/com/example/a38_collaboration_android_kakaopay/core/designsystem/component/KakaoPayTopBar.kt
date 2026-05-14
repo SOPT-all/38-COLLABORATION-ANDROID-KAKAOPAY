@@ -48,10 +48,7 @@ fun KakaoPayTopBar(
             // 1. 로고 영역 (왼쪽 패딩 16dp 적용)
             Box(
                 modifier = Modifier
-                    .padding(start = 16.dp)
-                    .width(80.dp)
-                    .height(48.dp)
-                    .padding(vertical = 12.dp),
+                    .padding(start = 16.dp, top = 12.dp, bottom = 12.dp),
                 contentAlignment = Alignment.CenterStart
             ) {
                 Icon(
@@ -64,7 +61,9 @@ fun KakaoPayTopBar(
 
             // 2. 오른쪽 아이콘 영역 (아이콘끼리 간격 없이 48dp씩 차지)
             Row(
-                modifier = Modifier.fillMaxHeight(),
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .padding(end = 4.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 // 검색 아이콘 버튼
@@ -102,9 +101,6 @@ fun KakaoPayTopBar(
                         modifier = Modifier.size(24.dp)
                     )
                 }
-
-                // 마지막 오른쪽 여백 4dp 처리 (피그마 수치 반영)
-                Box(modifier = Modifier.width(4.dp))
             }
         }
     }
