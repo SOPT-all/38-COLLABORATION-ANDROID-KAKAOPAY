@@ -3,7 +3,6 @@ package com.example.a38_collaboration_android_kakaopay.core.designsystem.compone
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
@@ -24,15 +23,13 @@ fun EdgeCase(
     modifier: Modifier = Modifier,
 ) {
     Column(
-        modifier = modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally
+        modifier = modifier,
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Spacer(modifier = Modifier.weight(3f))
-
         Image(
             painter = painterResource(type.icon),
             contentDescription = null,
-            modifier = Modifier.size(64.dp)
+            modifier = Modifier.size(64.dp),
         )
 
         Spacer(modifier = Modifier.height(25.dp))
@@ -42,8 +39,6 @@ fun EdgeCase(
             color = colors.black,
             style = typography.titleB20,
         )
-
-        Spacer(modifier = Modifier.weight(4f))
     }
 }
 
