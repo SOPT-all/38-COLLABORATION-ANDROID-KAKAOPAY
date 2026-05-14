@@ -1,4 +1,4 @@
-package com.example.a38_collaboration_android_kakaopay.core.designsystem.component.transaction
+package com.example.a38_collaboration_android_kakaopay.core.designsystem.component.dropdown
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
