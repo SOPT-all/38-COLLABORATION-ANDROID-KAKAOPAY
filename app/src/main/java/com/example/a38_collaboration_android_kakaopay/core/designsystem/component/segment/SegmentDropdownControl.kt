@@ -3,9 +3,7 @@ package com.example.a38_collaboration_android_kakaopay.core.designsystem.compone
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -37,15 +35,13 @@ fun SegmentDropdownControl(
             .noRippleClickable(onClick)
             .padding(6.dp),
         verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(2.dp)
     ) {
         Text(
             text = text,
             color = colors.grey500,
             style = typography.bodyR14,
         )
-
-        Spacer(modifier = Modifier.width(2.dp))
-
         Icon(
             imageVector = ImageVector.vectorResource(icon),
             contentDescription = null,
