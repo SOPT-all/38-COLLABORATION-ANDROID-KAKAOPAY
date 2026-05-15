@@ -3,7 +3,6 @@ package com.example.a38_collaboration_android_kakaopay.core.designsystem.compone
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -59,7 +58,6 @@ fun KakaoPayTopBar(
             }
             Row(
                 modifier = Modifier
-                    .fillMaxHeight()
                     .padding(end = 4.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -95,7 +93,8 @@ fun KakaoPayTopBar(
                     modifier = Modifier.size(48.dp)
                 ) {
                     Icon(
-                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_top_bar_hamburger_24px),                        contentDescription = "메뉴",
+                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_top_bar_hamburger_24px),
+                        contentDescription = "메뉴",
                         tint = KakaoTheme.colors.black,
                         modifier = Modifier.size(24.dp)
                     )
