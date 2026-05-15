@@ -16,6 +16,7 @@ import com.example.a38_collaboration_android_kakaopay.presentation.splash.Splash
 @Composable
 fun AppNaviHost(
     navController: NavHostController,
+
     innerPadding: PaddingValues = PaddingValues(),
 ) {
     NavHost(
@@ -63,6 +64,8 @@ fun AppNaviHost(
         composable<Benefits> {}
 
         composable<Pay> {}
+
+        composable<Asset> {}
 
         composable<Invest> {}
 
