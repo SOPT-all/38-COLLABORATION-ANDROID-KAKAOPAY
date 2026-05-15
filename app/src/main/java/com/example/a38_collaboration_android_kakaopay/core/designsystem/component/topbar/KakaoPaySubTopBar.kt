@@ -50,7 +50,7 @@ fun KakaoPaySubTopBar(
             ) {
                 Icon(
                     imageVector = ImageVector.vectorResource(id = R.drawable.ic_top_bar_arrow_left_24px),
-                    contentDescription = "뒤로가기",
+                    contentDescription = null,
                     tint = KakaoTheme.colors.black,
                     modifier = Modifier.size(24.dp)
                 )
@@ -74,7 +74,7 @@ fun KakaoPaySubTopBar(
             ) {
                 Icon(
                     imageVector = ImageVector.vectorResource(id = R.drawable.ic_top_bar_home_24px),
-                    contentDescription = "홈",
+                    contentDescription = null,
                     tint = KakaoTheme.colors.black,
                     modifier = Modifier.size(24.dp)
                 )
