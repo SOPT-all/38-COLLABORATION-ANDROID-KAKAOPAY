@@ -35,7 +35,7 @@ fun KakaoPayTopBar(
     Surface(
         modifier = modifier
             .fillMaxWidth()
-            .height(48.dp), // 상단바 전체 높이 48dp
+            .height(48.dp),
         color = KakaoTheme.colors.white
     ) {
         Row(
@@ -44,7 +44,7 @@ fun KakaoPayTopBar(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            // 1. 로고 영역 (왼쪽 패딩 16dp 적용)
+            // 로고
             Box(
                 modifier = Modifier
                     .padding(start = 16.dp, top = 12.dp, bottom = 12.dp),
@@ -57,28 +57,26 @@ fun KakaoPayTopBar(
                     modifier = Modifier.height(24.dp)
                 )
             }
-
-            // 2. 오른쪽 아이콘 영역 (아이콘끼리 간격 없이 48dp씩 차지)
             Row(
                 modifier = Modifier
                     .fillMaxHeight()
                     .padding(end = 4.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                // 검색 아이콘 버튼
+                // 검색
                 IconButton(
                     onClick = onSearchClick,
-                    modifier = Modifier.size(48.dp) // 전체 영역 48x48 (12+24+12)
+                    modifier = Modifier.size(48.dp)
                 ) {
                     Icon(
                         imageVector = ImageVector.vectorResource(id = R.drawable.ic_top_bar_search_24px),
                         contentDescription = "검색",
                         tint = KakaoTheme.colors.black,
-                        modifier = Modifier.size(24.dp) // 실제 아이콘 크기 24x24
+                        modifier = Modifier.size(24.dp)
                     )
                 }
 
-                // 알림 아이콘 버튼
+                // 알림
                 IconButton(
                     onClick = onNotificationClick,
                     modifier = Modifier.size(48.dp)
@@ -91,7 +89,7 @@ fun KakaoPayTopBar(
                     )
                 }
 
-                // 메뉴 아이콘 버튼
+                // 메뉴
                 IconButton(
                     onClick = onMenuClick,
                     modifier = Modifier.size(48.dp)
