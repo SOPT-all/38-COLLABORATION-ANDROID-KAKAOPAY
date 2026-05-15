@@ -30,4 +30,8 @@ data object Benefits : Route
 data object Pay: Route
 
 @Serializable
+data object Asset : Route
+
+
+@Serializable
 data object Invest : Route
