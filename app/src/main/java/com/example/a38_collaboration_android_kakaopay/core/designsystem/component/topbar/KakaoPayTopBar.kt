@@ -1,7 +1,6 @@
-package com.example.a38_collaboration_android_kakaopay.core.designsystem.component
+package com.example.a38_collaboration_android_kakaopay.core.designsystem.component.topbar
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -41,17 +40,13 @@ fun KakaoPayTopBar(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             // 로고
-            Box(
+            Icon(
+                painter = painterResource(id = R.drawable.logo_top_bar_kakaopay_lg),
+                contentDescription = null,
                 modifier = Modifier
-                    .padding(start = 16.dp, top = 12.dp, bottom = 12.dp),
-                contentAlignment = Alignment.CenterStart
-            ) {
-                Icon(
-                    painter = painterResource(id = R.drawable.logo_top_bar_kakaopay_lg),
-                    contentDescription = null,
-                    modifier = Modifier.height(24.dp)
-                )
-            }
+                    .padding(start = 16.dp, top = 12.dp, bottom = 12.dp)
+                    .height(24.dp)
+            )
             Row(
                 modifier = Modifier
                     .padding(end = 4.dp),
