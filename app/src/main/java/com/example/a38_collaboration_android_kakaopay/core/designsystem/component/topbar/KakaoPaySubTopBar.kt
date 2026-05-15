@@ -24,10 +24,11 @@ import androidx.compose.ui.unit.dp
 import com.example.a38_collaboration_android_kakaopay.R
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
+
 @Composable
 fun KakaoPaySubTopBar(
-    title: String = "",
     modifier: Modifier = Modifier,
+    title: String = "",
     isCenterTitle: Boolean = false,
     titleStyle: TextStyle = KakaoTheme.typography.bodyB16,
     backgroundColor: Color = KakaoTheme.colors.white,
