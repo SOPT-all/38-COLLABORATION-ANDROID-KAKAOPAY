@@ -23,7 +23,7 @@ import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.Ka
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
 
 @Composable
-fun KakaoPayBottomNavigation(
+fun KakaoPayNavigatorBar(
     modifier: Modifier = Modifier,
     selectedTab: Int = 0,
     onTabSelected: (Int) -> Unit = {}
@@ -85,7 +85,7 @@ fun KakaoPayBottomNavigation(
 
 @Preview(showBackground = true)
 @Composable
-private fun KakaoPayBottomNavigationPreview() {
+private fun KakaoPayNavigatorBarPreview() {
     KakaoPayTheme {
         Box(
             modifier = Modifier
@@ -94,7 +94,7 @@ private fun KakaoPayBottomNavigationPreview() {
                 .background(KakaoTheme.colors.backgroundDefaultGrey),
             contentAlignment = Alignment.BottomCenter
         ) {
-            KakaoPayBottomNavigation(selectedTab = 3)
+            KakaoPayNavigatorBar(selectedTab = 3)
         }
     }
 }
