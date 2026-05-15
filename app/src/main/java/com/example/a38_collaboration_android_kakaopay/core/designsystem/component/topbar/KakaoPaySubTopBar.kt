@@ -85,7 +85,7 @@ fun KakaoPaySubTopBar(
 
 @Preview(showBackground = true)
 @Composable
-private fun PreviewTypeA() {
+private fun KakaoPaySubTopBarTypeAPreview() {
     KakaoPayTheme {
         KakaoPaySubTopBar(
             title = {
@@ -95,7 +95,6 @@ private fun PreviewTypeA() {
                     color = KakaoTheme.colors.black,
                     textAlign = TextAlign.Start,
                     modifier = Modifier.fillMaxWidth(),
-                    maxLines = 1
                 )
             },
             onBackClick = {},
@@ -106,7 +105,7 @@ private fun PreviewTypeA() {
 
 @Preview(showBackground = true)
 @Composable
-private fun PreviewTypeB() {
+private fun KakaoPaySubTopBarTypeBPreview() {
     KakaoPayTheme {
         KakaoPaySubTopBar(
             title = {
@@ -116,7 +115,6 @@ private fun PreviewTypeB() {
                     color = KakaoTheme.colors.black,
                     textAlign = TextAlign.Center,
                     modifier = Modifier.fillMaxWidth(),
-                    maxLines = 1
                 )
             },
             onBackClick = {},
@@ -127,7 +125,7 @@ private fun PreviewTypeB() {
 
 @Preview(showBackground = true)
 @Composable
-private fun PreviewTypeC() {
+private fun KakaoPaySubTopBarTypeCPreview() {
     KakaoPayTheme {
         KakaoPaySubTopBar(
             title = {},
