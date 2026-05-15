@@ -6,6 +6,7 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Icon
@@ -25,32 +26,36 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun KakaoPayScrollTopButton(
-    onClick: () -> Unit,
+    listState: LazyListState,
     modifier: Modifier = Modifier
 ) {
-    val interactionSource = remember { MutableInteractionSource() }
-    val isPressed by interactionSource.collectIsPressedAsState()
-
-    val backgroundColor = if (isPressed) {
-        KakaoTheme.colors.buttonSecondaryPressed
-    } else {
-        KakaoTheme.colors.white
-    }
+    val coroutineScope = rememberCoroutineScope()
 
     Box(
         modifier = modifier
-            .size(44.dp)
-            .background(backgroundColor, CircleShape)
-            .border(1.dp, KakaoTheme.colors.grey200, CircleShape)
-            .noRippleClickable { onClick() },
-        contentAlignment = Alignment.Center
+            .fillMaxSize()
+            .navigationBarsPadding()
+            .padding(20.dp),
+        contentAlignment = Alignment.BottomEnd
     ) {
-        Icon(
-            imageVector = ImageVector.vectorResource(id = R.drawable.ic_chevron_up_grey500_24px),
-            contentDescription = "Scroll to Top",
-            tint = KakaoTheme.colors.grey500,
-            modifier = Modifier.size(24.dp)
-        )
+        Box(
+            modifier = Modifier
+                .size(44.dp)
+                .background(KakaoTheme.colors.white, CircleShape)
+                .border(1.dp, KakaoTheme.colors.grey200, CircleShape)
+                .noRippleClickable {
+                    coroutineScope.launch {
+                        listState.animateScrollToItem(0)
+                    }
+                },
+            contentAlignment = Alignment.Center
+        ) {
+            Icon(
+                imageVector = ImageVector.vectorResource(id = R.drawable.ic_chevron_up_grey500_24px),
+                contentDescription = "Scroll to Top",
+                modifier = Modifier.size(24.dp)
+            )
+        }
     }
 }
 
@@ -59,7 +64,6 @@ fun KakaoPayScrollTopButton(
 private fun KakaoPayScrollTopTestPreview() {
     KakaoPayTheme {
         val listState = rememberLazyListState()
-        val coroutineScope = rememberCoroutineScope()
 
         Box(modifier = Modifier.fillMaxSize()) {
             LazyColumn(state = listState) {
@@ -74,16 +78,7 @@ private fun KakaoPayScrollTopTestPreview() {
                 }
             }
 
-            KakaoPayScrollTopButton(
-                onClick = {
-                    coroutineScope.launch {
-                        listState.animateScrollToItem(0)
-                    }
-                },
-                modifier = Modifier
-                    .align(Alignment.BottomEnd)
-                    .padding(20.dp)
-            )
+            KakaoPayScrollTopButton(listState = listState)
         }
     }
 }
