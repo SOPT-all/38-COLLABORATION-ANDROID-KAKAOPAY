@@ -2,7 +2,6 @@ package com.example.a38_collaboration_android_kakaopay.core.designsystem.compone
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
@@ -14,29 +13,18 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.a38_collaboration_android_kakaopay.R
+import com.example.a38_collaboration_android_kakaopay.core.common.extension.noRippleClickable
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
 import kotlinx.coroutines.launch
 
 @Composable
 fun KakaoPayScrollTopButton(
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier
-) {
-    InternalKakaoPayScrollTopButton(
-        onClick = onClick,
-        modifier = modifier
-    )
-}
-
-@Composable
-private fun InternalKakaoPayScrollTopButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -52,22 +40,14 @@ private fun InternalKakaoPayScrollTopButton(
     Box(
         modifier = modifier
             .size(44.dp)
-            .clip(CircleShape)
-            .background(backgroundColor)
-            .border(
-                width = 1.dp,
-                color = KakaoTheme.colors.grey200,
-                shape = CircleShape
-            )
-            .clickable(
-                interactionSource = interactionSource,
-            ) {
-                onClick()
-            },
+            .background(backgroundColor, CircleShape)
+            .border(1.dp, KakaoTheme.colors.grey200, CircleShape)
+            .noRippleClickable { onClick() },
         contentAlignment = Alignment.Center
     ) {
         Icon(
-            imageVector = ImageVector.vectorResource(id = R.drawable.ic_chevron_up_grey500_24px),            contentDescription = "Scroll to Top",
+            imageVector = ImageVector.vectorResource(id = R.drawable.ic_chevron_up_grey500_24px),
+            contentDescription = "Scroll to Top",
             tint = KakaoTheme.colors.grey500,
             modifier = Modifier.size(24.dp)
         )
@@ -86,7 +66,9 @@ private fun KakaoPayScrollTopTestPreview() {
                 items(100) { index ->
                     Text(
                         text = "카카오페이 항목 $index",
-                        modifier = Modifier.fillMaxWidth().padding(20.dp),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(20.dp),
                         style = KakaoTheme.typography.bodyM16
                     )
                 }
