@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.a38_collaboration_android_kakaopay.core.common.extension.noRippleClickable
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
 
 @Composable
@@ -21,13 +22,10 @@ fun BinaryTabItem(
 ) {
     Box(
         modifier = modifier
-            .height(45.dp)
-            .clickable(onClick = onClick)
+            .noRippleClickable(onClick)
             .padding(
-                top = 6.dp,
-                bottom = 6.dp,
-                start = 2.dp,
-                end = 2.dp
+                vertical = 6.dp,
+                horizontal = 4.dp
             ),
         contentAlignment = Alignment.Center
     ) {
@@ -41,7 +39,7 @@ fun BinaryTabItem(
 
 @Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
 @Composable
-fun BinaryTabItemPreview() {
+private fun BinaryTabItemPreview() {
     BinaryTabItem(
         text = "내역",
         isSelected = true,
