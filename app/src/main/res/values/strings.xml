@@ -1,4 +1,5 @@
 <resources>
+    <string name="app_name">38-COLLABORATION-ANDROID-KAKAOPAY</string>
     <string name="history">내역</string>
     <string name="make_card">카드만들기</string>
 </resources>
