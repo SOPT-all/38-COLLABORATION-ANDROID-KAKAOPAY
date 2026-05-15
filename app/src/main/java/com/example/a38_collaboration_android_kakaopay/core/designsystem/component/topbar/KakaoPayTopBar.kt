@@ -18,15 +18,14 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.a38_collaboration_android_kakaopay.R
+import com.example.a38_collaboration_android_kakaopay.core.common.extension.noRippleClickableWithPressedColor
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
 
 @Composable
 fun KakaoPayTopBar(
     modifier: Modifier = Modifier,
-    onSearchClick: () -> Unit,
-    onNotificationClick: () -> Unit,
-    onMenuClick: () -> Unit
+    onClick: () -> Unit
 ) {
     Surface(
         modifier = modifier
@@ -49,47 +48,33 @@ fun KakaoPayTopBar(
             )
             Row(
                 modifier = Modifier
-                    .padding(end = 4.dp),
-                verticalAlignment = Alignment.CenterVertically
+                    .padding(end = 16.dp)
+                    .noRippleClickableWithPressedColor {
+                        onClick()
+                    },
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(24.dp)
             ) {
-                // 검색
-                IconButton(
-                    onClick = onSearchClick,
-                    modifier = Modifier.size(48.dp)
-                ) {
-                    Icon(
-                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_top_bar_search_24px),
-                        contentDescription = "검색",
-                        tint = KakaoTheme.colors.black,
-                        modifier = Modifier.size(24.dp)
-                    )
-                }
+                Icon(
+                    imageVector = ImageVector.vectorResource(id = R.drawable.ic_top_bar_search_24px),
+                    contentDescription = null,
+                    tint = KakaoTheme.colors.black,
+                    modifier = Modifier.size(24.dp)
+                )
 
-                // 알림
-                IconButton(
-                    onClick = onNotificationClick,
-                    modifier = Modifier.size(48.dp)
-                ) {
-                    Icon(
-                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_top_bar_notification_24px),
-                        contentDescription = "알림",
-                        tint = KakaoTheme.colors.black,
-                        modifier = Modifier.size(24.dp)
-                    )
-                }
+                Icon(
+                    imageVector = ImageVector.vectorResource(id = R.drawable.ic_top_bar_notification_24px),
+                    contentDescription = null,
+                    tint = KakaoTheme.colors.black,
+                    modifier = Modifier.size(24.dp)
+                )
 
-                // 메뉴
-                IconButton(
-                    onClick = onMenuClick,
-                    modifier = Modifier.size(48.dp)
-                ) {
-                    Icon(
-                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_top_bar_hamburger_24px),
-                        contentDescription = "메뉴",
-                        tint = KakaoTheme.colors.black,
-                        modifier = Modifier.size(24.dp)
-                    )
-                }
+                Icon(
+                    imageVector = ImageVector.vectorResource(id = R.drawable.ic_top_bar_hamburger_24px),
+                    contentDescription = null,
+                    tint = KakaoTheme.colors.black,
+                    modifier = Modifier.size(24.dp)
+                )
             }
         }
     }
@@ -101,9 +86,7 @@ fun KakaoPayTopBar(
 private fun KakaoPayTopBarPreview() {
     KakaoPayTheme {
         KakaoPayTopBar(
-            onSearchClick = {},
-            onNotificationClick = {},
-            onMenuClick = {}
+            onClick = {}
         )
     }
 }
