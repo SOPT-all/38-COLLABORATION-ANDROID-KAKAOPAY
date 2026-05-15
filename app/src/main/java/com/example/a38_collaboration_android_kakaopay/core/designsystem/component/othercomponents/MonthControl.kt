@@ -62,7 +62,7 @@ fun MonthControl(
         Spacer(modifier = Modifier.width(3.dp))
 
         Icon(
-            painter = painterResource(id = R.drawable.ic_caret_down_16px),
+            imageVector = ImageVector.vectorResource(id = R.drawable.ic_caret_down_16px),
             contentDescription = "드롭다운 아이콘"
         )
 
@@ -86,6 +86,6 @@ fun MonthControl(
 
 @Preview
 @Composable
-fun MonthControlPreview(){
+private fun MonthControlPreview(){
     MonthControl()
 }
