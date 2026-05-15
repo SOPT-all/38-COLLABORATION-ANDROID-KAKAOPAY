@@ -29,9 +29,9 @@ import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.Ka
 @Composable
 fun KakaoPayTopBar(
     modifier: Modifier = Modifier,
-    onSearchClick: () -> Unit = {},
-    onNotificationClick: () -> Unit = {},
-    onMenuClick: () -> Unit = {}
+    onSearchClick: () -> Unit,
+    onNotificationClick: () -> Unit,
+    onMenuClick: () -> Unit
 ) {
     Surface(
         modifier = modifier
@@ -111,6 +111,10 @@ fun KakaoPayTopBar(
 @Composable
 private fun KakaoPayTopBarPreview() {
     KakaoPayTheme {
-        KakaoPayTopBar()
+        KakaoPayTopBar(
+            onSearchClick = {},
+            onNotificationClick = {},
+            onMenuClick = {}
+        )
     }
 }
