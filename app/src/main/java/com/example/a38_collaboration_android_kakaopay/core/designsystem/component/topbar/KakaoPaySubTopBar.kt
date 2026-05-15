@@ -1,9 +1,7 @@
 package com.example.a38_collaboration_android_kakaopay.core.designsystem.component.topbar
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -16,9 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
@@ -33,8 +29,8 @@ fun KakaoPaySubTopBar(
     modifier: Modifier = Modifier,
     isCenterTitle: Boolean = false,
     titleStyle: TextStyle = KakaoTheme.typography.bodyB16,
-    onBackClick: () -> Unit = {},
-    onHomeClick: () -> Unit = {}
+    onBackClick: () -> Unit,
+    onHomeClick: () -> Unit
 ) {
     Surface(
         modifier = modifier
@@ -97,24 +93,28 @@ fun KakaoPaySubTopBar(
 
 @Preview(showBackground = true)
 @Composable
-fun PreviewTypeA() {
+private fun PreviewTypeA() {
     KakaoPayTheme {
         KakaoPaySubTopBar(
             title = "상세내역",
             isCenterTitle = false,
-            titleStyle = KakaoTheme.typography.bodyB16
+            titleStyle = KakaoTheme.typography.bodyB16,
+            onBackClick = {},
+            onHomeClick = {}
         )
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun PreviewTypeB() {
+private fun PreviewTypeB() {
     KakaoPayTheme {
         KakaoPaySubTopBar(
             title = "소비분석",
             isCenterTitle = true,
-            titleStyle = KakaoTheme.typography.bodyM16
+            titleStyle = KakaoTheme.typography.bodyM16,
+            onBackClick = {},
+            onHomeClick = {}
         )
     }
 }
@@ -123,6 +123,10 @@ fun PreviewTypeB() {
 @Composable
 private fun PreviewTypeC() {
     KakaoPayTheme {
-        KakaoPaySubTopBar(title = "")
+        KakaoPaySubTopBar(
+            title = "",
+            onBackClick = {},
+            onHomeClick = {}
+        )
     }
 }
