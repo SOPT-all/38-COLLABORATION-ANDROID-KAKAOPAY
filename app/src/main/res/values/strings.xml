@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">38-COLLABORATION-ANDROID-KAKAOPAY</string>
+    <!-- TransactionDropdown -->
+    <string name="transaction_dropdown_all">전체</string>
     <!-- SegmentDropdownControl -->
     <string name="segment_dropdown_control_detail">상세</string>
     <string name="segment_dropdown_control_close">닫기</string>
