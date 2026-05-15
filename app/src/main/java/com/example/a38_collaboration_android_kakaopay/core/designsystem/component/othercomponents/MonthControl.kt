@@ -15,7 +15,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.a38_collaboration_android_kakaopay.R
@@ -26,7 +28,7 @@ import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.Ka
 fun MonthControl(
     modifier: Modifier = Modifier
 ) {
-    var selectedMonth by remember { mutableStateOf("4월") }
+    var selectedMonth by remember { mutableStateOf(4) }
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center,
@@ -35,16 +37,16 @@ fun MonthControl(
             .width(121.dp)
     ) {
         IconButton(
-            onClick = { if (selectedMonth == "4월") selectedMonth = "5월" },
-            enabled = (selectedMonth == "5월")
+            onClick = { if (selectedMonth == 5) selectedMonth = 4 },
+            enabled = (selectedMonth == 5)
         ) {
             Icon(
-                painter = if (selectedMonth == "4월") {
-                    painterResource(id = R.drawable.ic_chevron_left_grey300_24px)
+                imageVector = if (selectedMonth == 4) {
+                    ImageVector.vectorResource(id = R.drawable.ic_chevron_left_grey300_24px)
                 } else {
-                    painterResource(id = R.drawable.ic_chevron_left_black_24px)
+                    ImageVector.vectorResource(id = R.drawable.ic_chevron_left_black_24px)
                 },
-                contentDescription = "4월입니다"
+                contentDescription = null
             )
 
         }
@@ -67,16 +69,16 @@ fun MonthControl(
         Spacer(modifier = Modifier.width(12.dp))
 
         IconButton(
-            onClick = { if (selectedMonth == "5월") selectedMonth = "4월" },
-            enabled = (selectedMonth == "4월")
+            onClick = { if (selectedMonth == 4) selectedMonth = 5 },
+            enabled = (selectedMonth == 4)
         ) {
             Icon(
-                painter = if (selectedMonth == "5월") {
-                    painterResource(id = R.drawable.ic_chevron_right_grey300_24px)
+                imageVector = if (selectedMonth == 5) {
+                    ImageVector.vectorResource(id = R.drawable.ic_chevron_right_grey300_24px)
                 } else {
-                    painterResource(id = R.drawable.ic_chevron_right_black_24px)
+                    ImageVector.vectorResource(id = R.drawable.ic_chevron_right_black_24px)
                 },
-                contentDescription = "5월입니다"
+                contentDescription = null
             )
         }
     }
