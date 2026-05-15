@@ -1,5 +1,6 @@
 package com.example.a38_collaboration_android_kakaopay.core.designsystem.component.topbar
 
+import androidx.compose.ui.graphics.Color
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -29,6 +30,7 @@ fun KakaoPaySubTopBar(
     modifier: Modifier = Modifier,
     isCenterTitle: Boolean = false,
     titleStyle: TextStyle = KakaoTheme.typography.bodyB16,
+    backgroundColor: Color = KakaoTheme.colors.white,
     onBackClick: () -> Unit,
     onHomeClick: () -> Unit
 ) {
@@ -36,7 +38,7 @@ fun KakaoPaySubTopBar(
         modifier = modifier
             .fillMaxWidth()
             .height(48.dp),
-        color = KakaoTheme.colors.white
+        color = backgroundColor
     ) {
         Row(
             modifier = Modifier.fillMaxSize(),
