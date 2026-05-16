@@ -63,7 +63,7 @@ fun MonthControl(
 
         Icon(
             imageVector = ImageVector.vectorResource(id = R.drawable.ic_caret_down_16px),
-            contentDescription = "드롭다운 아이콘"
+            contentDescription = null
         )
 
         Spacer(modifier = Modifier.width(12.dp))
