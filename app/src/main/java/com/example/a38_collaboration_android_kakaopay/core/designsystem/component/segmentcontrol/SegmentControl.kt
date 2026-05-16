@@ -87,8 +87,8 @@ enum class SegmentTab(
 @Composable
 private fun KakaoPaySegmentControlPreview() {
     KakaoPayTheme {
-        var selectedTab by remember { mutableStateOf(SegmentTab.EXPENSE_PREVIEW) }
-        
+        var selectedTab by remember { mutableStateOf(SegmentTab.SUMMARY) }
+
         KakaoPaySegmentControl(
             selectedTab = selectedTab,
             onTabSelected = { selectedTab = it }
