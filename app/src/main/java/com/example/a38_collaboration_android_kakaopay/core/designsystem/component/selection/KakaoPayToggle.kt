@@ -29,18 +29,16 @@ import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.Ka
 
 @Composable
 fun KakaoPayToggle(
-    checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    checked: Boolean = true
 ) {
     val backgroundColor by animateColorAsState(
         targetValue = if (checked) KakaoTheme.colors.toggleActive else KakaoTheme.colors.toggleInactive,
-        label = "backgroundColor"
     )
 
     val thumbOffset by animateDpAsState(
         targetValue = if (checked) 17.dp else 0.dp,
-        label = "thumbOffset"
     )
 
     // 토글 트랙
@@ -76,8 +74,8 @@ private fun KakaoPayTogglePreview() {
 
         Column(
             modifier = Modifier
-                .padding(20.dp)
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .padding(20.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
@@ -88,6 +86,6 @@ private fun KakaoPayTogglePreview() {
                 }
             )
 
-                    }
+        }
     }
 }
