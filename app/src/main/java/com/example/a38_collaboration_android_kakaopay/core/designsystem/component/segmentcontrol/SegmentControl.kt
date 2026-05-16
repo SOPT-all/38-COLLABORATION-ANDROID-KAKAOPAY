@@ -22,6 +22,31 @@ import com.example.a38_collaboration_android_kakaopay.core.common.extension.noRi
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
 
+@Composable
+fun KakaoPaySegmentControl(
+    selectedTab: SegmentTab,
+    onTabSelected: (SegmentTab) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(4.dp))
+            .background(KakaoTheme.colors.backgroundSubtleGrey)
+            .padding(2.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(2.dp)
+    ) {
+        SegmentTab.entries.forEach { tab ->
+            KakaoPaySegmentItem(
+                tab = tab,
+                isSelected = selectedTab == tab,
+                onClick = { onTabSelected(tab) },
+                modifier = Modifier.weight(1f)
+            )
+        }
+    }
+}
 
 @Composable
 private fun KakaoPaySegmentItem(
@@ -56,4 +81,17 @@ enum class SegmentTab(
 ) {
     SUMMARY("요약"),
     EXPENSE_PREVIEW("지출 엿보기"),
+}
+
+@Preview
+@Composable
+private fun KakaoPaySegmentControlPreview() {
+    KakaoPayTheme {
+        var selectedTab by remember { mutableStateOf(SegmentTab.EXPENSE_PREVIEW) }
+        
+        KakaoPaySegmentControl(
+            selectedTab = selectedTab,
+            onTabSelected = { selectedTab = it }
+        )
+    }
 }
