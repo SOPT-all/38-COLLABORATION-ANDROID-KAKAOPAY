@@ -17,7 +17,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.a38_collaboration_android_kakaopay.R
-import com.example.a38_collaboration_android_kakaopay.core.common.extension.noRippleClickable
+import com.example.a38_collaboration_android_kakaopay.core.common.extension.noRippleClickableWithPressedColor
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
 import kotlinx.coroutines.launch
@@ -41,7 +41,7 @@ fun KakaoPayScrollTopButton(
                 .size(44.dp)
                 .background(KakaoTheme.colors.white, CircleShape)
                 .border(1.dp, KakaoTheme.colors.grey200, CircleShape)
-                .noRippleClickable {
+                .noRippleClickableWithPressedColor {
                     coroutineScope.launch {
                         listState.animateScrollToItem(0)
                     }
