@@ -1,4 +1,4 @@
-package com.example.a38_collaboration_android_kakaopay.core.designsystem.component
+package com.example.a38_collaboration_android_kakaopay.core.designsystem.component.topbar
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
@@ -35,7 +36,6 @@ fun KakaoPayTopBar(
         modifier = modifier
             .fillMaxWidth()
             .height(48.dp),
-        color = KakaoTheme.colors.white
     ) {
         Row(
             modifier = Modifier
@@ -46,7 +46,7 @@ fun KakaoPayTopBar(
             // 로고
             Box(
                 modifier = Modifier
-                    .padding(start = 16.dp, top = 12.dp, bottom = 12.dp),
+                    .padding(top = 12.dp, bottom = 12.dp),
                 contentAlignment = Alignment.CenterStart
             ) {
                 Icon(
@@ -56,9 +56,8 @@ fun KakaoPayTopBar(
                     modifier = Modifier.height(24.dp)
                 )
             }
+
             Row(
-                modifier = Modifier
-                    .padding(end = 4.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 // 검색
@@ -68,7 +67,7 @@ fun KakaoPayTopBar(
                 ) {
                     Icon(
                         imageVector = ImageVector.vectorResource(id = R.drawable.ic_top_bar_search_24px),
-                        contentDescription = "검색",
+                        contentDescription = null,
                         tint = KakaoTheme.colors.black,
                         modifier = Modifier.size(24.dp)
                     )
@@ -81,7 +80,7 @@ fun KakaoPayTopBar(
                 ) {
                     Icon(
                         imageVector = ImageVector.vectorResource(id = R.drawable.ic_top_bar_notification_24px),
-                        contentDescription = "알림",
+                        contentDescription = null,
                         tint = KakaoTheme.colors.black,
                         modifier = Modifier.size(24.dp)
                     )
@@ -94,11 +93,12 @@ fun KakaoPayTopBar(
                 ) {
                     Icon(
                         imageVector = ImageVector.vectorResource(id = R.drawable.ic_top_bar_hamburger_24px),
-                        contentDescription = "메뉴",
+                        contentDescription = null,
                         tint = KakaoTheme.colors.black,
                         modifier = Modifier.size(24.dp)
                     )
                 }
+
             }
         }
     }
