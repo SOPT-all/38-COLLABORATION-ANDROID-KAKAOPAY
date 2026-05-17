@@ -1,9 +1,8 @@
-package com.example.a38_collaboration_android_kakaopay.core.designsystem.component.othercomponents
+package com.example.a38_collaboration_android_kakaopay.core.designsystem.component.monthcontrol
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -16,37 +15,42 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.a38_collaboration_android_kakaopay.R
+import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
 
+
+enum class Month(val value: Int) {
+    APRIL(4),
+    MAY(5),
+}
 
 @Composable
 fun MonthControl(
     modifier: Modifier = Modifier
 ) {
-    var selectedMonth by remember { mutableStateOf(4) }
+    var selectedMonth by remember { mutableStateOf(Month.APRIL) }
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center,
         modifier = modifier
-            .height(30.dp)
-            .width(121.dp)
     ) {
         IconButton(
-            onClick = { if (selectedMonth == 5) selectedMonth = 4 },
-            enabled = (selectedMonth == 5)
+            onClick = { if (selectedMonth == Month.MAY) selectedMonth = Month.APRIL },
+            enabled = (selectedMonth == Month.MAY)
         ) {
             Icon(
-                imageVector = if (selectedMonth == 4) {
-                    ImageVector.vectorResource(id = R.drawable.ic_chevron_left_grey300_24px)
-                } else {
-                    ImageVector.vectorResource(id = R.drawable.ic_chevron_left_black_24px)
-                },
-                contentDescription = null
+                imageVector = ImageVector
+                    .vectorResource(id = R.drawable.ic_chevron_left_black_24px),
+                contentDescription = null,
+                tint = if (selectedMonth == Month.APRIL) {
+                    KakaoTheme.colors.grey300
+                } else{
+                    KakaoTheme.colors.black
+                }
             )
 
         }
@@ -69,23 +73,29 @@ fun MonthControl(
         Spacer(modifier = Modifier.width(12.dp))
 
         IconButton(
-            onClick = { if (selectedMonth == 4) selectedMonth = 5 },
-            enabled = (selectedMonth == 4)
+            onClick = { if (selectedMonth == Month.APRIL) selectedMonth = Month.MAY },
+            enabled = (selectedMonth == Month.APRIL)
         ) {
             Icon(
-                imageVector = if (selectedMonth == 5) {
-                    ImageVector.vectorResource(id = R.drawable.ic_chevron_right_grey300_24px)
+                imageVector = ImageVector
+                    .vectorResource(id = R.drawable.ic_chevron_right_black_24px),
+                contentDescription = null,
+                tint = if (selectedMonth == Month.MAY) {
+                    KakaoTheme.colors.grey300
                 } else {
-                    ImageVector.vectorResource(id = R.drawable.ic_chevron_right_black_24px)
-                },
-                contentDescription = null
+                    KakaoTheme.colors.black
+                }
+
             )
         }
+
     }
 }
 
 @Preview
 @Composable
-private fun MonthControlPreview(){
-    MonthControl()
+private fun MonthControlPreview() {
+    KakaoPayTheme {
+        MonthControl()
+    }
 }
