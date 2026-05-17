@@ -37,7 +37,7 @@ fun NavigationItem(
             imageVector = ImageVector.vectorResource(
                 id = if (isSelected) tab.pressedIconRes else tab.defaultIconRes
             ),
-            contentDescription = stringResource(id = tab.label),
+            contentDescription = null,
             modifier = Modifier.size(24.dp),
             tint = Color.Unspecified
         )
