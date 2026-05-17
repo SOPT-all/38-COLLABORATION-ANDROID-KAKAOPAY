@@ -33,4 +33,8 @@
     <string name="financial_spending_schedule">금융일정</string>
     <string name="financial_spending_shinhan_card_amount_view">신한카드로 쓴 금액보기</string>
     <string name="financial_spending_monthly_fixed_expense_view">매달 나가는 고정지출 보기</string>
+    <!--FinancialView-->
+    <string name="cta_inline_button">포인트 받기</string>
+    <string name="history">내역</string>
+    <string name="make_card">카드만들기</string>
 </resources>
