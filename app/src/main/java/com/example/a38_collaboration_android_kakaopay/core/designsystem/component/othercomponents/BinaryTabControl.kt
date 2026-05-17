@@ -32,19 +32,14 @@ fun BinaryTabControl(
             modifier = modifier
                 .fillMaxWidth()
         ) {
-            BinaryTabItem(
-                text = stringResource(BinaryTabType.HISTORY.text),
-                isSelected = selectedTab == BinaryTabType.HISTORY,
-                onClick = { selectedTab = BinaryTabType.HISTORY },
-                modifier = Modifier.weight(1f)
-            )
-
-            BinaryTabItem(
-                text = stringResource(BinaryTabType.MAKE_CARD.text),
-                isSelected = selectedTab == BinaryTabType.MAKE_CARD,
-                onClick = { selectedTab = BinaryTabType.MAKE_CARD },
-                modifier = Modifier.weight(1f)
-            )
+            BinaryTabType.entries.forEach { tab ->
+                        BinaryTabItem(
+                            text = stringResource(tab.text),
+                            isSelected = selectedTab == tab,
+                            onClick = { selectedTab = tab },
+                            modifier = Modifier.weight(1f)
+                        )
+            }
         }
 
         BoxWithConstraints(
