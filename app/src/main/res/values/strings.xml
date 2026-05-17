@@ -13,4 +13,8 @@
     <string name="cta_inline_button">포인트 받기</string>
     <string name="financial_banner_subtitle">현금같은 포인트 챙겨가세요!</string>
     <string name="financial_banner_title">걸은 만큼 포인트 받기</string>
+    <string name="financial_securities_account_certificate">증권</string>
+    <string name="financial_securities_account_won">원</string>
+    <string name="financial_securities_account_send">송금</string>
+
 </resources>
