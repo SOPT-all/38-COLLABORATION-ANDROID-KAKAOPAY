@@ -7,7 +7,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.a38_collaboration_android_kakaopay.app.navigation.Home
@@ -17,16 +16,15 @@ import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.Ka
 
 @Composable
 fun KakaoPayNavigatorBar(
+    onTabSelected: (MainTab) -> Unit,
     modifier: Modifier = Modifier,
-    currentRoute: Route?,
-    onTabSelected: (MainTab) -> Unit
+    currentRoute: Route? = null,
 ) {
     Surface(
         modifier = modifier
             .fillMaxWidth()
             .navigationBarsPadding(),
         shape = RoundedCornerShape(topStart = 26.dp, topEnd = 26.dp),
-        color = KakaoTheme.colors.white
     ) {
         Row(
             modifier = Modifier
@@ -38,17 +36,14 @@ fun KakaoPayNavigatorBar(
                 val isSelected = currentRoute == tab.route
 
                 NavigationItem(
-                    modifier = Modifier.weight(1f),
-                    label = stringResource(id = tab.labelRes),
-                    iconRes = if (isSelected) tab.pressedIconRes else tab.defaultIconRes,
+                    tab = tab,
                     isSelected = isSelected,
-                    onClick = { onTabSelected(tab) }
+                    onClick = { onTabSelected(tab) },
+                    modifier = Modifier.weight(1f)
                 )
             }
         }
     }
-
-
 }
 
 
@@ -65,8 +60,8 @@ private fun KakaoPayNavigatorBarPreview() {
             contentAlignment = Alignment.BottomCenter
         ) {
             KakaoPayNavigatorBar(
+                onTabSelected = { tab -> println("Selected: ${tab.label}") },
                 currentRoute = Home,
-                onTabSelected = {}
             )
         }
     }
