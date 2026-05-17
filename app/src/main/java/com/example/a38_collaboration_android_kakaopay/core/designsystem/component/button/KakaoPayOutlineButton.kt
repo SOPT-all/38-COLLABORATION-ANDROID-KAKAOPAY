@@ -44,7 +44,7 @@ fun KakaoPayOutlineButton(
         Text(
             text = text,
             color = KakaoTheme.colors.black,
-            style = KakaoTheme.typography.bodyB16
+            style = KakaoTheme.typography.bodyR14
         )
     }
 
