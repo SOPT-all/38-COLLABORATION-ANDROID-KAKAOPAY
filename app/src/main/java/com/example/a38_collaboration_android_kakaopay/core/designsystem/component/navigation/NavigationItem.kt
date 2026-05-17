@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import com.example.a38_collaboration_android_kakaopay.core.common.extension.noRippleClickable
@@ -24,7 +25,7 @@ fun NavigationItem(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 
-) {
+    ) {
     Column(
         modifier = modifier
             .padding(vertical = 6.dp)
@@ -36,12 +37,12 @@ fun NavigationItem(
             imageVector = ImageVector.vectorResource(
                 id = if (isSelected) tab.pressedIconRes else tab.defaultIconRes
             ),
-            contentDescription = tab.label,
+            contentDescription = stringResource(id = tab.label),
             modifier = Modifier.size(24.dp),
             tint = Color.Unspecified
         )
         Text(
-            text = tab.label,
+            text = stringResource(id = tab.label),
             style = if (isSelected) KakaoTheme.typography.labelB12 else KakaoTheme.typography.labelR12,
             color = if (isSelected) KakaoTheme.colors.black else KakaoTheme.colors.grey500
         )
