@@ -16,5 +16,11 @@
     <string name="financial_securities_account_certificate">증권</string>
     <string name="financial_securities_account_won">원</string>
     <string name="financial_securities_account_send">송금</string>
-
+    <string name="financial_spending">지출</string>
+    <string name="financial_spending_april_view">4월 내역</string>
+    <string name="financial_spending_view">내역보기</string>
+    <string name="financial_spending_upcoming_card_payment">결제 예정 카드값</string>
+    <string name="financial_spending_schedule">금융일정</string>
+    <string name="financial_spending_shinhan_card_amount_view">신한카드로 쓴 금액보기</string>
+    <string name="financial_spending_monthly_fixed_expense_view">매달 나가는 고정지출 보기</string>
 </resources>
