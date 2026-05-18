@@ -82,7 +82,11 @@ private fun SpendingInfoRow(
             color = KakaoTheme.colors.grey200,
             style = KakaoTheme.typography.bodyR14
         )
-        Text(text = value, color = KakaoTheme.colors.grey500, style = KakaoTheme.typography.bodyR14)
+        Text(
+            text = value,
+            color = KakaoTheme.colors.grey500,
+            style = KakaoTheme.typography.bodyR14
+        )
     }
 }
 
