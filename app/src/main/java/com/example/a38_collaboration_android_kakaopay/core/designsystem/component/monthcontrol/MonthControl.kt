@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -40,28 +39,19 @@ fun MonthControl(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center,
     ){
-            val isLeftEnabled = selectedMonth == Month.MAY
-            Icon(
-                imageVector = ImageVector
-                    .vectorResource(id = R.drawable.ic_chevron_left_black_24px),
-                contentDescription = null,
-                tint = if (selectedMonth == Month.APRIL) {
-                    KakaoTheme.colors.grey300
-                } else{
-                    KakaoTheme.colors.black
-                },
-                modifier = Modifier
-                    .noRippleClickable {
-                        if (isLeftEnabled) {
-                            selectedMonth = Month.APRIL
-                        }
-                    }
-            )
+
+        MonthArrow(
+            iconResId = R.drawable.ic_chevron_left_black_24px,
+            isEnabled = selectedMonth == Month.MAY,
+            modifier = Modifier.noRippleClickable {
+                if (selectedMonth == Month.MAY) selectedMonth = Month.APRIL
+            }
+        )
 
         Spacer(modifier = Modifier.width(12.dp))
 
         Text(
-            text = "${selectedMonth}월",
+            text = "${selectedMonth.value}월",
             color = KakaoTheme.colors.black,
             style = KakaoTheme.typography.titleB20
         )
@@ -75,26 +65,33 @@ fun MonthControl(
 
         Spacer(modifier = Modifier.width(12.dp))
 
-            val isRightEnabled = selectedMonth == Month.APRIL
-            Icon(
-                imageVector = ImageVector
-                    .vectorResource(id = R.drawable.ic_chevron_right_black_24px),
-                contentDescription = null,
-                tint = if (selectedMonth == Month.MAY) {
-                    KakaoTheme.colors.grey300
-                } else {
-                    KakaoTheme.colors.black
-                },
-                modifier = Modifier
-                    .noRippleClickable {
-                        if (isRightEnabled) {
-                            selectedMonth = Month.MAY
-                        }
-                    }
-            )
+        MonthArrow(
+            iconResId = R.drawable.ic_chevron_right_black_24px,
+            isEnabled = selectedMonth == Month.APRIL,
+            modifier = Modifier.noRippleClickable {
+                if (selectedMonth == Month.APRIL) selectedMonth = Month.MAY
+            }
+        )
+
+
+
         }
 
     }
+
+@Composable
+private fun MonthArrow(
+    iconResId: Int,
+    isEnabled: Boolean,
+    modifier: Modifier = Modifier,
+){
+    Icon(
+        imageVector = ImageVector.vectorResource(id = iconResId),
+        contentDescription = null,
+        tint = if (isEnabled) KakaoTheme.colors.black else KakaoTheme.colors.grey300,
+        modifier = modifier,
+    )
+}
 
 
 @Preview
