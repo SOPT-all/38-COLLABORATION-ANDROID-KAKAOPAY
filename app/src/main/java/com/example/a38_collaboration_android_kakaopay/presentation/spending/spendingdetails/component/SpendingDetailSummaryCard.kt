@@ -1,5 +1,6 @@
 package com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingdetails.component
 
+import androidx.compose.ui.graphics.Color
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
@@ -96,7 +97,7 @@ private fun SpendingDetailGroup(
     label: String,
     value: String,
     modifier: Modifier = Modifier,
-    titleColor: androidx.compose.ui.graphics.Color = KakaoTheme.colors.black,
+    titleColor: Color = KakaoTheme.colors.black,
 ) {
     Column(
         modifier = modifier,
