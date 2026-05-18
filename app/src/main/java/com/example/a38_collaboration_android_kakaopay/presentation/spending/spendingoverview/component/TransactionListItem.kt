@@ -22,6 +22,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.a38_collaboration_android_kakaopay.R
+import com.example.a38_collaboration_android_kakaopay.core.common.util.toWonFormat
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
 import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.Transaction
@@ -34,7 +35,6 @@ enum class TransactionType {
 
 enum class TransactionMethod {
     PAY_MONEY,
-    CARD,
 }
 
 @Composable
@@ -44,7 +44,9 @@ fun TransactionListItem(
 ) {
     val thumbnail = when {
         transaction.transactionType == TransactionType.PAYMENT -> R.drawable.img_baemin_logo_36px
-        transaction.transactionMethod == TransactionMethod.PAY_MONEY -> R.drawable.img_kakaopay_logo
+        transaction.transactionMethod == TransactionMethod.PAY_MONEY && transaction.transactionName.contains(
+            stringResource(R.string.spending_overview_kakaobank)
+        ) -> R.drawable.img_kakaopay_logo
         else -> R.drawable.img_profile_placeholder
     }
 
@@ -71,14 +73,25 @@ private fun TransactionInfo(
     transaction: Transaction,
     modifier: Modifier = Modifier,
 ) {
+    val amountColor = when {
+        transaction.transactionType == TransactionType.TRANSFER_RECEIVE -> KakaoTheme.colors.highlightPrimaryBlue
+        !transaction.includeInTotal -> KakaoTheme.colors.grey400
+        else -> KakaoTheme.colors.black
+    }
+
+    val showPlusPrefix =
+        transaction.transactionType == TransactionType.TRANSFER_RECEIVE && transaction.amount > 0
+
+    val amountPrefix = if (showPlusPrefix) "+" else ""
+
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(4.dp)
     ) {
         CounterPartyInfo(transaction = transaction)
         Text(
-            text = transaction.amount.toString(),
-            color = KakaoTheme.colors.black,
+            text = "${amountPrefix}${transaction.amount.toString().toWonFormat()}",
+            color = amountColor,
             style = KakaoTheme.typography.bodyB16
         )
     }
@@ -109,18 +122,20 @@ private fun CounterPartyInfo(
                 color = KakaoTheme.colors.grey200,
                 style = KakaoTheme.typography.labelR12,
                 textAlign = TextAlign.Center,
-                modifier = Modifier.width(12.dp).height(17.dp)
+                modifier = Modifier
+                    .width(12.dp)
+                    .height(17.dp)
             )
 
             // 카카오페이머니
             if (transaction.transactionMethod == TransactionMethod.PAY_MONEY) {
-                Text (
+                Text(
                     text = stringResource(R.string.spending_overview_kakaopay_money),
                     color = KakaoTheme.colors.grey500,
                     style = KakaoTheme.typography.labelR12
                 )
-                Text (
-                    text = stringResource(R.string.spending_overview_kakaopay_arrow),
+                Text(
+                    text = "→",
                     color = KakaoTheme.colors.grey500,
                     style = KakaoTheme.typography.labelR12,
                     modifier = Modifier.padding(horizontal = 4.dp)
@@ -144,7 +159,9 @@ private fun CounterPartyInfo(
 private fun TransactionListItemPreview() {
     KakaoPayTheme {
         Column(
-            modifier = Modifier.fillMaxWidth().padding(20.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(20.dp),
             verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
             TransactionListItem(
@@ -174,14 +191,14 @@ private fun TransactionListItemPreview() {
                     transactionMethod = TransactionMethod.PAY_MONEY,
                     transactionName = "박솝트(박솝트)",
                     amount = -3475,
-                    includeInTotal = true,
+                    includeInTotal = false,
                 )
             )
             TransactionListItem(
                 transaction = Transaction(
                     transactionId = 3,
                     transactionType = TransactionType.TRANSFER_RECEIVE,
-                    transactionMethod = TransactionMethod.CARD,
+                    transactionMethod = TransactionMethod.PAY_MONEY,
                     transactionName = "김솝트(김솝트)",
                     amount = 123000,
                     includeInTotal = true,
