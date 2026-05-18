@@ -19,6 +19,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.a38_collaboration_android_kakaopay.R
+import com.example.a38_collaboration_android_kakaopay.core.common.extension.noRippleClickable
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
 
@@ -30,18 +31,16 @@ enum class Month(val value: Int) {
 
 @Composable
 fun MonthControl(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     var selectedMonth by remember { mutableStateOf(Month.APRIL) }
+
     Row(
+        modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center,
-        modifier = modifier
-    ) {
-        IconButton(
-            onClick = { if (selectedMonth == Month.MAY) selectedMonth = Month.APRIL },
-            enabled = (selectedMonth == Month.MAY)
-        ) {
+    ){
+            val isLeftEnabled = selectedMonth == Month.MAY
             Icon(
                 imageVector = ImageVector
                     .vectorResource(id = R.drawable.ic_chevron_left_black_24px),
@@ -50,10 +49,14 @@ fun MonthControl(
                     KakaoTheme.colors.grey300
                 } else{
                     KakaoTheme.colors.black
-                }
+                },
+                modifier = Modifier
+                    .noRippleClickable {
+                        if (isLeftEnabled) {
+                            selectedMonth = Month.APRIL
+                        }
+                    }
             )
-
-        }
 
         Spacer(modifier = Modifier.width(12.dp))
 
@@ -72,10 +75,7 @@ fun MonthControl(
 
         Spacer(modifier = Modifier.width(12.dp))
 
-        IconButton(
-            onClick = { if (selectedMonth == Month.APRIL) selectedMonth = Month.MAY },
-            enabled = (selectedMonth == Month.APRIL)
-        ) {
+            val isRightEnabled = selectedMonth == Month.APRIL
             Icon(
                 imageVector = ImageVector
                     .vectorResource(id = R.drawable.ic_chevron_right_black_24px),
@@ -84,13 +84,18 @@ fun MonthControl(
                     KakaoTheme.colors.grey300
                 } else {
                     KakaoTheme.colors.black
-                }
-
+                },
+                modifier = Modifier
+                    .noRippleClickable {
+                        if (isRightEnabled) {
+                            selectedMonth = Month.MAY
+                        }
+                    }
             )
         }
 
     }
-}
+
 
 @Preview
 @Composable
