@@ -1,6 +1,7 @@
 package com.example.a38_collaboration_android_kakaopay.core.designsystem.component.navigation
 
 import androidx.annotation.DrawableRes
+import androidx.compose.ui.res.stringResource
 import com.example.a38_collaboration_android_kakaopay.R
 import com.example.a38_collaboration_android_kakaopay.app.navigation.Route
 import com.example.a38_collaboration_android_kakaopay.app.navigation.*
