@@ -35,12 +35,11 @@
     <string name="financial_spending_shinhan_card_amount_view">신한카드로 쓴 금액보기</string>
     <string name="financial_spending_monthly_fixed_expense_view">매달 나가는 고정지출 보기</string>
 
-
-    <string name="spending_detail_footer_receipt">거래확인증</string>
-    <string name="spending_detail_footer_settlement">1/N 정산하기</string>
-    <string name="spending_detail_footer_split_payment">분할결제</string>
-
-    <string name="spending_detail_ad_title">잊으신 병원비, 있으신가요?</string>
-    <string name="spending_detail_ad_sub_title">1분 만에 환급금 확인하기</string>
+    <string name="spending_detail_split_amount">분할 결제 지출액</string>
+    <string name="spending_detail_settlement_info">정산 정보</string>
+    <string name="spending_detail_settlement_complete">정산완료</string>
+    <string name="spending_detail_memo">메모</string>
+    <string name="spending_detail_memo_placeholder">메모를 남겨보세요</string>
+    <string name="spending_detail_include_total">지출 합계에 포함</string>
 
 </resources>
