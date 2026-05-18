@@ -29,7 +29,7 @@ import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.Ka
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
 
 @Composable
-fun SpendingDetailInteractionCard(
+fun SpendingSummaryCard(
     splitAmount: Long,
     memo: String,
     isIncludedInTotal: Boolean,
@@ -37,11 +37,10 @@ fun SpendingDetailInteractionCard(
     modifier: Modifier = Modifier,
 ) {
     Column(
-        modifier = modifier
-            .fillMaxWidth(),
+        modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(18.dp)
     ) {
-        InteractionBaseRow(
+        DetailBaseRow(
             title = stringResource(R.string.spending_detail_split_amount)
         ) {
             Text(
@@ -51,7 +50,7 @@ fun SpendingDetailInteractionCard(
             )
         }
 
-        InteractionBaseRow(
+        DetailBaseRow(
             title = stringResource(R.string.spending_detail_settlement_info),
             titleContent = {
                 Spacer(modifier = Modifier.width(10.dp))
@@ -67,18 +66,14 @@ fun SpendingDetailInteractionCard(
             )
         }
 
-        InteractionBaseRow(
+        DetailBaseRow(
             title = stringResource(R.string.spending_detail_memo)
         ) {
-            val memoContent = memo.ifEmpty {
-                stringResource(R.string.spending_detail_memo_placeholder)
-            }
-
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = memoContent,
+                    text = memo.ifEmpty { stringResource(R.string.spending_detail_memo_placeholder) },
                     color = KakaoTheme.colors.highlightPrimaryBlue,
                     style = KakaoTheme.typography.bodyB16
                 )
@@ -90,7 +85,7 @@ fun SpendingDetailInteractionCard(
             }
         }
 
-        InteractionBaseRow(
+        DetailBaseRow(
             title = stringResource(R.string.spending_detail_include_total)
         ) {
             KakaoPayToggle(
@@ -98,33 +93,6 @@ fun SpendingDetailInteractionCard(
                 onCheckedChange = onToggleChange
             )
         }
-    }
-}
-
-@Composable
-private fun InteractionBaseRow(
-    title: String,
-    modifier: Modifier = Modifier,
-    titleContent: @Composable () -> Unit = {},
-    trailingContent: @Composable () -> Unit
-) {
-    Row(
-        modifier = modifier
-            .fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text(
-                text = title,
-                color = KakaoTheme.colors.black,
-                style = KakaoTheme.typography.bodyM16
-            )
-            titleContent()
-        }
-        trailingContent()
     }
 }
 
@@ -149,13 +117,13 @@ private fun SettlementBadge() {
 
 @Preview(showBackground = true)
 @Composable
-private fun SpendingDetailInteractionCardPreview() {
+private fun SpendingSummaryCardPreview() {
     KakaoPayTheme {
-        SpendingDetailInteractionCard(
+        SpendingSummaryCard(
             splitAmount = 11800L,
             memo = "",
             isIncludedInTotal = true,
-            onToggleChange = {}
+            onToggleChange = {},
         )
     }
 }
