@@ -38,7 +38,7 @@ enum class MainTab(
         pressedIconRes = R.drawable.ic_bottom_bar_asset_pressed_24px
     ),
     INVEST(
-        label = R.string.nav_stock,
+        label = R.string.stock,
         route = Invest,
         defaultIconRes = R.drawable.ic_bottom_bar_securities_default_24px,
         pressedIconRes = R.drawable.ic_bottom_bar_securities_pressed_24px
