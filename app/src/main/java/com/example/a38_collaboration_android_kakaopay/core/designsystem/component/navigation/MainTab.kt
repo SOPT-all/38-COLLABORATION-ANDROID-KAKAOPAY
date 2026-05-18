@@ -1,7 +1,6 @@
 package com.example.a38_collaboration_android_kakaopay.core.designsystem.component.navigation
 
 import androidx.annotation.DrawableRes
-import androidx.compose.ui.res.stringResource
 import com.example.a38_collaboration_android_kakaopay.R
 import com.example.a38_collaboration_android_kakaopay.app.navigation.Route
 import com.example.a38_collaboration_android_kakaopay.app.navigation.*
@@ -38,7 +37,7 @@ enum class MainTab(
         pressedIconRes = R.drawable.ic_bottom_bar_asset_pressed_24px
     ),
     INVEST(
-        label = R.string.nav_stock,
+        label = R.string.stock,
         route = Invest,
         defaultIconRes = R.drawable.ic_bottom_bar_securities_default_24px,
         pressedIconRes = R.drawable.ic_bottom_bar_securities_pressed_24px
