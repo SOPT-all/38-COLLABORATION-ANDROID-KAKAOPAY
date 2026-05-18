@@ -18,8 +18,8 @@
     <!-- SpendingOverview -->
     <string name="spending_overview_transfer_receive">받기</string>
     <string name="spending_overview_transfer_send">송금</string>
+    <string name="spending_overview_kakaobank">카카오뱅크</string>
     <string name="spending_overview_kakaopay_money">카카오페이머니</string>
-    <string name="spending_overview_kakaopay_arrow">→</string>
 
     <!-- Edge Case -->
     <string name="edge_case_empty">불러올 데이터가 없습니다</string>
