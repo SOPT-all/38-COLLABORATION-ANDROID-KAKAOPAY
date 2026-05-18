@@ -2,7 +2,6 @@ package com.example.a38_collaboration_android_kakaopay.presentation.spending.spe
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -24,49 +23,6 @@ import com.example.a38_collaboration_android_kakaopay.R
 import com.example.a38_collaboration_android_kakaopay.core.common.util.toWonFormat
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
-
-@Composable
-private fun SpendingInfoRow(
-    label: String,
-    value: String,
-    modifier: Modifier = Modifier
-) {
-    Row(
-        modifier = modifier,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Text(text = label, color = KakaoTheme.colors.grey500, style = KakaoTheme.typography.bodyR14)
-        Text(
-            text = stringResource(id = R.string.word_divider),
-            modifier = Modifier.padding(horizontal = 8.dp),
-            color = KakaoTheme.colors.grey200,
-            style = KakaoTheme.typography.bodyR14
-        )
-        Text(text = value, color = KakaoTheme.colors.grey500, style = KakaoTheme.typography.bodyR14)
-    }
-}
-@Composable
-private fun SpendingDetailGroup(
-    title: String,
-    label: String,
-    value: String,
-    modifier: Modifier = Modifier,
-    titleColor: androidx.compose.ui.graphics.Color = KakaoTheme.colors.black,
-) {
-    Column(
-        modifier = modifier,
-    ) {
-        Text(
-            text = title,
-            color = titleColor,
-            style = KakaoTheme.typography.titleB18,
-        )
-
-        Spacer(modifier = Modifier.height(6.dp))
-
-        SpendingInfoRow(label = label, value = value)
-    }
-}
 
 @Composable
 fun SpendingDetailSummaryCard(
@@ -108,6 +64,51 @@ fun SpendingDetailSummaryCard(
         )
     }
 }
+
+@Composable
+private fun SpendingInfoRow(
+    label: String,
+    value: String,
+    modifier: Modifier = Modifier
+) {
+    Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(text = label, color = KakaoTheme.colors.grey500, style = KakaoTheme.typography.bodyR14)
+        Text(
+            text = stringResource(id = R.string.word_divider),
+            modifier = Modifier.padding(horizontal = 8.dp),
+            color = KakaoTheme.colors.grey200,
+            style = KakaoTheme.typography.bodyR14
+        )
+        Text(text = value, color = KakaoTheme.colors.grey500, style = KakaoTheme.typography.bodyR14)
+    }
+}
+
+@Composable
+private fun SpendingDetailGroup(
+    title: String,
+    label: String,
+    value: String,
+    modifier: Modifier = Modifier,
+    titleColor: androidx.compose.ui.graphics.Color = KakaoTheme.colors.black,
+) {
+    Column(
+        modifier = modifier,
+    ) {
+        Text(
+            text = title,
+            color = titleColor,
+            style = KakaoTheme.typography.titleB18,
+        )
+
+        Spacer(modifier = Modifier.height(6.dp))
+
+        SpendingInfoRow(label = label, value = value)
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
 private fun SpendingDetailSummaryCardPreview() {
