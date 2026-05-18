@@ -53,8 +53,7 @@ fun BinaryTabControl(
                     0.dp
                 } else {
                     tabWidth
-                },
-                label = "lineAnimation"
+                }
             )
             Box(
                 modifier = modifier
