@@ -19,4 +19,6 @@
 
     <string name="history">내역</string>
     <string name="make_card">카드만들기</string>
+
+    <string name="word_divider">|</string>
 </resources>
