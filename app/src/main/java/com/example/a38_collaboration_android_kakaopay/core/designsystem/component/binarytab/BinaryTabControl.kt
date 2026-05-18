@@ -1,4 +1,4 @@
-package com.example.a38_collaboration_android_kakaopay.core.designsystem.component.othercomponents
+package com.example.a38_collaboration_android_kakaopay.core.designsystem.component.binarytab
 
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.background
@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.othercomponents.BinaryTabType
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
 
