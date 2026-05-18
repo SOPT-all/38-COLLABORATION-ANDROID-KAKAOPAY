@@ -2,7 +2,6 @@
     <string name="app_name">38-COLLABORATION-ANDROID-KAKAOPAY</string>
     <string name="history">내역</string>
     <string name="make_card">카드만들기</string>
-    <string name="app_name">38-COLLABORATION-ANDROID-KAKAOPAY</string>
 
     <string name="nav_home">홈</string>
     <string name="nav_benefits">혜택</string>
@@ -35,20 +34,12 @@
     <string name="financial_spending_schedule">금융일정</string>
     <string name="financial_spending_shinhan_card_amount_view">신한카드로 쓴 금액보기</string>
     <string name="financial_spending_monthly_fixed_expense_view">매달 나가는 고정지출 보기</string>
-    <!--FinancialView-->
-    <string name="cta_inline_button">포인트 받기</string>
-    <string name="financial_banner_subtitle">현금같은 포인트 챙겨가세요!</string>
-    <string name="financial_banner_title">걸은 만큼 포인트 받기</string>
-    <string name="history">내역</string>
-    <string name="make_card">카드만들기</string>
 
-    <!--FinancialView-->
-    <string name="financial_spending">지출</string>
-    <string name="financial_securities_account_send">송금</string>
-    <string name="financial_spending_april_view">4월 내역</string>
-    <string name="financial_spending_view">내역보기</string>
-    <string name="financial_spending_upcoming_card_payment">결제 예정 카드값</string>
-    <string name="financial_spending_schedule">금융일정</string>
-    <string name="financial_spending_shinhan_card_amount_view">신한카드로 쓴 금액보기</string>
-    <string name="financial_spending_monthly_fixed_expense_view">매달 나가는 고정지출 보기</string>
+    <string name="spending_detail_split_amount">분할 결제 지출액</string>
+    <string name="spending_detail_settlement_info">정산 정보</string>
+    <string name="spending_detail_settlement_complete">정산완료</string>
+    <string name="spending_detail_memo">메모</string>
+    <string name="spending_detail_memo_placeholder">메모를 남겨보세요</string>
+    <string name="spending_detail_include_total">지출 합계에 포함</string>
+
 </resources>
