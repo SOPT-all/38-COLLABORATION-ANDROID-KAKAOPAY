@@ -76,12 +76,15 @@ private fun SpendingInfoRow(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Text(text = label, color = KakaoTheme.colors.grey500, style = KakaoTheme.typography.bodyR14)
+        Text(
+            text = label, color = KakaoTheme.colors.grey500,
+            style = KakaoTheme.typography.bodyR14
+        )
         Text(
             text = stringResource(id = R.string.word_divider),
             modifier = Modifier.padding(horizontal = 8.dp),
             color = KakaoTheme.colors.grey200,
-            style = KakaoTheme.typography.bodyR14
+            style = KakaoTheme.typography.labelR12
         )
         Text(
             text = value,
@@ -105,7 +108,7 @@ private fun SpendingDetailGroup(
         Text(
             text = title,
             color = titleColor,
-            style = KakaoTheme.typography.titleB18,
+            style = KakaoTheme.typography.titleB20,
         )
 
         Spacer(modifier = Modifier.height(6.dp))
