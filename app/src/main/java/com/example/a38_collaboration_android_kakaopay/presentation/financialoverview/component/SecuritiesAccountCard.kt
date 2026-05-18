@@ -68,7 +68,7 @@ private fun KakaoPayMoney(
         )
 
         Text(
-            text = stringResource(R.string.financial_securities_account_certificate),
+            text = stringResource(R.string.stock),
             modifier = Modifier.padding(end = 6.dp),
             color = KakaoTheme.colors.grey600,
             style = KakaoTheme.typography.labelR10,

@@ -76,22 +76,24 @@ fun FinancialOverviewActionRow(
     modifier: Modifier = Modifier,
 ) {
     FinancialOverviewRow(
-        icon = icon, modifier = modifier, trailingContent = {
+        icon = icon,
+        modifier = modifier,
+        trailingContent = {
             KakaoPaySecondaryButton(
                 text = stringResource(R.string.financial_spending_view), onClick = onClick
             )
         }) {
-        Text(
-            text = stringResource(title),
-            color = KakaoTheme.colors.grey500,
-            style = KakaoTheme.typography.bodyR14
-        )
+            Text(
+                text = stringResource(title),
+                color = KakaoTheme.colors.grey500,
+                style = KakaoTheme.typography.bodyR14
+            )
 
-        Text(
-            text = totalExpense.toWonFormat(),
-            color = KakaoTheme.colors.black,
-            style = KakaoTheme.typography.bodyB16
-        )
+            Text(
+                text = totalExpense.toWonFormat(),
+                color = KakaoTheme.colors.black,
+                style = KakaoTheme.typography.bodyB16
+            )
     }
 }
 
