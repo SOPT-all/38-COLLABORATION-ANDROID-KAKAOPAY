@@ -5,6 +5,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -42,7 +44,8 @@ fun AssetAction(
 
         Icon(
             imageVector = ImageVector.vectorResource(R.drawable.ic_cancel_16px),
-            contentDescription = null
+            contentDescription = null,
+            modifier = Modifier.size(16.dp)
         )
     }
 
@@ -57,11 +60,16 @@ private fun AssetFinding(){
             color = KakaoTheme.colors.grey500
         )
 
+        Spacer(modifier = Modifier.height(4.dp))
+
         Text(
             text = stringResource(id = R.string.asset_finding_2),
             style = KakaoTheme.typography.bodyM14,
             color = KakaoTheme.colors.black
         )
+
+        Spacer(modifier = Modifier.height(4.dp))
+
         Row(
             verticalAlignment = Alignment.CenterVertically
         ) {
