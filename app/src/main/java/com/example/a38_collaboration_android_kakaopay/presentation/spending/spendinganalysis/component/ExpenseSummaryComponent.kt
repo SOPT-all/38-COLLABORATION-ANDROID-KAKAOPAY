@@ -1,5 +1,6 @@
 package com.example.a38_collaboration_android_kakaopay.presentation.spending.spendinganalysis.component
 
+import android.R.attr.textColor
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -18,22 +19,43 @@ import com.example.a38_collaboration_android_kakaopay.R
 import com.example.a38_collaboration_android_kakaopay.core.common.util.toWonFormat
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
+import java.time.temporal.TemporalAdjusters.previous
+
+fun calculateTotalDiff(currentTotal: Long, previousTotal: Long): Boolean {
+    val totalDiff = currentTotal - previousTotal
+
+    return when {
+        totalDiff > 0 -> true
+        totalDiff < 0 -> false
+        else -> true
+    }
+}
+
+
 
 @Composable
 fun ExpenseSummary(
-    modifier: Modifier = Modifier,
     currentMonthTotal: Long,
-    previousMonthTotal: Long
+    previousMonthTotal: Long,
+    modifier: Modifier = Modifier,
 ){
-    //이번달 - 지난달 금액계산
-    val totalDiff = currentMonthTotal - previousMonthTotal
 
-    //소비 상태에 따른 텍스트 구분
-    val (totalDiffText, textColor) = if (totalDiff >= 0){
-        "지난 달 같은 기간보다 ${totalDiff.toWonFormat()} 더 쓰고 있어요" to KakaoTheme.colors.highlightPrimaryRed
-    } else{
-        "지난 달 같은 기간보다 ${(-totalDiff).toWonFormat()} 덜 쓰고 있어요" to KakaoTheme.colors.highlightPrimaryBlue
-    }
+    //이번달 - 지난달 금액계산
+    val totalDiffTextMessage =
+        if (calculateTotalDiff(currentTotal = currentMonthTotal, previousTotal = previousMonthTotal)){
+            "지난 달 보다 +${kotlin.math.abs(currentMonthTotal - previousMonthTotal).toWonFormat()} 더 쓰고 있어요"
+        } else {
+            "지난 달 보다 -${kotlin.math.abs(currentMonthTotal - previousMonthTotal).toWonFormat()} 덜 쓰고 있어요"
+        }
+
+    val totalDiffTextColor =
+        if (calculateTotalDiff(currentTotal = currentMonthTotal, previousTotal = previousMonthTotal)) {
+            KakaoTheme.colors.highlightPrimaryRed
+        } else {
+            KakaoTheme.colors.highlightPrimaryBlue
+        }
+
+
 
 
     Column(
@@ -43,7 +65,7 @@ fun ExpenseSummary(
             verticalAlignment = Alignment.CenterVertically
         ){
             Text(
-                text = "${currentMonthTotal.toWonFormat()}",
+                text = currentMonthTotal.toWonFormat(),
                 style = KakaoTheme.typography.titleB24,
                 color = KakaoTheme.colors.black
             )
@@ -58,9 +80,9 @@ fun ExpenseSummary(
         Spacer(modifier = Modifier.height(4.dp))
 
         Text(
-            text = totalDiffText,
+            text = totalDiffTextMessage,
             style = KakaoTheme.typography.bodyR14,
-            color = textColor
+            color = totalDiffTextColor
         )
 
     }
