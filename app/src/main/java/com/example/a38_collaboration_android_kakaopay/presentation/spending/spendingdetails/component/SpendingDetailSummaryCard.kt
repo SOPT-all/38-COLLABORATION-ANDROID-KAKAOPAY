@@ -24,15 +24,11 @@ import com.example.a38_collaboration_android_kakaopay.R
 import com.example.a38_collaboration_android_kakaopay.core.common.util.toWonFormat
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
+import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingdetails.model.SpendingDetailPaymentModel
 
 @Composable
 fun SpendingDetailSummaryCard(
-    productName: String,
-    paymentMethod: String,
-    paymentType: String,
-    paymentAmount: Long,
-    totalPaymentAmount: Long,
-    @DrawableRes icon: Int,
+    paymentInfo: SpendingDetailPaymentModel,
     modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier.fillMaxWidth()) {
@@ -41,14 +37,14 @@ fun SpendingDetailSummaryCard(
             verticalAlignment = Alignment.Top
         ) {
             SpendingDetailGroup(
-                title = productName,
-                label = paymentMethod,
-                value = paymentType,
+                title = paymentInfo.productName,
+                label = paymentInfo.paymentMethod,
+                value = paymentInfo.paymentType,
                 modifier = Modifier.weight(1f)
             )
 
             Image(
-                painter = painterResource(id = icon),
+                painter = painterResource(id = paymentInfo.icon),
                 contentDescription = null,
                 modifier = Modifier
                     .size(48.dp)
@@ -59,9 +55,9 @@ fun SpendingDetailSummaryCard(
         Spacer(modifier = Modifier.height(40.dp))
 
         SpendingDetailGroup(
-            title = paymentAmount.toWonFormat(),
+            title = paymentInfo.paymentAmount.toWonFormat(),
             label = "총 결제",
-            value = totalPaymentAmount.toWonFormat()
+            value = paymentInfo.totalPaymentAmount.toWonFormat()
         )
     }
 }
@@ -122,12 +118,15 @@ private fun SpendingDetailGroup(
 private fun SpendingDetailSummaryCardPreview() {
     KakaoPayTheme {
         SpendingDetailSummaryCard(
-            productName = "마라로제 떡볶이X튀2 콤보 1개",
-            paymentMethod = "페이머니",
-            paymentType = "결제",
-            paymentAmount = 11800L,
-            totalPaymentAmount = 30000L,
-            icon = R.drawable.img_baemin_logo_48px,
+            paymentInfo = SpendingDetailPaymentModel(
+                productName = "마라로제 떡볶이X튀2 콤보 1개",
+                paymentMethod = "페이머니",
+                paymentType = "결제",
+                paymentAmount = 11800L,
+                totalPaymentAmount = 30000L,
+                icon = R.drawable.img_baemin_logo_48px
+            )
         )
     }
+}
 }
