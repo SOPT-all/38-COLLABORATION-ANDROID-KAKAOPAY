@@ -48,4 +48,12 @@
     <string name="spending_overview_kakaopay_money">카카오페이머니</string>
 
     <string name="word_divider">|</string>
+
+    <string name="financial_frequently_used">자주 쓰는</string>
+    <string name="financial_protection_required">보호필요</string>
+    <string name="financial_edit">편집</string>
+    <string name="financial_valuation_amount_view">평과금 보기</string>
+    <string name="financial_point_membership">포인트 멤버십</string>
+    <string name="financial_total_assets_view">내 총 자산 보기</string>
+    <string name="financial_balance_view">잔액보기</string>
 </resources>
