@@ -54,6 +54,7 @@ private fun TransactionGroupHeader(
             color = KakaoTheme.colors.grey500,
             style = KakaoTheme.typography.bodyB14,
         )
+
         Text(
             text = dailyTransactions.dailyTotal.toString().toWonFormat(),
             color = KakaoTheme.colors.grey500,
