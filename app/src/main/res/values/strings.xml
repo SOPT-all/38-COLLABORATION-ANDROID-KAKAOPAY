@@ -49,6 +49,15 @@
     <string name="spending_overview_segment_point">포인트</string>
     <string name="spending_overview_segment_pay_money">페이머니</string>
     <string name="spending_overview_segment_pay_point">페이포인트</string>
+    <string name="spending_overview_category_analysis_prefix">"카테고리별 "</string>
+    <string name="spending_overview_category_analysis_suffix">소비 분석 보기</string>
+    <string name="spending_overview_expense_diff">지난달 대비 %d만원 %s 쓰는 중</string>
+    <string name="spending_overview_expense_diff_more">더</string>
+    <string name="spending_overview_expense_diff_less">덜</string>
+    <string name="spending_overview_fixed_expense_prefix">"고정지출 "</string>
+    <string name="spending_overview_fixed_expense_suffix">" 확인하기"</string>
+    <string name="spending_overview_total_expense">지출</string>
+    <string name="spending_overview_total_income">수입</string>
     <string name="spending_overview_transfer_receive">받기</string>
     <string name="spending_overview_transfer_send">송금</string>
     <string name="spending_overview_kakaobank">카카오뱅크</string>
