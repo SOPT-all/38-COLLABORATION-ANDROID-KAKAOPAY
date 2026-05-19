@@ -12,8 +12,10 @@ import androidx.compose.ui.unit.dp
 import com.example.a38_collaboration_android_kakaopay.core.common.util.toWonFormat
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
-import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.DailyTransactions
-import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.Transaction
+import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.DailyTransactions
+import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.Transaction
+import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.TransactionMethod
+import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.TransactionType
 
 @Composable
 fun TransactionGroup(
