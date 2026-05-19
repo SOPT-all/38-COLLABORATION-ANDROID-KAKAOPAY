@@ -61,7 +61,9 @@ fun SpendingDetailBanner(
 @Preview(showBackground = true)
 @Composable
 private fun SpendingDetailBannerPreview() {
-    SpendingDetailBanner(
-        modifier = Modifier.padding(16.dp)
-    )
+    KakaoPayTheme {
+        SpendingDetailBanner(
+            modifier = Modifier.padding(16.dp)
+        )
+    }
 }

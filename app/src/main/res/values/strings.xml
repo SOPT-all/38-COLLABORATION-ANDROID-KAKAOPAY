@@ -93,7 +93,7 @@
         <string name="spending_detail_footer_settlement">"1/N 정산하기"</string>
         <string name="spending_detail_footer_split_payment">"분할결제"</string>
 
-        <string name="spending_detail_ad_title">내가 냈던 병원비</string>
+        <string name="spending_detail_ad_title">내기만 했던 병원비</string>
         <string name="spending_detail_ad_sub_title">돌려받을 수 있어요</string>
 
 </resources>
