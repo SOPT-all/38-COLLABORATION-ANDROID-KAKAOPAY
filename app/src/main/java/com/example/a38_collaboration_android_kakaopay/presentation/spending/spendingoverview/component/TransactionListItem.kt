@@ -110,6 +110,7 @@ private fun CounterPartyInfo(
                 color = KakaoTheme.colors.grey500,
                 style = KakaoTheme.typography.labelR12
             )
+
             Text(
                 text = stringResource(R.string.word_divider),
                 color = KakaoTheme.colors.grey200,
