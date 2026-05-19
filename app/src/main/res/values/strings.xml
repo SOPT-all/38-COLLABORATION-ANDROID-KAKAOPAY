@@ -49,6 +49,7 @@
     <string name="spending_detail_info_order_number">상점주문번호</string>
     <string name="spending_detail_info_date_time">일시</string>
     <string name="spending_detail_info_category">카테고리</string>
-    <string name="spending_detail_info_footer_notice">· 결제 취소, 상품 배송 등의 문의는 구매처 고객센터로 문의 주세요.</string>
+    <string name="spending_detail_info_footer_icon">\u00b7</string>
+    <string name="spending_detail_info_footer_notice">결제 취소, 상품 배송 등의 문의는 구매처 고객센터로 문의 주세요.</string>
 
 </resources>
