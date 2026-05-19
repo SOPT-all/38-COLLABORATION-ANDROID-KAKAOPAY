@@ -5,7 +5,6 @@
     <string name="history">내역</string>
     <string name="make_card">카드만들기</string>
 
-
     <!-- Navigation -->
     <string name="nav_home">홈</string>
     <string name="nav_benefits">혜택</string>
@@ -13,34 +12,27 @@
     <string name="nav_assets">자산</string>
     <string name="stock">증권</string>
 
-
     <!-- TransactionDropdown -->
     <string name="transaction_dropdown_all">전체</string>
-
 
     <!-- SegmentDropdownControl -->
     <string name="segment_dropdown_control_detail">상세</string>
     <string name="segment_dropdown_control_close">닫기</string>
-
 
     <!-- Edge Case -->
     <string name="edge_case_empty">불러올 데이터가 없습니다</string>
     <string name="edge_case_404">찾을 수 없는 페이지입니다</string>
     <string name="edge_case_general">알 수 없는 에러가 발생했습니다</string>
 
-
-    <!--FinancialView-->
+    <!-- FinancialView -->
     <string name="cta_inline_button">포인트 받기</string>
     <string name="financial_banner_subtitle">현금같은 포인트 챙겨가세요!</string>
     <string name="financial_banner_title">걸은 만큼 포인트 받기</string>
-
 
     <string name="financial_securities_account_certificate">증권</string>
     <string name="financial_securities_account_won">원</string>
     <string name="financial_securities_account_send">송금</string>
 
-
-    <!--FinancialView-->
     <string name="financial_spending">지출</string>
     <string name="financial_spending_april_view">4월 내역</string>
     <string name="financial_spending_view">내역보기</string>
@@ -49,10 +41,43 @@
     <string name="financial_spending_shinhan_card_amount_view">신한카드로 쓴 금액보기</string>
     <string name="financial_spending_monthly_fixed_expense_view">매달 나가는 고정지출 보기</string>
 
+    <!-- SpendingOverview -->
+    <string name="spending_overview_segment_all">전체</string>
+    <string name="spending_overview_segment_card">카드</string>
+    <string name="spending_overview_segment_account">계좌</string>
+    <string name="spending_overview_segment_pay">페이결제</string>
+    <string name="spending_overview_segment_point">포인트</string>
+    <string name="spending_overview_segment_pay_money">페이머니</string>
+    <string name="spending_overview_segment_pay_point">페이포인트</string>
+    <string name="spending_overview_category_analysis_prefix">"카테고리별 "</string>
+    <string name="spending_overview_category_analysis_suffix">소비 분석 보기</string>
+    <string name="spending_overview_expense_diff">지난달 대비 %d만원 %s 쓰는 중</string>
+    <string name="spending_overview_expense_diff_more">더</string>
+    <string name="spending_overview_expense_diff_less">덜</string>
+    <string name="spending_overview_fixed_expense_prefix">"고정지출 "</string>
+    <string name="spending_overview_fixed_expense_suffix">" 확인하기"</string>
+    <string name="spending_overview_total_expense">지출</string>
+    <string name="spending_overview_total_income">수입</string>
+    <string name="spending_overview_transfer_receive">받기</string>
+    <string name="spending_overview_transfer_send">송금</string>
+    <string name="spending_overview_kakaobank">카카오뱅크</string>
+    <string name="spending_overview_kakaopay_money">카카오페이머니</string>
 
-    <!--SpendingAnalysisView-->
-    <string name="asset_finding_1">내역을 볼 수 있는</string>
-    <string name="asset_finding_2">자산 1건 발견</string>
-    <string name="asset_finding_3">3초 만에 불러오기</string>
+    <string name="word_divider">|</string>
+
+    <string name="spending_detail_split_amount">분할 결제 지출액</string>
+    <string name="spending_detail_settlement_info">정산 정보</string>
+    <string name="spending_detail_settlement_complete">정산완료</string>
+    <string name="spending_detail_memo">메모</string>
+    <string name="spending_detail_memo_placeholder">메모를 남겨주세요</string>
+    <string name="spending_detail_include_total">지출 합계에 포함</string>
+
+    <string name="spending_detail_info_order_amount">주문금액</string>
+    <string name="spending_detail_info_payment_method">결제수단(머니/카드) 사용</string>
+    <string name="spending_detail_info_order_number">상점주문번호</string>
+    <string name="spending_detail_info_date_time">일시</string>
+    <string name="spending_detail_info_category">카테고리</string>
+    <string name="spending_detail_info_footer_icon">\u00b7</string>
+    <string name="spending_detail_info_footer_notice">결제 취소, 상품 배송 등의 문의는 구매처 고객센터로 문의 주세요.</string>
 
 </resources>
