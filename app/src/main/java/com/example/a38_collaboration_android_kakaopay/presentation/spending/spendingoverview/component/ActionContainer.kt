@@ -12,12 +12,14 @@ import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.Ka
 import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.SpendingSummary
 
 @Composable
-fun ActionGroup(
+fun ActionContainer(
     spendingSummary: SpendingSummary,
+    onCategoryAnalysisClick: () -> Unit,
+    onFixedExpenseClick: () -> Unit,
+    onTotalExpenseClick: () -> Unit,
+    onTotalIncomeClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val expenseDiff = spendingSummary.totalExpense - spendingSummary.previousMonthTotal
-
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -25,28 +27,56 @@ fun ActionGroup(
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         ActionItemsGroup(
-            expenseDiff = expenseDiff,
-            fixedExpense = spendingSummary.fixedExpense
+            expenseDiffInManWon = spendingSummary.expenseDiffInManWon,
+            isOverSpent = spendingSummary.isOverSpent,
+            fixedExpense = spendingSummary.fixedExpense,
+            onCategoryAnalysisClick = onCategoryAnalysisClick,
+            onFixedExpenseClick = onFixedExpenseClick,
         )
 
         MultipleActionItem(
             totalExpense = spendingSummary.totalExpense,
-            totalIncome = spendingSummary.totalIncome
+            totalIncome = spendingSummary.totalIncome,
+            onTotalExpenseClick = onTotalExpenseClick,
+            onTotalIncomeClick = onTotalIncomeClick,
         )
     }
 }
 
 @Preview(showBackground = true, widthDp = 360)
 @Composable
-private fun ActionGroupPreview() {
+private fun ActionContainerPreview() {
     KakaoPayTheme {
-        ActionGroup(
-            spendingSummary = SpendingSummary(
-                totalExpense = 79650,
-                totalIncome = 150000,
-                fixedExpense = 173253,
-                previousMonthTotal = 40000,
+        Column(
+            modifier = Modifier.padding(20.dp),
+            verticalArrangement = Arrangement.spacedBy(20.dp)
+        ) {
+            // 지난달 대비 더 쓰는 중
+            ActionContainer(
+                spendingSummary = SpendingSummary(
+                    fixedExpense = 173253,
+                    previousMonthTotal = 40000,
+                    totalExpense = 79650,
+                    totalIncome = 150000,
+                ),
+                onCategoryAnalysisClick = {},
+                onFixedExpenseClick = {},
+                onTotalExpenseClick = {},
+                onTotalIncomeClick = {}
             )
-        )
+            // 지난달 대비 덜 쓰는 중
+            ActionContainer(
+                spendingSummary = SpendingSummary(
+                    fixedExpense = 173253,
+                    previousMonthTotal = 40000,
+                    totalExpense = 25400,
+                    totalIncome = 150000,
+                ),
+                onCategoryAnalysisClick = {},
+                onFixedExpenseClick = {},
+                onTotalExpenseClick = {},
+                onTotalIncomeClick = {}
+            )
+        }
     }
 }
