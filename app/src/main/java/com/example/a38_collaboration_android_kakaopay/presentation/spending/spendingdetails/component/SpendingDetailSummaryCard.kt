@@ -73,12 +73,14 @@ private fun SpendingInfoRow(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            text = label, color = KakaoTheme.colors.grey500,
+            text = label,
+            color = KakaoTheme.colors.grey500,
             style = KakaoTheme.typography.bodyR14
         )
         Text(
             text = stringResource(id = R.string.word_divider),
-            modifier = Modifier.padding(horizontal = 8.dp),
+            modifier = Modifier
+                .padding(horizontal = 8.dp),
             color = KakaoTheme.colors.grey200,
             style = KakaoTheme.typography.labelR12
         )
@@ -128,5 +130,4 @@ private fun SpendingDetailSummaryCardPreview() {
             )
         )
     }
-}
 }
