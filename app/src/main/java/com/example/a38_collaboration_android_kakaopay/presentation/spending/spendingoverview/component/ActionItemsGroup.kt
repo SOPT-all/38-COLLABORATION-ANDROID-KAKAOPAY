@@ -28,34 +28,37 @@ import com.example.a38_collaboration_android_kakaopay.core.common.extension.noRi
 import com.example.a38_collaboration_android_kakaopay.core.common.util.toWonFormat
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
-import kotlin.math.abs
 
 @Composable
 fun ActionItemsGroup(
-    expenseDiff: Int,
+    expenseDiffInManWon: Int,
+    isOverSpent: Boolean,
     fixedExpense: Int,
+    onCategoryAnalysisClick: () -> Unit,
+    onFixedExpenseClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
         modifier = modifier
-            .padding(14.dp)
             .clip(RoundedCornerShape(12.dp))
-            .background(KakaoTheme.colors.grey100),
+            .background(KakaoTheme.colors.grey100)
+            .padding(14.dp),
         verticalArrangement = Arrangement.spacedBy(4.dp),
     ) {
-        ActionList(
+        ActionListItem(
             icon = R.drawable.ic_graphic_analysis_24px,
-            onClick = {},
+            onClick = onCategoryAnalysisClick,
             content = {
                 CategoryAnalysis(
-                    expenseDiff = expenseDiff
+                    expenseDiffInManWon = expenseDiffInManWon,
+                    isOverSpent = isOverSpent
                 )
             }
         )
 
-        ActionList(
+        ActionListItem(
             icon = R.drawable.ic_graphic_fixed_expense_24px,
-            onClick = {},
+            onClick = onFixedExpenseClick,
             content = {
                 FixedExpense(
                     fixedExpense = fixedExpense
@@ -66,7 +69,7 @@ fun ActionItemsGroup(
 }
 
 @Composable
-private fun ActionList(
+private fun ActionListItem(
     @DrawableRes icon: Int,
     onClick: () -> Unit,
     content: @Composable () -> Unit,
@@ -106,15 +109,16 @@ private fun ActionList(
 
 @Composable
 private fun CategoryAnalysis(
-    expenseDiff: Int,
+    expenseDiffInManWon: Int,
+    isOverSpent: Boolean,
     modifier: Modifier = Modifier,
 ) {
     val statusText = stringResource(
-        if (expenseDiff > 0) R.string.spending_overview_expense_diff_more else R.string.spending_overview_expense_diff_less
+        if (isOverSpent) R.string.spending_overview_expense_diff_more else R.string.spending_overview_expense_diff_less
     )
 
     val statusColor =
-        if (expenseDiff > 0) KakaoTheme.colors.highlightPrimaryRed else KakaoTheme.colors.highlightPrimaryBlue
+        if (isOverSpent) KakaoTheme.colors.highlightPrimaryRed else KakaoTheme.colors.highlightPrimaryBlue
 
     Column(
         modifier = modifier,
@@ -134,7 +138,7 @@ private fun CategoryAnalysis(
         Text(
             text = stringResource(
                 R.string.spending_overview_expense_diff,
-                abs(expenseDiff) / 10000,
+                expenseDiffInManWon,
                 statusText
             ),
             color = statusColor,
@@ -151,7 +155,7 @@ private fun FixedExpense(
     Text(
         text = buildAnnotatedString {
             append(stringResource(R.string.spending_overview_fixed_expense_prefix))
-            withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
+            withStyle(style = SpanStyle(fontWeight = FontWeight.W700)) {
                 append(fixedExpense.toWonFormat())
                 append(stringResource(R.string.spending_overview_fixed_expense_suffix))
             }
@@ -167,8 +171,11 @@ private fun FixedExpense(
 private fun ActionItemsGroupPreview() {
     KakaoPayTheme {
         ActionItemsGroup(
-            expenseDiff = -35000,
-            fixedExpense = 15000
+            expenseDiffInManWon = 3,
+            isOverSpent = true,
+            fixedExpense = 1783250,
+            onCategoryAnalysisClick = {},
+            onFixedExpenseClick = {}
         )
     }
 }

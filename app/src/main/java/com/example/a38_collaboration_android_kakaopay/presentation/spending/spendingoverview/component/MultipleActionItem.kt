@@ -31,13 +31,15 @@ import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.Ka
 fun MultipleActionItem(
     totalExpense: Int,
     totalIncome: Int,
+    onTotalExpenseClick: () -> Unit,
+    onTotalIncomeClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .background(KakaoTheme.colors.grey100)
             .clip(RoundedCornerShape(12.dp))
+            .background(KakaoTheme.colors.grey100)
             .padding(
                 horizontal = 14.dp,
                 vertical = 16.dp
@@ -47,13 +49,13 @@ fun MultipleActionItem(
         CashFlowItem(
             label = R.string.spending_overview_total_expense,
             amount = totalExpense,
-            onClick = {},
+            onClick = onTotalExpenseClick,
         )
 
         CashFlowItem(
             label = R.string.spending_overview_total_income,
             amount = totalIncome,
-            onClick = {},
+            onClick = onTotalIncomeClick,
         )
     }
 }
@@ -74,7 +76,7 @@ private fun CashFlowItem(
             ),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Text (
+        Text(
             text = stringResource(label),
             color = KakaoTheme.colors.black,
             style = KakaoTheme.typography.bodyR14
@@ -82,13 +84,13 @@ private fun CashFlowItem(
 
         Spacer(modifier = Modifier.width(4.dp))
 
-        Text (
+        Text(
             text = amount.toWonFormat(),
             color = KakaoTheme.colors.black,
             style = KakaoTheme.typography.bodyB14
         )
 
-        Icon (
+        Icon(
             imageVector = ImageVector.vectorResource(R.drawable.ic_chevron_right_grey300_16px),
             contentDescription = null,
             tint = Color.Unspecified
@@ -102,7 +104,9 @@ private fun MultipleActionItemPreview() {
     KakaoPayTheme {
         MultipleActionItem(
             totalExpense = 79650,
-            totalIncome = 150000
+            totalIncome = 150000,
+            onTotalIncomeClick = {},
+            onTotalExpenseClick = {}
         )
     }
 }
