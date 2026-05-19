@@ -20,9 +20,10 @@ import com.example.a38_collaboration_android_kakaopay.core.designsystem.componen
 fun App() {
     val navController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentDestination = navBackStackEntry?.destination
     val currentRoute = MainTab.entries
         .firstOrNull { tab ->
-            navBackStackEntry?.destination?.route == tab.route::class.qualifiedName
+            currentDestination?.route == tab.route::class.qualifiedName
         }
         ?.route
 
