@@ -106,29 +106,6 @@ private fun SpendingInfoRow(
     }
 }
 
-@Composable
-private fun SpendingDetailGroup(
-    title: String,
-    label: String,
-    value: String,
-    modifier: Modifier = Modifier,
-    titleColor: Color = KakaoTheme.colors.black,
-) {
-    Column(
-        modifier = modifier,
-    ) {
-        Text(
-            text = title,
-            color = titleColor,
-            style = KakaoTheme.typography.titleB20,
-        )
-
-        Spacer(modifier = Modifier.height(6.dp))
-
-        SpendingInfoRow(label = label, value = value)
-    }
-}
-
 @Preview(showBackground = true)
 @Composable
 private fun SpendingDetailSummaryCardPreview() {
