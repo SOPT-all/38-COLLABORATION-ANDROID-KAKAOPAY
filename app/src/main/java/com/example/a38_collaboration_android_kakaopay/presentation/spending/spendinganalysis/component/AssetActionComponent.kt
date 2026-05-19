@@ -1,4 +1,4 @@
-package com.example.a38_collaboration_android_kakaopay.presentation.spending.spendinganalysis
+package com.example.a38_collaboration_android_kakaopay.presentation.spending.spendinganalysis.component
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
