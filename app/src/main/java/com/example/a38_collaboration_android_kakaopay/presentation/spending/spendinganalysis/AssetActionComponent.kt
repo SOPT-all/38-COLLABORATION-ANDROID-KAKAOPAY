@@ -1,5 +1,7 @@
 package com.example.a38_collaboration_android_kakaopay.presentation.spending.spendinganalysis
 
+import android.R.attr.contentDescription
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -27,7 +29,7 @@ fun AssetAction(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
     ){
-        Icon(
+        Image(
             imageVector = ImageVector.vectorResource(R.drawable.ic_graphic_exclamation),
             contentDescription = null
         )
