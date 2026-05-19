@@ -23,6 +23,7 @@ import com.example.a38_collaboration_android_kakaopay.R
 import com.example.a38_collaboration_android_kakaopay.core.common.util.toWonFormat
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
+import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendinganalysis.SpendingCategoryModel
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 
@@ -39,16 +40,12 @@ fun ExpenseList(
 }
 
 data class CategoryExpenseItem(
-    val categoryType: spendingCategory,
+    val categoryType: SpendingCategoryModel,
     val currentMonthAmount: Long,
     val previousMonthAmount: Long
 )
 
-enum class spendingCategory(val Name: String, val imageResId: Int) {
-    TRANSPORTATION("교통", R.drawable.img_transport),
-    FOOD("음식", R.drawable.img_food),
-    COFFEE_DESERT("커피/디저트", R.drawable.img_cafe),
-}
+
 
 fun calculateDiff(current: Long, previous: Long): Boolean {
     val diff = current - previous
@@ -66,6 +63,21 @@ private fun ExpenseItem(
     item: CategoryExpenseItem,
     modifier: Modifier = Modifier,
 ) {
+
+    val diffTextColor =
+        if (calculateDiff(current = item.currentMonthAmount, item.previousMonthAmount)) {
+            KakaoTheme.colors.highlightPrimaryRed
+        } else {
+            KakaoTheme.colors.highlightPrimaryBlue
+        }
+
+    val diffTextMessage =
+        if (calculateDiff(current = item.currentMonthAmount, previous = item.previousMonthAmount)) {
+            "+${kotlin.math.abs(item.currentMonthAmount-item.previousMonthAmount).toWonFormat()}"
+        } else {
+            "-${kotlin.math.abs(item.currentMonthAmount-item.previousMonthAmount).toWonFormat()}"
+        }
+
     Row(
         modifier = modifier
             .fillMaxWidth(),
@@ -82,7 +94,7 @@ private fun ExpenseItem(
         Spacer(modifier = Modifier.width(12.dp))
 
         Text(
-            text = item.categoryType.Name,
+            text = item.categoryType.koreanName,
             style = KakaoTheme.typography.bodyR14,
             color = KakaoTheme.colors.black
         )
@@ -99,20 +111,6 @@ private fun ExpenseItem(
                 color = KakaoTheme.colors.black
             )
 
-            // 지난달 대비 계산 금액 및 텍스트 문구
-            val diffTextColor =
-                if (calculateDiff(current = item.currentMonthAmount, item.previousMonthAmount)) {
-                    KakaoTheme.colors.highlightPrimaryRed
-                } else {
-                    KakaoTheme.colors.highlightPrimaryBlue
-                }
-
-            val diffTextMessage =
-                if (calculateDiff(current = item.currentMonthAmount, previous = item.previousMonthAmount)) {
-                   "+${kotlin.math.abs(item.currentMonthAmount-item.previousMonthAmount).toWonFormat()}"
-                } else {
-                    "-${kotlin.math.abs(item.currentMonthAmount-item.previousMonthAmount).toWonFormat()}"
-                }
 
 
             Text(
@@ -139,17 +137,17 @@ private fun ExpenseListPreview() {
 
     val mockExpenses = listOf(
         CategoryExpenseItem(
-            categoryType = spendingCategory.TRANSPORTATION,
+            categoryType = SpendingCategoryModel.TRANSPORTATION,
             currentMonthAmount = 58450,
             previousMonthAmount = 68450
         ),
         CategoryExpenseItem(
-            categoryType = spendingCategory.FOOD,
+            categoryType = SpendingCategoryModel.FOOD,
             currentMonthAmount = 23900,
             previousMonthAmount = 3900
         ),
         CategoryExpenseItem(
-            categoryType = spendingCategory.COFFEE_DESERT,
+            categoryType = SpendingCategoryModel.COFFEE_DESERT,
             currentMonthAmount = 5000,
             previousMonthAmount = 3000
         )
