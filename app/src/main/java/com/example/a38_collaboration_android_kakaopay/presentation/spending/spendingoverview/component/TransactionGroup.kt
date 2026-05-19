@@ -16,6 +16,8 @@ import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverv
 import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.Transaction
 import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.TransactionMethod
 import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.TransactionType
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
 
 @Composable
 fun TransactionGroup(
@@ -73,7 +75,7 @@ private fun TransactionGroupPreview() {
                 date = "2026-04-23",
                 dayOfWeek = "목",
                 dailyTotal = -3475,
-                transactions = listOf(
+                transactions = persistentListOf(
                     Transaction(
                         transactionId = 13,
                         transactionType = TransactionType.TRANSFER_SEND,
@@ -90,7 +92,7 @@ private fun TransactionGroupPreview() {
                         amount = -84632,
                         includeInTotal = false
                     )
-                )
+                ) as ImmutableList<Transaction>
             )
         )
     }
