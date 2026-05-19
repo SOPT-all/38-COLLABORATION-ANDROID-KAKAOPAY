@@ -63,7 +63,7 @@ fun SpendingSummaryCard(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(4.dp)
             ) {
-                repeat(summaryInfo.participantCount) {
+                repeat(3) {
                     Image(
                         painter = painterResource(id = R.drawable.img_profile_placeholder),
                         contentDescription = null,
@@ -134,7 +134,6 @@ private fun SpendingSummaryCardPreview() {
                 memo = "",
                 isIncludedInTotal = true,
                 isSettlementComplete = true,
-                participantCount = 3
             ),
             onToggleChange = {},
         )

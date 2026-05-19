@@ -18,7 +18,6 @@ data class SpendingSummaryModel(
     val memo: String,
     val isIncludedInTotal: Boolean,
     val isSettlementComplete: Boolean,
-    val participantCount: Int
 )
 
 data class SpendingInfoModel(

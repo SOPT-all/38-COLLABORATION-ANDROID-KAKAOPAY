@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -67,26 +68,24 @@ fun SpendingInfoCard(
             }
         }
 
-        Spacer(
-            modifier = Modifier
-                .height(2.dp)
-        )
+        Spacer(modifier = Modifier.height(2.dp))
 
-        Row(verticalAlignment = Alignment.CenterVertically) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.Top
+        ) {
             Text(
-                text = stringResource(R.string.spending_detail_info_footer_icon), // 💡 가운뎃점 리소스
+                text = stringResource(R.string.spending_detail_info_footer_icon),
                 color = KakaoTheme.colors.grey500,
                 style = KakaoTheme.typography.bodyR14
             )
 
-            Spacer(
-                modifier = Modifier.width(5.dp)
-            )
+            Spacer(modifier = Modifier.width(5.dp))
 
             Text(
                 text = stringResource(R.string.spending_detail_info_footer_notice),
                 color = KakaoTheme.colors.grey500,
-                style = KakaoTheme.typography.bodyR14
+                style = KakaoTheme.typography.bodyR14,
             )
         }
     }
@@ -103,7 +102,7 @@ private fun SpendingInfoCardPreview() {
                 orderNumber = "202604270L7M2W06J",
                 dateTime = "2026. 04. 27.(월) 21:39",
                 category = "배달"
-            )
+            ),
         )
     }
 }
