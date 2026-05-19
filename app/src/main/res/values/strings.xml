@@ -49,4 +49,10 @@
     <string name="spending_overview_segment_point">포인트</string>
     <string name="spending_overview_segment_pay_money">페이머니</string>
     <string name="spending_overview_segment_pay_point">페이포인트</string>
+    <string name="spending_overview_transfer_receive">받기</string>
+    <string name="spending_overview_transfer_send">송금</string>
+    <string name="spending_overview_kakaobank">카카오뱅크</string>
+    <string name="spending_overview_kakaopay_money">카카오페이머니</string>
+
+    <string name="word_divider">|</string>
 </resources>
