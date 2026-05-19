@@ -1,4 +1,4 @@
-package com.example.a38_collaboration_android_kakaopay.presentation.spending.spendinganalysis
+package com.example.a38_collaboration_android_kakaopay.presentation.spending.spendinganalysis.model
 
 import com.example.a38_collaboration_android_kakaopay.R
 
