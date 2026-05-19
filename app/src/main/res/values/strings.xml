@@ -4,7 +4,6 @@
     <!-- Common -->
     <string name="history">내역</string>
     <string name="make_card">카드만들기</string>
-    <string name="word_divider">|</string>
 
     <!-- Navigation -->
     <string name="nav_home">홈</string>
@@ -42,11 +41,6 @@
     <string name="financial_spending_shinhan_card_amount_view">신한카드로 쓴 금액보기</string>
     <string name="financial_spending_monthly_fixed_expense_view">매달 나가는 고정지출 보기</string>
 
-    <!-- SpendingAnalysisView -->
-    <string name="asset_finding_1">내역을 볼 수 있는</string>
-    <string name="asset_finding_2">자산 1건 발견</string>
-    <string name="asset_finding_3">3초 만에 불러오기</string>
-
     <!-- SpendingOverview -->
     <string name="spending_overview_segment_all">전체</string>
     <string name="spending_overview_segment_card">카드</string>
@@ -55,17 +49,13 @@
     <string name="spending_overview_segment_point">포인트</string>
     <string name="spending_overview_segment_pay_money">페이머니</string>
     <string name="spending_overview_segment_pay_point">페이포인트</string>
-
     <string name="spending_overview_category_analysis_prefix">"카테고리별 "</string>
     <string name="spending_overview_category_analysis_suffix">소비 분석 보기</string>
-
-    <string name="spending_overview_expense_diff">지난달 대비 %1$d만원 %2$s 쓰는 중</string>
+    <string name="spending_overview_expense_diff">지난달 대비 %d만원 %s 쓰는 중</string>
     <string name="spending_overview_expense_diff_more">더</string>
     <string name="spending_overview_expense_diff_less">덜</string>
-
     <string name="spending_overview_fixed_expense_prefix">"고정지출 "</string>
     <string name="spending_overview_fixed_expense_suffix">" 확인하기"</string>
-
     <string name="spending_overview_total_expense">지출</string>
     <string name="spending_overview_total_income">수입</string>
     <string name="spending_overview_transfer_receive">받기</string>
@@ -73,7 +63,8 @@
     <string name="spending_overview_kakaobank">카카오뱅크</string>
     <string name="spending_overview_kakaopay_money">카카오페이머니</string>
 
-    <!-- SpendingDetail -->
+    <string name="word_divider">|</string>
+
     <string name="spending_detail_split_amount">분할 결제 지출액</string>
     <string name="spending_detail_settlement_info">정산 정보</string>
     <string name="spending_detail_settlement_complete">정산완료</string>
@@ -88,4 +79,5 @@
     <string name="spending_detail_info_category">카테고리</string>
     <string name="spending_detail_info_footer_icon">\u00b7</string>
     <string name="spending_detail_info_footer_notice">결제 취소, 상품 배송 등의 문의는 구매처 고객센터로 문의 주세요.</string>
+
 </resources>
