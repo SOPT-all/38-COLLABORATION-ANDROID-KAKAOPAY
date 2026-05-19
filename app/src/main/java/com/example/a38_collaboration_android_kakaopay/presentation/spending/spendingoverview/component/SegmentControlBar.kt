@@ -21,6 +21,19 @@ import com.example.a38_collaboration_android_kakaopay.core.designsystem.componen
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
 import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.SpendingSegment
 
+private val primarySegments = listOf(
+    SpendingSegment.ALL,
+    SpendingSegment.CARD,
+    SpendingSegment.ACCOUNT,
+    SpendingSegment.PAY
+)
+
+private val secondarySegments = listOf(
+    SpendingSegment.POINT,
+    SpendingSegment.PAY_MONEY,
+    SpendingSegment.PAY_POINT
+)
+
 @Composable
 fun SegmentControlBar(
     modifier: Modifier = Modifier,
@@ -46,26 +59,8 @@ fun SegmentControlBar(
                     .weight(1f),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                SegmentItem(
-                    text = stringResource(R.string.spending_overview_segment_all),
-                    isSelected = selectedSegment == SpendingSegment.ALL,
-                    onClick = { selectedSegment = SpendingSegment.ALL }
-                )
-                SegmentItem(
-                    text = stringResource(R.string.spending_overview_segment_card),
-                    isSelected = selectedSegment == SpendingSegment.CARD,
-                    onClick = { selectedSegment = SpendingSegment.CARD }
-                )
-                SegmentItem(
-                    text = stringResource(R.string.spending_overview_segment_account),
-                    isSelected = selectedSegment == SpendingSegment.ACCOUNT,
-                    onClick = { selectedSegment = SpendingSegment.ACCOUNT }
-                )
-                SegmentItem(
-                    text = stringResource(R.string.spending_overview_segment_pay),
-                    isSelected = selectedSegment == SpendingSegment.PAY,
-                    onClick = { selectedSegment = SpendingSegment.PAY }
-                )
+                primarySegments.forEach { segment ->
+                }
             }
 
             SegmentDropdownControl(
@@ -86,11 +81,13 @@ fun SegmentControlBar(
                     isSelected = selectedSegment == SpendingSegment.POINT,
                     onClick = { selectedSegment = SpendingSegment.POINT }
                 )
+
                 SegmentItem(
                     text = stringResource(R.string.spending_overview_segment_pay_money),
                     isSelected = selectedSegment == SpendingSegment.PAY_MONEY,
                     onClick = { selectedSegment = SpendingSegment.PAY_MONEY }
                 )
+
                 SegmentItem(
                     text = stringResource(R.string.spending_overview_segment_pay_point),
                     isSelected = selectedSegment == SpendingSegment.PAY_POINT,
