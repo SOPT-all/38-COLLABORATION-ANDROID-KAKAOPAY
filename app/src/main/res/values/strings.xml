@@ -88,4 +88,12 @@
     <string name="spending_detail_info_category">카테고리</string>
     <string name="spending_detail_info_footer_icon">\u00b7</string>
     <string name="spending_detail_info_footer_notice">결제 취소, 상품 배송 등의 문의는 구매처 고객센터로 문의 주세요.</string>
+
+    <string name="spending_detail_footer_receipt">"거래확인증"</string>
+    <string name="spending_detail_footer_settlement">"1/N 정산하기"</string>
+    <string name="spending_detail_footer_split_payment">"분할결제"</string>
+
+    <string name="spending_detail_ad_title">내기만 했던 병원비</string>
+    <string name="spending_detail_ad_sub_title">돌려받을 수 있어요</string>
+
 </resources>
