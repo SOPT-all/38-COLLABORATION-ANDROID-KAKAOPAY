@@ -1,6 +1,7 @@
 package com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingoverview
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -8,15 +9,19 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.binarytab.BinaryTabControl
+import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.button.KakaoPayScrollTopButton
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.dropdown.TransactionDropdown
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.monthcontrol.MonthControl
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.topbar.KakaoPaySubTopBar
@@ -31,6 +36,7 @@ import com.example.a38_collaboration_android_kakaopay.presentation.spending.spen
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingoverview.component.SwapViewButton
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingoverview.component.TransactionGroup
 import kotlinx.collections.immutable.persistentListOf
+import kotlinx.coroutines.launch
 
 @Composable
 fun SpendingOverviewRoute(
@@ -56,52 +62,78 @@ fun SpendingOverviewScreen(
     dailyTransactions: List<DailyTransactions>,
     modifier: Modifier = Modifier,
 ) {
-    LazyColumn(
-        contentPadding = PaddingValues(
-            top = paddingValues.calculateTopPadding(),
-            bottom = paddingValues.calculateBottomPadding() + 123.dp
-        ),
-        modifier = modifier
-            .fillMaxSize()
+    val listState = rememberLazyListState()
+    val coroutineScope = rememberCoroutineScope()
+
+    Box(
+        modifier = modifier.fillMaxSize()
     ) {
-        item {
-            Column (
-                modifier = Modifier,
+        Column (
+            modifier = Modifier
+                .fillMaxSize()
+        ) {
+            KakaoPaySubTopBar(
+                title = {},
+                onBackClick = {},
+                modifier = Modifier
+                    .padding(horizontal = 16.dp)
+            )
+
+            BinaryTabControl(
+                modifier = Modifier
+                    .padding(horizontal = 4.dp)
+            )
+
+            LazyColumn(
+                state = listState,
+                contentPadding = PaddingValues(
+                    top = paddingValues.calculateTopPadding(),
+                    bottom = paddingValues.calculateBottomPadding() + 123.dp
+                ),
+                modifier = Modifier
+                    .fillMaxSize()
             ) {
-                KakaoPaySubTopBar(
-                    title = {},
-                    onBackClick = {},
-                    modifier = Modifier
-                        .padding(horizontal = 16.dp)
-                )
+                item {
+                    Column(
+                        modifier = Modifier,
+                    ) {
+                        Spacer(modifier = Modifier.height(24.dp))
 
-                BinaryTabControl(
-                    modifier = Modifier
-                        .padding(horizontal = 4.dp)
-                )
+                        OverviewSection(
+                            spendingSummary = spendingSummary,
+                            onCategoryAnalysisClick = onCategoryAnalysisClick
+                        )
 
-                Spacer(modifier = Modifier.height(24.dp))
+                        Spacer(modifier = Modifier.height(32.dp))
 
-                OverviewSection(
-                    spendingSummary = spendingSummary,
-                    onCategoryAnalysisClick = onCategoryAnalysisClick
-                )
+                        TransactionHeader()
+                    }
+                }
 
-                Spacer(modifier = Modifier.height(32.dp))
-
-                TransactionHeader()
+                dailyTransactions.forEach { dailyTransaction ->
+                    item {
+                        TransactionGroup(
+                            dailyTransactions = dailyTransaction,
+                            modifier = Modifier
+                                .padding(bottom = 24.dp)
+                        )
+                    }
+                }
             }
+
         }
 
-        dailyTransactions.forEach { dailyTransaction ->
-            item {
-                TransactionGroup(
-                    dailyTransactions = dailyTransaction,
-                    modifier = Modifier
-                        .padding(bottom = 24.dp)
-                )
-            }
-        }
+        KakaoPayScrollTopButton(
+            onClick = {
+                coroutineScope.launch {
+                    listState.animateScrollToItem(0)
+                }
+            },
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .navigationBarsPadding()
+                .padding(16.dp)
+        )
     }
 }
 
@@ -228,7 +260,7 @@ private fun SpendingOverviewScreenPreview() {
     KakaoPayTheme {
         SpendingOverviewScreen(
             paddingValues = PaddingValues(),
-            spendingSummary = SpendingSummary (
+            spendingSummary = SpendingSummary(
                 fixedExpense = 173253,
                 previousMonthTotal = 55000,
                 totalExpense = 79650,
