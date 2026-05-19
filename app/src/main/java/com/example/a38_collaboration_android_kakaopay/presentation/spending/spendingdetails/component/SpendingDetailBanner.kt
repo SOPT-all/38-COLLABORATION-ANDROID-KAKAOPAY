@@ -28,7 +28,10 @@ fun SpendingDetailBanner(
 ) {
     Row(
         modifier = modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(14.dp))
+            .background(KakaoTheme.colors.grey100)
+            .padding(horizontal = 16.dp, vertical = 12.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -58,7 +61,7 @@ fun SpendingDetailBanner(
 @Preview(showBackground = true)
 @Composable
 private fun SpendingDetailBannerPreview() {
-    KakaoPayTheme {
-        SpendingDetailBanner()
-    }
+    SpendingDetailBanner(
+        modifier = Modifier.padding(16.dp)
+    )
 }
