@@ -73,8 +73,30 @@
     <string name="spending_overview_kakaobank">카카오뱅크</string>
     <string name="spending_overview_kakaopay_money">카카오페이머니</string>
 
-    <string name="word_divider">|</string>
+    <!-- SpendingDetail -->
+    <string name="spending_detail_split_amount">분할 결제 지출액</string>
+    <string name="spending_detail_settlement_info">정산 정보</string>
+    <string name="spending_detail_settlement_complete">정산완료</string>
+    <string name="spending_detail_memo">메모</string>
+    <string name="spending_detail_memo_placeholder">메모를 남겨주세요</string>
+    <string name="spending_detail_include_total">지출 합계에 포함</string>
 
+    <string name="spending_detail_info_order_amount">주문금액</string>
+    <string name="spending_detail_info_payment_method">결제수단(머니/카드) 사용</string>
+    <string name="spending_detail_info_order_number">상점주문번호</string>
+    <string name="spending_detail_info_date_time">일시</string>
+    <string name="spending_detail_info_category">카테고리</string>
+    <string name="spending_detail_info_footer_icon">\u00b7</string>
+    <string name="spending_detail_info_footer_notice">결제 취소, 상품 배송 등의 문의는 구매처 고객센터로 문의 주세요.</string>
+
+    <string name="spending_detail_footer_receipt">"거래확인증"</string>
+    <string name="spending_detail_footer_settlement">"1/N 정산하기"</string>
+    <string name="spending_detail_footer_split_payment">"분할결제"</string>
+
+    <string name="spending_detail_ad_title">내기만 했던 병원비</string>
+    <string name="spending_detail_ad_sub_title">돌려받을 수 있어요</string>
+
+ 
     <string name="financial_frequently_used">자주 쓰는</string>
     <string name="financial_protection_required">보호필요</string>
     <string name="financial_edit">편집</string>
