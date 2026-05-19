@@ -1,7 +1,6 @@
 package com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingdetails.component
 
 import androidx.compose.ui.graphics.Color
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -24,6 +23,7 @@ import com.example.a38_collaboration_android_kakaopay.R
 import com.example.a38_collaboration_android_kakaopay.core.common.util.toWonFormat
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
+import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingdetails.model.SpendingDetailGroupModel
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingdetails.model.SpendingDetailPaymentModel
 
 @Composable
@@ -37,9 +37,7 @@ fun SpendingDetailSummaryCard(
             verticalAlignment = Alignment.Top
         ) {
             SpendingDetailGroup(
-                title = paymentInfo.productName,
-                label = paymentInfo.paymentMethod,
-                value = paymentInfo.paymentType,
+                groupData = paymentInfo.mainInfo,
                 modifier = Modifier.weight(1f)
             )
 
@@ -53,12 +51,28 @@ fun SpendingDetailSummaryCard(
         }
 
         Spacer(modifier = Modifier.weight(1f))
-
         SpendingDetailGroup(
-            title = paymentInfo.paymentAmount.toWonFormat(),
-            label = "총 결제",
-            value = paymentInfo.totalPaymentAmount.toWonFormat()
+            groupData = paymentInfo.amountInfo
         )
+    }
+}
+
+@Composable
+private fun SpendingDetailGroup(
+    groupData: SpendingDetailGroupModel,
+    modifier: Modifier = Modifier,
+    titleColor: Color = KakaoTheme.colors.black,
+) {
+    Column(modifier = modifier) {
+        Text(
+            text = groupData.title,
+            color = titleColor,
+            style = KakaoTheme.typography.titleB26,
+        )
+
+        Spacer(modifier = Modifier.height(6.dp))
+
+        SpendingInfoRow(label = groupData.label, value = groupData.value)
     }
 }
 
@@ -119,15 +133,26 @@ private fun SpendingDetailGroup(
 @Composable
 private fun SpendingDetailSummaryCardPreview() {
     KakaoPayTheme {
-        SpendingDetailSummaryCard(
-            paymentInfo = SpendingDetailPaymentModel(
-                productName = "마라로제 떡볶이X튀2 콤보 1개",
-                paymentMethod = "페이머니",
-                paymentType = "결제",
-                paymentAmount = 11800L,
-                totalPaymentAmount = 30000L,
-                icon = R.drawable.img_baemin_logo_48px
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(156.dp)
+        ) {
+            SpendingDetailSummaryCard(
+                paymentInfo = SpendingDetailPaymentModel(
+                    mainInfo = SpendingDetailGroupModel(
+                        title = "마라로제 떡볶이X튀2 콤보 1개",
+                        label = "페이머니",
+                        value = "결제"
+                    ),
+                    amountInfo = SpendingDetailGroupModel(
+                        title = 11800L.toWonFormat(),
+                        label = "총 결제",
+                        value = 30000L.toWonFormat()
+                    ),
+                    icon = R.drawable.img_baemin_logo_48px
+                )
             )
-        )
+        }
     }
 }
