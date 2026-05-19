@@ -19,8 +19,7 @@ fun ActionContainer(
 ) {
     Column(
         modifier = modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp),
+            .fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(4.dp)
     ) {
         ActionItemsGroup(
