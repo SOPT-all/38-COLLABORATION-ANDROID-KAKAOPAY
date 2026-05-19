@@ -124,7 +124,7 @@ fun AppNaviHost(
                             transactionMethod = TransactionMethod.PAY_MONEY,
                             transactionName = "박솝트(박솝트)",
                             amount = -3475,
-                            includeInTotal = false
+                            includeInTotal = true
                         )
                     )
                 ),
