@@ -19,34 +19,25 @@ import com.example.a38_collaboration_android_kakaopay.core.common.util.toWonForm
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
 
-fun calculateTotalDiff(currentTotal: Long, previousTotal: Long): Boolean {
 
-    val totalDiff = currentTotal - previousTotal
-
-    return when {
-        totalDiff > 0 -> true
-        totalDiff < 0 -> false
-        else -> true
-    }
-
-}
 @Composable
 fun ExpenseSummary(
     currentMonthTotal: Long,
     previousMonthTotal: Long,
     modifier: Modifier = Modifier,
 ){
+    val isMoreSpent = calculateDiff(current = currentMonthTotal, previous = previousMonthTotal)
+    val totalDiffAmount = kotlin.math.abs(currentMonthTotal - previousMonthTotal).toWonFormat()
 
-    //이번달 - 지난달 금액계산
     val totalDiffTextMessage =
-        if (calculateTotalDiff(currentTotal = currentMonthTotal, previousTotal = previousMonthTotal)){
-            "지난 달 보다 +${kotlin.math.abs(currentMonthTotal - previousMonthTotal).toWonFormat()} 더 쓰고 있어요"
+        if (isMoreSpent){
+            "지난 달 보다 +${totalDiffAmount} 더 쓰고 있어요"
         } else {
-            "지난 달 보다 -${kotlin.math.abs(currentMonthTotal - previousMonthTotal).toWonFormat()} 덜 쓰고 있어요"
+            "지난 달 보다 -${totalDiffAmount} 덜 쓰고 있어요"
         }
 
     val totalDiffTextColor =
-        if (calculateTotalDiff(currentTotal = currentMonthTotal, previousTotal = previousMonthTotal)) {
+        if (isMoreSpent) {
             KakaoTheme.colors.highlightPrimaryRed
         } else {
             KakaoTheme.colors.highlightPrimaryBlue
