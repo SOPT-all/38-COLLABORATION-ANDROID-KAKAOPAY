@@ -65,12 +65,16 @@ fun SpendingInfoCard(
                 Icon(
                     painter = painterResource(id = R.drawable.ic_chevron_right_blue_16px),
                     contentDescription = null,
-                    tint = Color.Unspecified
+                    tint = KakaoTheme.colors.highlightPrimaryBlue
                 )
             }
         }
 
-        Spacer(modifier = Modifier.height(2.dp))
+        Spacer(
+            modifier = Modifier
+                .height(2.dp)
+        )
+
         Text(
             text = stringResource(R.string.spending_detail_info_footer_notice),
             color = KakaoTheme.colors.grey500,
