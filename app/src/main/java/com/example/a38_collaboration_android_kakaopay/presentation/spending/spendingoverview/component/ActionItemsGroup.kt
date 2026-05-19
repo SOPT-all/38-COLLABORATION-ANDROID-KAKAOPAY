@@ -35,7 +35,6 @@ fun ActionItemsGroup(
     isOverSpent: Boolean,
     fixedExpense: Int,
     onCategoryAnalysisClick: () -> Unit,
-    onFixedExpenseClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -58,7 +57,7 @@ fun ActionItemsGroup(
 
         ActionListItem(
             icon = R.drawable.ic_graphic_fixed_expense_24px,
-            onClick = onFixedExpenseClick,
+            onClick = {},
             content = {
                 FixedExpense(
                     fixedExpense = fixedExpense
@@ -175,7 +174,6 @@ private fun ActionItemsGroupPreview() {
             isOverSpent = true,
             fixedExpense = 1783250,
             onCategoryAnalysisClick = {},
-            onFixedExpenseClick = {}
         )
     }
 }
