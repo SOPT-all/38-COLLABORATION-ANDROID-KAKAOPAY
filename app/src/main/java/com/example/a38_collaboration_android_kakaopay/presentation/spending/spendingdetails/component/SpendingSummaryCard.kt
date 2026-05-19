@@ -27,12 +27,11 @@ import com.example.a38_collaboration_android_kakaopay.core.common.util.toWonForm
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.selection.KakaoPayToggle
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
+import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingdetails.model.SpendingSummaryModel
 
 @Composable
 fun SpendingSummaryCard(
-    splitAmount: Long,
-    memo: String,
-    isIncludedInTotal: Boolean,
+    summaryInfo: SpendingSummaryModel,
     onToggleChange: (Boolean) -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -44,7 +43,7 @@ fun SpendingSummaryCard(
             title = stringResource(R.string.spending_detail_split_amount)
         ) {
             Text(
-                text = splitAmount.toWonFormat(),
+                text = summaryInfo.splitAmount.toWonFormat(),
                 color = KakaoTheme.colors.black,
                 style = KakaoTheme.typography.bodyB16
             )
@@ -53,8 +52,10 @@ fun SpendingSummaryCard(
         DetailBaseRow(
             title = stringResource(R.string.spending_detail_settlement_info),
             titleContent = {
-                Spacer(modifier = Modifier.width(10.dp))
-                SettlementBadge()
+                if (summaryInfo.isSettlementComplete) {
+                    Spacer(modifier = Modifier.width(10.dp))
+                    SettlementBadge()
+                }
             }
         ) {
             Image(
@@ -73,7 +74,7 @@ fun SpendingSummaryCard(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = memo.ifEmpty { stringResource(R.string.spending_detail_memo_placeholder) },
+                    text = summaryInfo.memo.ifEmpty { stringResource(R.string.spending_detail_memo_placeholder) },
                     color = KakaoTheme.colors.highlightPrimaryBlue,
                     style = KakaoTheme.typography.bodyB16
                 )
@@ -89,7 +90,7 @@ fun SpendingSummaryCard(
             title = stringResource(R.string.spending_detail_include_total)
         ) {
             KakaoPayToggle(
-                checked = isIncludedInTotal,
+                checked = summaryInfo.isIncludedInTotal,
                 onCheckedChange = onToggleChange
             )
         }
@@ -120,9 +121,12 @@ private fun SettlementBadge() {
 private fun SpendingSummaryCardPreview() {
     KakaoPayTheme {
         SpendingSummaryCard(
-            splitAmount = 11800L,
-            memo = "",
-            isIncludedInTotal = true,
+            summaryInfo = SpendingSummaryModel(
+                splitAmount = 11800L,
+                memo = "",
+                isIncludedInTotal = true,
+                isSettlementComplete = true
+            ),
             onToggleChange = {},
         )
     }

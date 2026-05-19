@@ -20,21 +20,18 @@ import com.example.a38_collaboration_android_kakaopay.R
 import com.example.a38_collaboration_android_kakaopay.core.common.util.toWonFormat
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
+import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingdetails.model.SpendingInfoModel
 
 @Composable
 fun SpendingInfoCard(
-    orderAmount: Long,
-    paymentAmount: Long,
-    orderNumber: String,
-    dateTime: String,
-    category: String,
+    info: SpendingInfoModel,
     modifier: Modifier = Modifier,
 ) {
     val infoItems = listOf(
-        stringResource(R.string.spending_detail_info_order_amount) to orderAmount.toWonFormat(),
-        stringResource(R.string.spending_detail_info_payment_method) to paymentAmount.toWonFormat(),
-        stringResource(R.string.spending_detail_info_order_number) to orderNumber,
-        stringResource(R.string.spending_detail_info_date_time) to dateTime
+        stringResource(R.string.spending_detail_info_order_amount) to info.orderAmount.toWonFormat(),
+        stringResource(R.string.spending_detail_info_payment_method) to info.paymentAmount.toWonFormat(),
+        stringResource(R.string.spending_detail_info_order_number) to info.orderNumber,
+        stringResource(R.string.spending_detail_info_date_time) to info.dateTime
     )
 
     Column(
@@ -58,7 +55,7 @@ fun SpendingInfoCard(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = category,
+                    text = info.category,
                     color = KakaoTheme.colors.highlightPrimaryBlue,
                     style = KakaoTheme.typography.bodyB16
                 )
@@ -84,11 +81,13 @@ fun SpendingInfoCard(
 private fun SpendingInfoCardPreview() {
     KakaoPayTheme {
         SpendingInfoCard(
-            orderAmount = 11800L,
-            paymentAmount = 11800L,
-            orderNumber = "202604270L7M2W06J",
-            dateTime = "2026. 04. 27.(월) 21:39",
-            category = "배달"
+            info = SpendingInfoModel(
+                orderAmount = 11800L,
+                paymentAmount = 11800L,
+                orderNumber = "202604270L7M2W06J",
+                dateTime = "2026. 04. 27.(월) 21:39",
+                category = "배달"
+            )
         )
     }
 }
