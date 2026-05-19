@@ -15,9 +15,6 @@ import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverv
 fun ActionContainer(
     spendingSummary: SpendingSummary,
     onCategoryAnalysisClick: () -> Unit,
-    onFixedExpenseClick: () -> Unit,
-    onTotalExpenseClick: () -> Unit,
-    onTotalIncomeClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -31,14 +28,11 @@ fun ActionContainer(
             isOverSpent = spendingSummary.isOverSpent,
             fixedExpense = spendingSummary.fixedExpense,
             onCategoryAnalysisClick = onCategoryAnalysisClick,
-            onFixedExpenseClick = onFixedExpenseClick,
         )
 
         MultipleActionItem(
             totalExpense = spendingSummary.totalExpense,
             totalIncome = spendingSummary.totalIncome,
-            onTotalExpenseClick = onTotalExpenseClick,
-            onTotalIncomeClick = onTotalIncomeClick,
         )
     }
 }
@@ -60,9 +54,6 @@ private fun ActionContainerPreview() {
                     totalIncome = 150000,
                 ),
                 onCategoryAnalysisClick = {},
-                onFixedExpenseClick = {},
-                onTotalExpenseClick = {},
-                onTotalIncomeClick = {}
             )
             // 지난달 대비 덜 쓰는 중
             ActionContainer(
@@ -73,9 +64,6 @@ private fun ActionContainerPreview() {
                     totalIncome = 150000,
                 ),
                 onCategoryAnalysisClick = {},
-                onFixedExpenseClick = {},
-                onTotalExpenseClick = {},
-                onTotalIncomeClick = {}
             )
         }
     }

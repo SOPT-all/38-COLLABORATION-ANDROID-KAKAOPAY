@@ -31,8 +31,6 @@ import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.Ka
 fun MultipleActionItem(
     totalExpense: Int,
     totalIncome: Int,
-    onTotalExpenseClick: () -> Unit,
-    onTotalIncomeClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -49,13 +47,13 @@ fun MultipleActionItem(
         CashFlowItem(
             label = R.string.spending_overview_total_expense,
             amount = totalExpense,
-            onClick = onTotalExpenseClick,
+            onClick = {},
         )
 
         CashFlowItem(
             label = R.string.spending_overview_total_income,
             amount = totalIncome,
-            onClick = onTotalIncomeClick,
+            onClick = {},
         )
     }
 }
@@ -105,8 +103,6 @@ private fun MultipleActionItemPreview() {
         MultipleActionItem(
             totalExpense = 79650,
             totalIncome = 150000,
-            onTotalIncomeClick = {},
-            onTotalExpenseClick = {}
         )
     }
 }
