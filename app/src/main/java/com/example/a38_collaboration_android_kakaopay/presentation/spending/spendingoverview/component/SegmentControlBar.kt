@@ -15,7 +15,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.a38_collaboration_android_kakaopay.R
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.segment.SegmentDropdownControl
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.segment.SegmentItem
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
@@ -60,6 +59,11 @@ fun SegmentControlBar(
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 primarySegments.forEach { segment ->
+                    SegmentItem(
+                        text = stringResource(segment.label),
+                        isSelected = selectedSegment == segment,
+                        onClick = { selectedSegment = segment }
+                    )
                 }
             }
 
@@ -76,23 +80,13 @@ fun SegmentControlBar(
             Row(
                 modifier = Modifier,
             ) {
-                SegmentItem(
-                    text = stringResource(R.string.spending_overview_segment_point),
-                    isSelected = selectedSegment == SpendingSegment.POINT,
-                    onClick = { selectedSegment = SpendingSegment.POINT }
-                )
-
-                SegmentItem(
-                    text = stringResource(R.string.spending_overview_segment_pay_money),
-                    isSelected = selectedSegment == SpendingSegment.PAY_MONEY,
-                    onClick = { selectedSegment = SpendingSegment.PAY_MONEY }
-                )
-
-                SegmentItem(
-                    text = stringResource(R.string.spending_overview_segment_pay_point),
-                    isSelected = selectedSegment == SpendingSegment.PAY_POINT,
-                    onClick = { selectedSegment = SpendingSegment.PAY_POINT }
-                )
+                secondarySegments.forEach { segment ->
+                    SegmentItem(
+                        text = stringResource(segment.label),
+                        isSelected = selectedSegment == segment,
+                        onClick = { selectedSegment = segment }
+                    )
+                }
             }
         }
     }
