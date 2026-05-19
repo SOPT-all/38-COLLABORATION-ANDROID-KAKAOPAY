@@ -42,10 +42,11 @@
     <string name="financial_spending_monthly_fixed_expense_view">매달 나가는 고정지출 보기</string>
 
     <!-- SpendingOverview -->
-    <string name="spending_overview_transfer_receive">받기</string>
-    <string name="spending_overview_transfer_send">송금</string>
-    <string name="spending_overview_kakaobank">카카오뱅크</string>
-    <string name="spending_overview_kakaopay_money">카카오페이머니</string>
-
-    <string name="word_divider">|</string>
+    <string name="spending_overview_segment_all">전체</string>
+    <string name="spending_overview_segment_card">카드</string>
+    <string name="spending_overview_segment_account">계좌</string>
+    <string name="spending_overview_segment_pay">페이결제</string>
+    <string name="spending_overview_segment_point">포인트</string>
+    <string name="spending_overview_segment_pay_money">페이머니</string>
+    <string name="spending_overview_segment_pay_point">페이포인트</string>
 </resources>
