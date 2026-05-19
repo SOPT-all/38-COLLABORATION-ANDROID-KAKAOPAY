@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ModifierLocalBeyondBoundsLayout
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -33,7 +34,8 @@ fun AssetAction(
     ){
         Image(
             imageVector = ImageVector.vectorResource(R.drawable.ic_graphic_exclamation),
-            contentDescription = null
+            contentDescription = null,
+            modifier = Modifier.size(32.dp)
         )
 
         Spacer(modifier = Modifier.width(13.dp))
