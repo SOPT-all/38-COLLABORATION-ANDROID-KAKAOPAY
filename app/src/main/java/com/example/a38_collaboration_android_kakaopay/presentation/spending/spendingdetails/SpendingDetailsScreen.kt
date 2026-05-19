@@ -39,7 +39,37 @@ fun SpendingDetailsRoute(
     paddingValues: PaddingValues,
     navController: NavController
 ) {
-
+    SpendingDetailsScreen(
+        paddingValues = paddingValues,
+        paymentInfo = SpendingDetailPaymentModel(
+            mainInfo = SpendingDetailGroupModel(
+                title = "마라로제 떡볶이X튀2 콤보 1개",
+                label = "페이머니",
+                value = "결제"
+            ),
+            amountInfo = SpendingDetailGroupModel(
+                title = 11800L.toWonFormat(),
+                label = "총 결제",
+                value = 11800L.toWonFormat()
+            ),
+            icon = R.drawable.img_baemin_logo_48px
+        ),
+        summaryInfo = SpendingSummaryModel(
+            splitAmount = 11800L,
+            memo = "",
+            isIncludedInTotal = true,
+            isSettlementComplete = true
+        ),
+        detailInfo = SpendingInfoModel(
+            orderAmount = 11800L,
+            paymentAmount = 11800L,
+            orderNumber = "202604270L7M2W06J",
+            dateTime = "2026. 04. 27.(월) 21:39",
+            category = "배달"
+        ),
+        onBackClick = { navController.popBackStack() },
+        onToggleChange = {}
+    )
 }
 
 @Composable
