@@ -46,4 +46,6 @@
     <string name="spending_overview_transfer_send">송금</string>
     <string name="spending_overview_kakaobank">카카오뱅크</string>
     <string name="spending_overview_kakaopay_money">카카오페이머니</string>
+
+    <string name="word_divider">|</string>
 </resources>

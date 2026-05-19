@@ -111,7 +111,7 @@ private fun CounterPartyInfo(
                 style = KakaoTheme.typography.labelR12
             )
             Text(
-                text = "|",
+                text = stringResource(R.string.word_divider),
                 color = KakaoTheme.colors.grey200,
                 style = KakaoTheme.typography.labelR12,
                 textAlign = TextAlign.Center,
