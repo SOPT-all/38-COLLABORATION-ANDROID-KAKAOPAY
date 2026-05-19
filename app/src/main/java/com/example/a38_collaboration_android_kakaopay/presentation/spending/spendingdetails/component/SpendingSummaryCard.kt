@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -81,8 +82,7 @@ fun SpendingSummaryCard(
                 Icon(
                     painter = painterResource(id = R.drawable.ic_chevron_right_blue_16px),
                     contentDescription = null,
-                    tint = Color.Unspecified
-                )
+                    tint = KakaoTheme.colors.highlightPrimaryBlue                )
             }
         }
 
@@ -101,7 +101,6 @@ fun SpendingSummaryCard(
 private fun SettlementBadge() {
     Box(
         modifier = Modifier
-            .size(width = 60.dp, height = 25.dp)
             .background(
                 color = KakaoTheme.colors.brandPrimaryYellow,
                 shape = RoundedCornerShape(999.dp)
@@ -109,6 +108,8 @@ private fun SettlementBadge() {
         contentAlignment = Alignment.Center
     ) {
         Text(
+            modifier = Modifier
+                .padding(horizontal = 8.dp, vertical = 4.dp),
             text = stringResource(R.string.spending_detail_settlement_complete),
             color = KakaoTheme.colors.black,
             style = KakaoTheme.typography.labelM12
