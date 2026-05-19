@@ -25,27 +25,20 @@ import com.example.a38_collaboration_android_kakaopay.R
 import com.example.a38_collaboration_android_kakaopay.core.common.util.toWonFormat
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
-import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.Transaction
-
-enum class TransactionType {
-    PAYMENT,
-    TRANSFER_SEND,
-    TRANSFER_RECEIVE,
-}
-
-enum class TransactionMethod {
-    PAY_MONEY,
-}
+import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.Transaction
+import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.TransactionMethod
+import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.TransactionType
 
 @Composable
 fun TransactionListItem(
     transaction: Transaction,
     modifier: Modifier = Modifier,
 ) {
+    val kakaobankKeyword = stringResource(R.string.spending_overview_kakaobank)
+
     val thumbnail = when {
         transaction.transactionType == TransactionType.PAYMENT -> R.drawable.img_baemin_logo_36px
-        transaction.transactionMethod == TransactionMethod.PAY_MONEY && transaction.transactionName.contains(
-            stringResource(R.string.spending_overview_kakaobank)
+        transaction.transactionMethod == TransactionMethod.PAY_MONEY && transaction.transactionName.contains(kakaobankKeyword
         ) -> R.drawable.img_kakaopay_logo
         else -> R.drawable.img_profile_placeholder
     }
@@ -90,7 +83,7 @@ private fun TransactionInfo(
     ) {
         CounterPartyInfo(transaction = transaction)
         Text(
-            text = "${amountPrefix}${transaction.amount.toString().toWonFormat()}",
+            text = "${amountPrefix}${transaction.amount.toWonFormat()}",
             color = amountColor,
             style = KakaoTheme.typography.bodyB16
         )
