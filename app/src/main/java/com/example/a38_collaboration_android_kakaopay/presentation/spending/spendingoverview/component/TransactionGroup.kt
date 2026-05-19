@@ -16,6 +16,7 @@ import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverv
 import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.Transaction
 import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.TransactionMethod
 import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.TransactionType
+import kotlinx.collections.immutable.ImmutableList
 
 @Composable
 fun TransactionGroup(
@@ -90,7 +91,7 @@ private fun TransactionGroupPreview() {
                         amount = -84632,
                         includeInTotal = false
                     )
-                )
+                ) as ImmutableList<Transaction>
             )
         )
     }
