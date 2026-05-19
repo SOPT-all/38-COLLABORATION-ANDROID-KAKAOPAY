@@ -3,7 +3,6 @@ package com.example.a38_collaboration_android_kakaopay.presentation.financialove
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -35,9 +34,7 @@ fun FinancialAssetsCard(
     modifier: Modifier = Modifier,
 ) {
     KakaoPayBasicCard(
-        enabled = true,
-        onClick = onViewSpendingHistoryClick,
-        modifier = modifier
+        enabled = true, onClick = onViewSpendingHistoryClick, modifier = modifier
     ) {
         Column {
 
@@ -59,44 +56,17 @@ fun FinancialAssetsCard(
 
             HorizontalDivider(thickness = 1.dp, color = KakaoTheme.colors.grey200)
 
-            FinancialMenuRow()
-        }
-    }
-}
-
-@Composable
-private fun FinancialMenuRow(
-    modifier: Modifier = Modifier,
-) {
-    val financialMenus = listOf(
-        R.string.financial_valuation_amount_view,
-        R.string.financial_point_membership,
-        R.string.financial_total_assets_view,
-    )
-
-    Row(
-        modifier = modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceEvenly,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        financialMenus.forEachIndexed { index, textRes ->
-            Text(
-                text = stringResource(textRes),
-                modifier = Modifier.padding(horizontal = 6.dp, vertical = 10.dp),
-                color = KakaoTheme.colors.grey500,
-                style = KakaoTheme.typography.bodyB14
-            )
-
-            if (index != financialMenus.lastIndex) {
-                Text(
-                    text = "|", // 승ㅇ희언니 먼지되면 넣기)
-                    color = KakaoTheme.colors.grey200,
-                    style = KakaoTheme.typography.labelR12
+            FinancialMenuRow(
+                financialMenus = listOf(
+                    R.string.financial_valuation_amount_view,
+                    R.string.financial_point_membership,
+                    R.string.financial_total_assets_view,
                 )
-            }
+            )
         }
     }
 }
+
 
 @Composable
 private fun FinancialAssetsTitle(
@@ -119,8 +89,7 @@ private fun FinancialAssetsTitle(
                 .clip(RoundedCornerShape(999.dp))
                 .border(border = BorderStroke(width = 1.dp, color = KakaoTheme.colors.grey200))
                 .padding(horizontal = 8.dp, vertical = 4.dp)
-        )
-        {
+        ) {
             Text(
                 text = stringResource(R.string.financial_protection_required),
                 color = KakaoTheme.colors.grey400,
@@ -146,14 +115,11 @@ private fun FinancialOverviewAssetsRow(
     modifier: Modifier = Modifier,
 ) {
     FinancialOverviewRow(
-        icon = icon,
-        useCompactIconSize = true,
-        trailingContent = {
+        icon = icon, useCompactIconSize = true, trailingContent = {
             KakaoPaySecondaryButton(
                 text = stringResource(R.string.financial_securities_account_send), onClick = onClick
             )
-        },
-        modifier = modifier
+        }, modifier = modifier
     ) {
 
         Text(
@@ -191,19 +157,12 @@ private fun FinancialAssetsCardPreview() {
         FinancialAssetsCard(
             financialItems = persistentListOf(
                 FinancialList(
-                    icon = R.drawable.img_kakaopay_logo,
-                    account = "카카오뱅크"
-                ),
-                FinancialList(
-                    icon = R.drawable.img_toss_logo,
-                    account = "토스뱅크"
-                ),
-                FinancialList(
-                    icon = R.drawable.img_dgbank_logo,
-                    account = "대구은행"
+                    icon = R.drawable.img_kakaopay_logo, account = "카카오뱅크"
+                ), FinancialList(
+                    icon = R.drawable.img_toss_logo, account = "토스뱅크"
+                ), FinancialList(
+                    icon = R.drawable.img_dgbank_logo, account = "대구은행"
                 )
-            ),
-            onViewSpendingHistoryClick = {}
-        )
+            ), onViewSpendingHistoryClick = {})
     }
 }

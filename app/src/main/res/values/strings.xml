@@ -56,4 +56,11 @@
     <string name="financial_point_membership">포인트 멤버십</string>
     <string name="financial_total_assets_view">내 총 자산 보기</string>
     <string name="financial_balance_view">잔액보기</string>
+
+    <string name="financial_credit_score">신용점수</string>
+    <string name="financial_credit_score_check">확인하기</string>
+    <string name="financial_credit_score_raise">점수 올리기</string>
+    <string name="financial_my_loan">내 대출</string>
+    <string name="financial_loan_apply">대출받기</string>
+    <string name="financial_card_issue">카드발급</string>
 </resources>

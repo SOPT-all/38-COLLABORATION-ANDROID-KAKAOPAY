@@ -11,13 +11,17 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
 
 
 @Composable
@@ -60,5 +64,35 @@ fun FinancialOverviewRow(
         )
 
         trailingContent?.invoke(this)
+    }
+}
+
+@Composable
+fun FinancialMenuRow(
+    financialMenus: List<Int>,
+    modifier: Modifier = Modifier,
+    textStyle: TextStyle = KakaoTheme.typography.bodyB14,
+) {
+    Row(
+        modifier = modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceEvenly,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        financialMenus.forEachIndexed { index, textRes ->
+            Text(
+                text = stringResource(textRes),
+                modifier = Modifier.padding(horizontal = 6.dp, vertical = 10.dp),
+                color = KakaoTheme.colors.grey500,
+                style = textStyle
+            )
+
+            if (index != financialMenus.lastIndex) {
+                Text(
+                    text = "|", // 승ㅇ희언니 먼지되면 넣기)
+                    color = KakaoTheme.colors.grey200,
+                    style = KakaoTheme.typography.labelR12
+                )
+            }
+        }
     }
 }
