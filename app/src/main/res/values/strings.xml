@@ -49,4 +49,6 @@
     <string name="spending_overview_expense_diff_less">덜</string>
     <string name="spending_overview_fixed_expense_prefix">"고정지출 "</string>
     <string name="spending_overview_fixed_expense_suffix">" 확인하기"</string>
+    <string name="spending_overview_total_expense">지출</string>
+    <string name="spending_overview_total_income">수입</string>
 </resources>

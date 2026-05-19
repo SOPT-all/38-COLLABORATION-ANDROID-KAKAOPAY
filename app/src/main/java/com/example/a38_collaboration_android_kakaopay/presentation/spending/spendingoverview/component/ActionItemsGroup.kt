@@ -123,7 +123,7 @@ private fun CategoryAnalysis(
         Text(
             text = buildAnnotatedString {
                 append(stringResource(R.string.spending_overview_category_analysis_prefix))
-                withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
+                withStyle(style = SpanStyle(fontWeight = FontWeight.W700)) {
                     append(stringResource(R.string.spending_overview_category_analysis_suffix))
                 }
             },
