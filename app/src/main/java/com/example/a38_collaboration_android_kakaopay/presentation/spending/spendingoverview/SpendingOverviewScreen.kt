@@ -71,6 +71,7 @@ fun SpendingOverviewScreen(
         Column (
             modifier = Modifier
                 .fillMaxSize()
+                .padding(paddingValues)
         ) {
             KakaoPaySubTopBar(
                 title = {},
@@ -87,8 +88,7 @@ fun SpendingOverviewScreen(
             LazyColumn(
                 state = listState,
                 contentPadding = PaddingValues(
-                    top = paddingValues.calculateTopPadding(),
-                    bottom = paddingValues.calculateBottomPadding() + 123.dp
+                    bottom = 123.dp
                 ),
                 modifier = Modifier
                     .fillMaxSize()

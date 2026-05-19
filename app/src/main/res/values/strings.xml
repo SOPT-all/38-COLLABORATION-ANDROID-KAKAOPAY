@@ -73,7 +73,8 @@
     <string name="spending_overview_kakaobank">카카오뱅크</string>
     <string name="spending_overview_kakaopay_money">카카오페이머니</string>
 
-<<<<<<< HEAD
+    <string name="spending_overview_swap_view">달력</string>
+
     <string name="financial_frequently_used">자주 쓰는</string>
     <string name="financial_protection_required">보호필요</string>
     <string name="financial_edit">편집</string>
@@ -89,10 +90,6 @@
     <string name="financial_loan_apply">대출받기</string>
     <string name="financial_card_issue">카드발급</string>
 
-=======
-    <string name="spending_overview_swap_view">달력</string>
-
->>>>>>> dd26745 (feature/#65: SpendingOverviewScreen UI 구현)
     <!-- SpendingDetail -->
     <string name="spending_detail_split_amount">분할 결제 지출액</string>
     <string name="spending_detail_settlement_info">정산 정보</string>
@@ -108,7 +105,6 @@
     <string name="spending_detail_info_category">카테고리</string>
     <string name="spending_detail_info_footer_icon">\u00b7</string>
     <string name="spending_detail_info_footer_notice">결제 취소, 상품 배송 등의 문의는 구매처 고객센터로 문의 주세요.</string>
-<<<<<<< HEAD
 
     <string name="spending_detail_footer_receipt">"거래확인증"</string>
     <string name="spending_detail_footer_settlement">"1/N 정산하기"</string>
@@ -118,6 +114,3 @@
     <string name="spending_detail_ad_sub_title">돌려받을 수 있어요</string>
 
 </resources>
-=======
-</resources>
->>>>>>> dd26745 (feature/#65: SpendingOverviewScreen UI 구현)
