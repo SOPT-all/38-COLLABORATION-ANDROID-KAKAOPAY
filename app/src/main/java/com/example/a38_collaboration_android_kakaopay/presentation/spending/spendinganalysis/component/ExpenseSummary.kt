@@ -1,6 +1,5 @@
 package com.example.a38_collaboration_android_kakaopay.presentation.spending.spendinganalysis.component
 
-import android.R.attr.textColor
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -19,9 +18,9 @@ import com.example.a38_collaboration_android_kakaopay.R
 import com.example.a38_collaboration_android_kakaopay.core.common.util.toWonFormat
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
-import java.time.temporal.TemporalAdjusters.previous
 
 fun calculateTotalDiff(currentTotal: Long, previousTotal: Long): Boolean {
+
     val totalDiff = currentTotal - previousTotal
 
     return when {
@@ -29,10 +28,8 @@ fun calculateTotalDiff(currentTotal: Long, previousTotal: Long): Boolean {
         totalDiff < 0 -> false
         else -> true
     }
+
 }
-
-
-
 @Composable
 fun ExpenseSummary(
     currentMonthTotal: Long,
@@ -54,9 +51,6 @@ fun ExpenseSummary(
         } else {
             KakaoTheme.colors.highlightPrimaryBlue
         }
-
-
-
 
     Column(
         modifier = modifier.fillMaxWidth()
@@ -88,7 +82,6 @@ fun ExpenseSummary(
     }
 
 }
-
 
 @Preview
 @Composable
