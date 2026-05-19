@@ -9,7 +9,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.a38_collaboration_android_kakaopay.core.common.util.toWonFormat
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
 import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.DailyTransactions
@@ -17,7 +16,6 @@ import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverv
 import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.TransactionMethod
 import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.TransactionType
 import kotlinx.collections.immutable.ImmutableList
-import kotlinx.collections.immutable.persistentListOf
 
 @Composable
 fun TransactionGroup(
@@ -58,7 +56,7 @@ private fun TransactionGroupHeader(
         )
 
         Text(
-            text = dailyTransactions.dailyTotal.toString().toWonFormat(),
+            text = dailyTransactions.formattedDailyTotal,
             color = KakaoTheme.colors.grey500,
             style = KakaoTheme.typography.bodyB14,
         )
@@ -75,7 +73,7 @@ private fun TransactionGroupPreview() {
                 date = "2026-04-23",
                 dayOfWeek = "목",
                 dailyTotal = -3475,
-                transactions = persistentListOf(
+                transactions = listOf(
                     Transaction(
                         transactionId = 13,
                         transactionType = TransactionType.TRANSFER_SEND,
