@@ -21,7 +21,7 @@ fun ActionContainer(
         modifier = modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+        verticalArrangement = Arrangement.spacedBy(4.dp)
     ) {
         ActionItemsGroup(
             expenseDiffInManWon = spendingSummary.expenseDiffInManWon,
