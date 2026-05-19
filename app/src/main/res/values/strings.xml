@@ -51,4 +51,10 @@
     <string name="spending_overview_fixed_expense_suffix">" 확인하기"</string>
     <string name="spending_overview_total_expense">지출</string>
     <string name="spending_overview_total_income">수입</string>
+    <string name="spending_overview_transfer_receive">받기</string>
+    <string name="spending_overview_transfer_send">송금</string>
+    <string name="spending_overview_kakaobank">카카오뱅크</string>
+    <string name="spending_overview_kakaopay_money">카카오페이머니</string>
+
+    <string name="word_divider">|</string>
 </resources>
