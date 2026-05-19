@@ -52,7 +52,7 @@ fun SpendingDetailSummaryCard(
             )
         }
 
-        Spacer(modifier = Modifier.height(40.dp))
+        Spacer(modifier = Modifier.weight(1f))
 
         SpendingDetailGroup(
             title = paymentInfo.paymentAmount.toWonFormat(),
