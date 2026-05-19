@@ -50,15 +50,6 @@ enum class spendingCategory(val Name: String, val imageResId: Int) {
     COFFEE_DESERT("커피/디저트", R.drawable.img_cafe),
 }
 
-//fun calculateDiff(current: Long, previous: Long): String {
-//    val diff = current - previous
-//    val formattedDiff = kotlin.math.abs(diff).toWonFormat()
-//    return when {
-//        diff > 0 -> "+$formattedDiff"
-//        diff < 0 -> "-$formattedDiff"
-//        else -> formattedDiff
-//    }
-//}
 fun calculateDiff(current: Long, previous: Long): Boolean {
     val diff = current - previous
 
@@ -109,12 +100,6 @@ private fun ExpenseItem(
             )
 
             // 지난달 대비 계산 금액 및 텍스트 문구
-//            val diffAmount = item.currentMonthAmount - item.previousMonthAmount
-//            val diffTextColor = if (diffAmount >= 0) {
-//                KakaoTheme.colors.highlightPrimaryRed
-//            } else {
-//                KakaoTheme.colors.highlightPrimaryBlue
-//            }
             val diffTextColor =
                 if (calculateDiff(current = item.currentMonthAmount, item.previousMonthAmount)) {
                     KakaoTheme.colors.highlightPrimaryRed
