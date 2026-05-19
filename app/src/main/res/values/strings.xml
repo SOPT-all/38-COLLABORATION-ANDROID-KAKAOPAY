@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">38-COLLABORATION-ANDROID-KAKAOPAY</string>
+
+    <!-- Common -->
     <string name="history">내역</string>
     <string name="make_card">카드만들기</string>
-    <string name="app_name">38-COLLABORATION-ANDROID-KAKAOPAY</string>
 
+    <!-- Navigation -->
     <string name="nav_home">홈</string>
     <string name="nav_benefits">혜택</string>
     <string name="nav_payment">결제</string>
@@ -22,33 +24,29 @@
     <string name="edge_case_404">찾을 수 없는 페이지입니다</string>
     <string name="edge_case_general">알 수 없는 에러가 발생했습니다</string>
 
+    <!-- FinancialView -->
     <string name="cta_inline_button">포인트 받기</string>
     <string name="financial_banner_subtitle">현금같은 포인트 챙겨가세요!</string>
     <string name="financial_banner_title">걸은 만큼 포인트 받기</string>
+
     <string name="financial_securities_account_certificate">증권</string>
     <string name="financial_securities_account_won">원</string>
     <string name="financial_securities_account_send">송금</string>
-    <string name="financial_spending">지출</string>
-    <string name="financial_spending_april_view">4월 내역</string>
-    <string name="financial_spending_view">내역보기</string>
-    <string name="financial_spending_upcoming_card_payment">결제 예정 카드값</string>
-    <string name="financial_spending_schedule">금융일정</string>
-    <string name="financial_spending_shinhan_card_amount_view">신한카드로 쓴 금액보기</string>
-    <string name="financial_spending_monthly_fixed_expense_view">매달 나가는 고정지출 보기</string>
-    <!--FinancialView-->
-    <string name="cta_inline_button">포인트 받기</string>
-    <string name="financial_banner_subtitle">현금같은 포인트 챙겨가세요!</string>
-    <string name="financial_banner_title">걸은 만큼 포인트 받기</string>
-    <string name="history">내역</string>
-    <string name="make_card">카드만들기</string>
 
-    <!--FinancialView-->
     <string name="financial_spending">지출</string>
-    <string name="financial_securities_account_send">송금</string>
     <string name="financial_spending_april_view">4월 내역</string>
     <string name="financial_spending_view">내역보기</string>
     <string name="financial_spending_upcoming_card_payment">결제 예정 카드값</string>
     <string name="financial_spending_schedule">금융일정</string>
     <string name="financial_spending_shinhan_card_amount_view">신한카드로 쓴 금액보기</string>
     <string name="financial_spending_monthly_fixed_expense_view">매달 나가는 고정지출 보기</string>
+
+    <!-- SpendingOverview -->
+    <string name="spending_overview_segment_all">전체</string>
+    <string name="spending_overview_segment_card">카드</string>
+    <string name="spending_overview_segment_account">계좌</string>
+    <string name="spending_overview_segment_pay">페이결제</string>
+    <string name="spending_overview_segment_point">포인트</string>
+    <string name="spending_overview_segment_pay_money">페이머니</string>
+    <string name="spending_overview_segment_pay_point">페이포인트</string>
 </resources>
