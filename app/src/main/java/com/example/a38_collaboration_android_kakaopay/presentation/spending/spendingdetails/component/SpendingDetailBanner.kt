@@ -30,12 +30,13 @@ fun SpendingDetailBanner(
         modifier = modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(14.dp))
-            .background(KakaoTheme.colors.grey100)
-            .padding(horizontal = 16.dp, vertical = 12.dp),
+            .background(KakaoTheme.colors.grey100),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Column(
+            modifier = Modifier
+                .padding(start = 20.dp),
             verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
             Text(
@@ -53,7 +54,9 @@ fun SpendingDetailBanner(
         Image(
             painter = painterResource(id = R.drawable.img_3d_04),
             contentDescription = null,
-            modifier = Modifier.size(80.dp)
+            modifier = Modifier
+                .padding(end = 12.dp)
+                .size(80.dp)
         )
     }
 }
