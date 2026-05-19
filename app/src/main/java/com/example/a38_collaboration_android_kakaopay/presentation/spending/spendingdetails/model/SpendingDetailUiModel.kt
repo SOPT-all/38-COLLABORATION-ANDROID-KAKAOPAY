@@ -12,3 +12,25 @@ data class SpendingDetailPaymentModel(
     val amountInfo: SpendingDetailGroupModel,
     @DrawableRes val icon: Int
 )
+
+data class SpendingSummaryModel(
+    val splitAmount: Long,
+    val memo: String,
+    val isIncludedInTotal: Boolean,
+    val isSettlementComplete: Boolean,
+    val participantCount: Int
+)
+
+data class SpendingInfoModel(
+    val orderAmount: Long,
+    val paymentAmount: Long,
+    val orderNumber: String,
+    val dateTime: String,
+    val category: String
+)
+
+data class SpendingDetailUiState(
+    val paymentInfo: SpendingDetailPaymentModel,
+    val summaryInfo: SpendingSummaryModel,
+    val detailInfo: SpendingInfoModel
+)
