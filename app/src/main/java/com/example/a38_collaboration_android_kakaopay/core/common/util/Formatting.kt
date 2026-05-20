@@ -1,6 +1,8 @@
 package com.example.a38_collaboration_android_kakaopay.core.common.util
 
 import java.text.NumberFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.Locale
 
 fun Long.toCommaFormat(): String {
@@ -36,4 +38,12 @@ fun String.toWonFormat(): String {
         .toLongOrNull()
 
     return number?.toWonFormat() ?: this
+}
+
+fun String.toDisplayDateTime(): String {
+    return runCatching {
+        val localDateTime = LocalDateTime.parse(this)
+        val formatter = DateTimeFormatter.ofPattern("yyyy. MM. dd.(E) HH:mm", Locale.KOREAN)
+        localDateTime.format(formatter)
+    }.getOrDefault(this)
 }

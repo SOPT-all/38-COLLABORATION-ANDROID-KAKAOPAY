@@ -1,6 +1,7 @@
 package com.example.a38_collaboration_android_kakaopay.data.mapper
 
 import com.example.a38_collaboration_android_kakaopay.R
+import com.example.a38_collaboration_android_kakaopay.core.common.util.toDisplayDateTime
 import com.example.a38_collaboration_android_kakaopay.data.remote.dto.response.DailyTransactions
 import com.example.a38_collaboration_android_kakaopay.data.remote.dto.response.ExpenseDetailResponse
 import com.example.a38_collaboration_android_kakaopay.data.remote.dto.response.ExpenseResponse
@@ -17,9 +18,7 @@ import com.example.a38_collaboration_android_kakaopay.presentation.spending.spen
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingoverview.model.SpendingOverviewUiModel
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingoverview.model.TransactionsUiModel
 import kotlinx.collections.immutable.toImmutableList
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.util.Locale
+
 
 fun ExpenseResponse.toUiModel(): SpendingOverviewUiModel {
     return SpendingOverviewUiModel(
@@ -125,10 +124,3 @@ private fun ExpenseDetailResponse.toThumbnail(): Int {
     }
 }
 
-private fun String.toDisplayDateTime(): String {
-    return runCatching {
-        val localDateTime = LocalDateTime.parse(this)
-        val formatter = DateTimeFormatter.ofPattern("yyyy. MM. dd.(E) HH:mm", Locale.KOREAN)
-        localDateTime.format(formatter)
-    }.getOrDefault(this)
-}
