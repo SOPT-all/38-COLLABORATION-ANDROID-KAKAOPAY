@@ -1,14 +1,15 @@
 package com.example.a38_collaboration_android_kakaopay.presentation.financialoverview
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
@@ -90,13 +91,16 @@ fun FinancialOverviewScreen(
 ) {
     Scaffold(
         topBar = {
-            KakaoPayTopBar(onClick = {})
+            KakaoPayTopBar(onClick = {},
+                modifier = Modifier.systemBarsPadding())
         },
         bottomBar = {
             KakaoPayNavigatorBar(
                 currentRoute = Asset,
                 onTabSelected = onTabSelected,
-                modifier = Modifier.background(KakaoTheme.colors.white)
+                modifier = Modifier
+//                    .background(KakaoTheme.colors.white)
+
             )
         })
     { innerPadding ->
@@ -104,9 +108,9 @@ fun FinancialOverviewScreen(
             contentPadding = innerPadding,
             modifier = modifier
                 .fillMaxSize()
-                .background(KakaoTheme.colors.grey100)
-                .padding(20.dp)
-                .height(470.dp),
+                .background(KakaoTheme.colors.backgroundDefaultGrey)
+                .padding(horizontal = 20.dp)
+                .padding(paddingValues)
         ) {
             item { FinancialBanner(modifier = Modifier.fillMaxWidth()) }
 
@@ -147,8 +151,6 @@ fun FinancialOverviewScreen(
             item {
                 FinancialCtaButton()
             }
-
-
         }
 
     }
@@ -168,7 +170,6 @@ private fun FinancialOverviewScreenPreview() {
                         icon = R.drawable.img_kakaopay_logo,
                         account = "카카오뱅크 입출금통장"
                     )
-
                 ),
             ),
             onTabSelected = {},

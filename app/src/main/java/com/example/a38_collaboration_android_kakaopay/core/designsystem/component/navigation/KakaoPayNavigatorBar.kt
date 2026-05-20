@@ -23,14 +23,14 @@ fun KakaoPayNavigatorBar(
     Surface(
         modifier = modifier
             .fillMaxWidth()
-            .navigationBarsPadding()
-            .background(KakaoTheme.colors.white),
+//            .background(KakaoTheme.colors.white)
+            .navigationBarsPadding(),
         shape = RoundedCornerShape(topStart = 26.dp, topEnd = 26.dp),
     ) {
         Row(
             modifier = Modifier
-                .fillMaxWidth()
-                .height(53.dp),
+                .fillMaxWidth(),
+//                .height(53.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             MainTab.entries.forEach { tab ->

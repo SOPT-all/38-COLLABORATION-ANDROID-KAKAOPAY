@@ -31,10 +31,10 @@ fun KakaoPayTopBar(
 ) {
     Surface(
         modifier = modifier
-            .fillMaxWidth()  .background(KakaoTheme.colors.grey100)
-
+            .fillMaxWidth()
+            .background(KakaoTheme.colors.backgroundDefaultGrey)
             .height(48.dp),
-        color = KakaoTheme.colors.white
+        color = KakaoTheme.colors.backgroundDefaultGrey
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
