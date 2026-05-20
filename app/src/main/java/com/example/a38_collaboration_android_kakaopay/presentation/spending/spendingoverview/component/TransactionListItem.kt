@@ -22,6 +22,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.a38_collaboration_android_kakaopay.R
+import com.example.a38_collaboration_android_kakaopay.core.common.extension.noRippleClickableWithPressedColor
 import com.example.a38_collaboration_android_kakaopay.core.common.util.toWonFormat
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
@@ -33,11 +34,16 @@ import kotlinx.collections.immutable.persistentListOf
 @Composable
 fun TransactionListItem(
     transaction: TransactionsUiModel,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Row(
         modifier = modifier
             .fillMaxWidth()
+            .noRippleClickableWithPressedColor(
+                pressedColor = KakaoTheme.colors.buttonSecondaryPressed,
+                onClick = onClick,
+            )
             .padding(16.dp),
         horizontalArrangement = Arrangement.spacedBy(12.dp),
         verticalAlignment = Alignment.CenterVertically
@@ -151,7 +157,10 @@ private fun TransactionListItemPreview() {
             verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
             dummyTransactions.forEach { transaction ->
-                TransactionListItem(transaction = transaction)
+                TransactionListItem(
+                    transaction = transaction,
+                    onClick = {}
+                )
             }
         }
     }

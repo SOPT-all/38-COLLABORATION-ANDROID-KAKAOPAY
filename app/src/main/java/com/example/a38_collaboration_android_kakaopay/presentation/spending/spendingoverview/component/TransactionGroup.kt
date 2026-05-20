@@ -21,6 +21,7 @@ import kotlinx.collections.immutable.persistentListOf
 @Composable
 fun TransactionGroup(
     dailyTransactions: DailyTransactionsUiModel,
+    onTransactionClick: (TransactionsUiModel) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -29,9 +30,10 @@ fun TransactionGroup(
     ) {
         TransactionGroupHeader(dailyTransactions)
 
-        dailyTransactions.transactions.forEach {
+        dailyTransactions.transactions.forEach { transaction ->
             TransactionListItem(
-                transaction = it
+                transaction = transaction,
+                onClick = { onTransactionClick(transaction) }
             )
         }
     }
@@ -94,7 +96,8 @@ private fun TransactionGroupPreview() {
                         thumbnail = R.drawable.img_profile_placeholder
                     )
                 )
-            )
+            ),
+            onTransactionClick = {}
         )
     }
 }

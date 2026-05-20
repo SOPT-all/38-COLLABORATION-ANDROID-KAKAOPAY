@@ -62,6 +62,9 @@ fun SpendingOverviewRoute(
                 selectedMonth = viewModel.selectedMonth,
                 onMonthChanged = { month -> viewModel.onMonthChanged(month) },
                 onCategoryAnalysisClick = onCategoryAnalysisClick,
+                onTransactionClick = {
+                    navController.navigate("") // 경로 추가
+                }
             )
         }
     }
@@ -74,6 +77,7 @@ fun SpendingOverviewScreen(
     selectedMonth: Month,
     onMonthChanged: (Month) -> Unit,
     onCategoryAnalysisClick: () -> Unit,
+    onTransactionClick: (TransactionsUiModel) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val listState = rememberLazyListState()
@@ -134,12 +138,14 @@ fun SpendingOverviewScreen(
                             item {
                                 TransactionGroup(
                                     dailyTransactions = dailyTransaction,
+                                    onTransactionClick = onTransactionClick,
                                     modifier = Modifier
                                         .padding(bottom = 24.dp)
                                 )
                             }
                         }
                     }
+
                     else -> {}
                 }
 
@@ -189,6 +195,7 @@ private fun OverviewSection(
                 onCategoryAnalysisClick = onCategoryAnalysisClick,
                 modifier = Modifier.padding(horizontal = 16.dp)
             )
+
             is UiState.Loading -> ActionContainerSkeleton()
             else -> {}
         }
@@ -277,6 +284,7 @@ private fun SpendingOverviewScreenPreview() {
             selectedMonth = Month.MAY,
             onMonthChanged = {},
             onCategoryAnalysisClick = {},
+            onTransactionClick = {}
         )
     }
 }
