@@ -12,25 +12,18 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.card.KakaoPayBasicCard
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
 import com.example.a38_collaboration_android_kakaopay.presentation.financialoverview.model.FinanceMenuItem
@@ -46,51 +39,67 @@ fun FinanceMenuSection(
     topItems: ImmutableList<FinanceTopCardItem> = financeTopCardItems,
     items: ImmutableList<FinanceMenuItem> = financeMenuItems,
 ) {
-
-    Column(
-        modifier = modifier
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(14.dp))
-            .background(KakaoTheme.colors.white)
-            .padding(
-                start = 14.dp,
-                top = 14.dp,
-                end = 14.dp,
-                bottom = 20.dp
-            )
-
+    KakaoPayBasicCard(
+        modifier = modifier.fillMaxWidth()
     ) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            topItems.take(2).forEach { item ->
-                FinanceTopCard(
-                    item = item,
-                    modifier = Modifier
-                        .weight(1f)
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(
+                    start = 14.dp,
+                    top = 14.dp,
+                    end = 14.dp,
+                    bottom = 20.dp
                 )
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                topItems.take(2).forEach { item ->
+                    FinanceTopCard(
+                        item = item,
+                        modifier = Modifier
+                            .weight(1f)
+                            .aspectRatio(146/166f)
+                    )
+                }
             }
-        }
 
-        Spacer(modifier = Modifier.height(21.dp))
+            Spacer(modifier = Modifier.height(21.dp))
 
-        LazyVerticalGrid(
-            columns = GridCells.Fixed(4),
-            modifier = Modifier,
-            userScrollEnabled = false,
-            horizontalArrangement = Arrangement.spacedBy(12.dp),
-            verticalArrangement = Arrangement.spacedBy(18.dp)
-        ) {
-            items(
+            FinanceMenuGrid(
                 items = items,
-                key = { it.titleRes }
-            ) { item ->
-                FinanceMenuGridItem(
-                    item = item,
-                    modifier = Modifier
+                modifier = Modifier.fillMaxWidth()
+            )
+        }
+    }
+}
+@Composable
+private fun FinanceMenuGrid(
+    items: ImmutableList<FinanceMenuItem>,
+    modifier: Modifier = Modifier,
+) {
+    Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(18.dp)
+    ) {
+        items.chunked(4).forEach { rowItems ->
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(21.dp),
+                verticalAlignment = Alignment.Top
+            ) {
+                rowItems.forEach { item ->
+                    FinanceMenuGridItem(
+                        item = item,
+                        modifier = Modifier.weight(1f)
+                    )
+                }
 
-                )
+                repeat(4 - rowItems.size) {
+                    Spacer(modifier = Modifier.weight(1f))
+                }
             }
         }
     }
@@ -111,8 +120,11 @@ private fun FinanceTopCard(
             .clip(RoundedCornerShape(14.dp))
             .background(KakaoTheme.colors.grey100)
             .padding(
-               horizontal = 20.dp, vertical = 14.dp
+                horizontal = 20.dp,
+                vertical = 14.dp
             )
+
+
     ) {
         Column(
             modifier = Modifier.align(Alignment.TopStart)
@@ -127,12 +139,13 @@ private fun FinanceTopCard(
 
             Text(
                 text = stringResource(id = item.titleRes),
-                color =KakaoTheme.colors.black,
-                style = KakaoTheme.typography.bodyB16
+                color = KakaoTheme.colors.black,
+                style = KakaoTheme.typography.bodyB16,
+                maxLines = 2
             )
-        }
 
-//        Spacer(Modifier.weight(1f))
+
+        }
 
         Image(
             painter = painterResource(id = item.iconRes),
@@ -151,8 +164,7 @@ private fun FinanceMenuGridItem(
 ) {
     Column(
         modifier = modifier.fillMaxWidth(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(
             painter = painterResource(id = item.iconRes),
@@ -160,12 +172,15 @@ private fun FinanceMenuGridItem(
             modifier = Modifier.size(32.dp)
         )
 
-        Spacer(modifier = Modifier.height(12.dp))
+        Spacer(modifier = Modifier.height(8.dp))
 
         Text(
             text = stringResource(id = item.titleRes),
-            color =KakaoTheme.colors.grey500,
-            style = KakaoTheme.typography.labelM12
+            color = KakaoTheme.colors.grey500,
+            style = KakaoTheme.typography.labelM12,
+            textAlign = TextAlign.Center,
+            maxLines = 2,
+            minLines = 2
         )
     }
 }
@@ -185,5 +200,4 @@ private fun FinanceMenuSectionPreview() {
             )
         }
     }
-
 }

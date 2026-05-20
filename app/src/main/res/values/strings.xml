@@ -120,7 +120,7 @@
     <string name="finance_menu_my_loan">내 대출</string>
     <string name="finance_menu_real_estate">청약/부동산</string>
     <string name="finance_menu_consumption_analysis">소비분석</string>
-    <string name="finance_menu_together_asset">함께하는 자산</string>
+    <string name="finance_menu_together_asset">함께하는\n자산</string>
     <string name="finance_menu_invest_inspiration">투자 영감</string>
     <string name="finance_menu_hospital_bill">병원비 청구</string>
     <string name="finance_menu_for_me_insurance">나를위한보험</string>
