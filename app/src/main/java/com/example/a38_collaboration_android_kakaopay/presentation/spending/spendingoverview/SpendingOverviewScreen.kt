@@ -25,6 +25,7 @@ import com.example.a38_collaboration_android_kakaopay.core.common.state.UiState
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.binarytab.BinaryTabControl
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.button.KakaoPayScrollTopButton
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.dropdown.TransactionDropdown
+import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.monthcontrol.Month
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.monthcontrol.MonthControl
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.topbar.KakaoPaySubTopBar
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
@@ -47,18 +48,19 @@ fun SpendingOverviewRoute(
     navController: NavController,
     viewModel: SpendingOverviewViewModel = viewModel(),
 ) {
-    val uiState = viewModel.uiState
-
-    when (uiState) {
+    when (val uiState = viewModel.uiState) {
         is UiState.Loading -> {}
         is UiState.Success -> {
             SpendingOverviewScreen(
                 paddingValues = paddingValues,
                 spendingSummary = uiState.data.spendingSummary,
                 dailyTransactions = uiState.data.dailyTransactions,
+                selectedMonth = viewModel.selectedMonth,
+                onMonthChanged = { month -> viewModel.onMonthChanged(month) },
                 onCategoryAnalysisClick = onCategoryAnalysisClick,
             )
         }
+
         is UiState.Failure -> {}
         is UiState.Empty -> {}
     }
@@ -68,6 +70,8 @@ fun SpendingOverviewRoute(
 fun SpendingOverviewScreen(
     paddingValues: PaddingValues,
     spendingSummary: SpendingSummary,
+    selectedMonth: Month,
+    onMonthChanged: (Month) -> Unit,
     onCategoryAnalysisClick: () -> Unit,
     dailyTransactions: List<DailyTransactionsUiModel>,
     modifier: Modifier = Modifier,
@@ -78,7 +82,7 @@ fun SpendingOverviewScreen(
     Box(
         modifier = modifier.fillMaxSize()
     ) {
-        Column (
+        Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
@@ -111,6 +115,8 @@ fun SpendingOverviewScreen(
 
                         OverviewSection(
                             spendingSummary = spendingSummary,
+                            onMonthChanged = onMonthChanged,
+                            selectedMonth = selectedMonth,
                             onCategoryAnalysisClick = onCategoryAnalysisClick
                         )
 
@@ -152,6 +158,8 @@ fun SpendingOverviewScreen(
 @Composable
 private fun OverviewSection(
     spendingSummary: SpendingSummary,
+    selectedMonth: Month,
+    onMonthChanged: (Month) -> Unit,
     onCategoryAnalysisClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -160,7 +168,10 @@ private fun OverviewSection(
             .fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(20.dp),
     ) {
-        DateControl()
+        DateControl(
+            selectedMonth = selectedMonth,
+            onMonthChanged = onMonthChanged
+        )
 
         SegmentControlBar()
 
@@ -190,6 +201,8 @@ private fun TransactionHeader(
 
 @Composable
 private fun DateControl(
+    selectedMonth: Month,
+    onMonthChanged: (Month) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Row(
@@ -202,7 +215,10 @@ private fun DateControl(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        MonthControl()
+        MonthControl(
+            selectedMonth = selectedMonth,
+            onMonthChanged = onMonthChanged,
+        )
 
         SwapViewButton(
             onClick = {}
@@ -241,6 +257,8 @@ private fun SpendingOverviewScreenPreview() {
                 totalExpense = 79650,
                 totalIncome = 150000,
             ),
+            selectedMonth = Month.MAY,
+            onMonthChanged = {},
             onCategoryAnalysisClick = {},
             dailyTransactions = dummyDailyTransactions
         )
