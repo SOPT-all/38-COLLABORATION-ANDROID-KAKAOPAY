@@ -1,12 +1,11 @@
 package com.example.a38_collaboration_android_kakaopay.presentation.spending.spendinganalysis.component
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -35,14 +34,11 @@ fun ExpenseList(
     modifier: Modifier = Modifier
 ) {
     Column(
-        modifier = modifier
-            .fillMaxWidth()
-            .height(201.dp)
+        modifier = modifier.fillMaxWidth()
     ) {
         categoryExpenses.forEach { expenseItem ->
             ExpenseItem(
                 item = expenseItem,
-                modifier = Modifier.weight(1f)
             )
         }
     }
@@ -54,7 +50,6 @@ data class CategoryExpenseItem(
     val previousMonthAmount: Long
 )
 
-
 fun calculateDiff(current: Long, previous: Long): Boolean {
     val diff = current - previous
 
@@ -64,7 +59,6 @@ fun calculateDiff(current: Long, previous: Long): Boolean {
         else -> true
     }
 }
-
 
 @Composable
 private fun ExpenseItem(
@@ -88,9 +82,11 @@ private fun ExpenseItem(
 
     Row(
         modifier = modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .padding(vertical = 8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
+
         Image(
             painter = painterResource(id = item.categoryType.imageResId),
             contentDescription = null,
@@ -112,7 +108,7 @@ private fun ExpenseItem(
         Column(
             horizontalAlignment = Alignment.End
         ) {
-            // 이번 달 지출 금액
+
             Text(
                 text = item.currentMonthAmount.toWonFormat(),
                 style = KakaoTheme.typography.bodyM16,
@@ -126,7 +122,6 @@ private fun ExpenseItem(
                 style = KakaoTheme.typography.labelR12,
                 color = diffTextColor
             )
-
         }
 
         Spacer(modifier = Modifier.width(2.dp))
@@ -155,7 +150,7 @@ private fun ExpenseListPreview() {
             previousMonthAmount = 3900
         ),
         CategoryExpenseItem(
-            categoryType = SpendingCategoryModel.COFFEE_DESERT,
+            categoryType = SpendingCategoryModel.COFFEE_DESSERT,
             currentMonthAmount = 5000,
             previousMonthAmount = 3000
         )
