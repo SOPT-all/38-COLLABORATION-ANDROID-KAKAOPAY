@@ -22,21 +22,20 @@ fun BinaryTabItem(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val lineColor = KakaoTheme.colors.black
+    val strokeColor = if (isSelected) KakaoTheme.colors.black else KakaoTheme.colors.grey200
+    val strokeWidth = if (isSelected) 2.dp else 1.dp
 
     Box(
         modifier = modifier
             .drawBehind {
-                if (isSelected) {
-                    val strokeWidth = 2.dp.toPx()
-                    val y = size.height - strokeWidth / 2
-                    drawLine(
-                        color = lineColor,
-                        start = Offset(0f, y),
-                        end = Offset(size.width, y),
-                        strokeWidth = strokeWidth
-                    )
-                }
+                val strokeWidth = strokeWidth.toPx()
+                val y = size.height - strokeWidth / 2
+                drawLine(
+                    color = strokeColor,
+                    start = Offset(0f, y),
+                    end = Offset(size.width, y),
+                    strokeWidth = strokeWidth
+                )
             }
             .padding(
                 vertical = 6.dp,
