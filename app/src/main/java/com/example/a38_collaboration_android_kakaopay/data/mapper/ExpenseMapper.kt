@@ -41,7 +41,7 @@ fun Transactions.toUiModel(): TransactionsUiModel {
         transactionMethod = TransactionMethod.valueOf(transactionMethod),
         transactionName = transactionName,
         amount = amount,
-        includeInTotal = includeInTotal,
+        includeInTotal = includeInTotal ?: true,
         thumbnail = toThumbnail()
     )
 }

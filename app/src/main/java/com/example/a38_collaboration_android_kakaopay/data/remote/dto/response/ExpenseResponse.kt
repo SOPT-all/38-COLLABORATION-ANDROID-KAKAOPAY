@@ -48,5 +48,5 @@ data class Transactions(
     @SerialName("amount")
     val amount: Int,
     @SerialName("includeInTotal")
-    val includeInTotal: Boolean
+    val includeInTotal: Boolean?
 )
