@@ -13,6 +13,10 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -39,6 +43,8 @@ fun SpendingDetailsRoute(
     paddingValues: PaddingValues,
     navController: NavController
 ) {
+    var isIncluded by remember { mutableStateOf(true) }
+
     SpendingDetailsScreen(
         paddingValues = paddingValues,
         paymentInfo = SpendingDetailPaymentModel(
@@ -57,7 +63,7 @@ fun SpendingDetailsRoute(
         summaryInfo = SpendingSummaryModel(
             splitAmount = 11800L,
             memo = "",
-            isIncludedInTotal = true,
+            isIncludedInTotal = isIncluded,
             isSettlementComplete = true
         ),
         detailInfo = SpendingInfoModel(
@@ -68,7 +74,9 @@ fun SpendingDetailsRoute(
             category = "배달"
         ),
         onBackClick = { navController.popBackStack() },
-        onToggleChange = {}
+        onToggleChange = { newValue ->
+            isIncluded = newValue
+        }
     )
 }
 
