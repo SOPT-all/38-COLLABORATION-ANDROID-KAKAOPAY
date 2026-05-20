@@ -113,4 +113,17 @@
     <string name="spending_detail_ad_title">내기만 했던 병원비</string>
     <string name="spending_detail_ad_sub_title">돌려받을 수 있어요</string>
 
+    <string name="finance_menu_dividend">내 배당금</string>
+    <string name="finance_menu_guard">금융지킴이</string>
+    <string name="finance_menu_credit_planner">신용플래너</string>
+    <string name="finance_menu_my_insurance">내 보험</string>
+    <string name="finance_menu_my_loan">내 대출</string>
+    <string name="finance_menu_real_estate">청약/부동산</string>
+    <string name="finance_menu_consumption_analysis">소비분석</string>
+    <string name="finance_menu_together_asset">함께하는 자산</string>
+    <string name="finance_menu_invest_inspiration">투자 영감</string>
+    <string name="finance_menu_hospital_bill">병원비 청구</string>
+    <string name="finance_menu_for_me_insurance">나를위한보험</string>
+    <string name="finance_menu_finance_assistant">금융비서</string>
+
 </resources>
