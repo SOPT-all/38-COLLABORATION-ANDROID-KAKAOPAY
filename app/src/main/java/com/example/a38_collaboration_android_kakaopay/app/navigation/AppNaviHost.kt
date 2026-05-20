@@ -21,7 +21,7 @@ fun AppNaviHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Asset::class,
+        startDestination = FinancialOverview::class,
         modifier = Modifier.fillMaxSize()
     ) {
         composable<FinancialOverview> {
