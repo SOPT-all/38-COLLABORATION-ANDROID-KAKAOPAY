@@ -130,5 +130,6 @@
     <string name="finance_top_recommend">추천</string>
     <string name="finance_top_kakao_friend_cost">카톡친구비용</string>
     <string name="finance_top_investment_board">금손들의 투자판단</string>
+    <string name="finance_cta_button">자산 추가하기</string>
 
 </resources>

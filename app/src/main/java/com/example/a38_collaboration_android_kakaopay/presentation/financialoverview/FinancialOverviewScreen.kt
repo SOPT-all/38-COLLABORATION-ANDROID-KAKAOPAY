@@ -37,6 +37,7 @@ import com.example.a38_collaboration_android_kakaopay.presentation.financialover
 import com.example.a38_collaboration_android_kakaopay.presentation.financialoverview.component.FinanceMenuSection
 import com.example.a38_collaboration_android_kakaopay.presentation.financialoverview.component.FinancialAssetsCard
 import com.example.a38_collaboration_android_kakaopay.presentation.financialoverview.component.FinancialBanner
+import com.example.a38_collaboration_android_kakaopay.presentation.financialoverview.component.FinancialCtaButton
 import com.example.a38_collaboration_android_kakaopay.presentation.financialoverview.component.FinancialList
 import com.example.a38_collaboration_android_kakaopay.presentation.financialoverview.component.SecuritiesAccountCard
 import com.example.a38_collaboration_android_kakaopay.presentation.financialoverview.component.SpendingOverviewCard
@@ -67,8 +68,8 @@ fun FinancialOverviewRoute(
             FinancialOverviewScreen(
                 paddingValues = paddingValues,
                 uiState = state.data,
-                onTabSelected = {
-                    tab -> navController.navigate(tab.route)
+                onTabSelected = { tab ->
+                    navController.navigate(tab.route)
                 }
             )
         }
@@ -88,89 +89,69 @@ fun FinancialOverviewScreen(
     modifier: Modifier = Modifier,
 ) {
     Scaffold(
-        topBar = { KakaoPayTopBar(onClick = {})
-                 },
+        topBar = {
+            KakaoPayTopBar(onClick = {})
+        },
         bottomBar = {
             KakaoPayNavigatorBar(
                 currentRoute = Asset,
                 onTabSelected = onTabSelected,
                 modifier = Modifier.background(KakaoTheme.colors.white)
             )
-        } )
+        })
     { innerPadding ->
-            LazyColumn(
-                contentPadding = innerPadding,
-                modifier = modifier
-                    .fillMaxSize()
-                    .background(KakaoTheme.colors.grey100)
-                    .padding(20.dp),
-            ) {
-                item { FinancialBanner(modifier = Modifier.fillMaxWidth()) }
+        LazyColumn(
+            contentPadding = innerPadding,
+            modifier = modifier
+                .fillMaxSize()
+                .background(KakaoTheme.colors.grey100)
+                .padding(20.dp)
+                .height(470.dp),
+        ) {
+            item { FinancialBanner(modifier = Modifier.fillMaxWidth()) }
 
-                item { Spacer(Modifier.height(10.dp)) }
+            item { Spacer(Modifier.height(10.dp)) }
 
-                item {
-                    SecuritiesAccountCard(money = uiState.kakaopayBalance)
-                }
-
-                item { Spacer(Modifier.height(14.dp)) }
-
-                item {
-                    FinancialAssetsCard(
-                        financialItems = uiState.favoriteAccounts,
-                        onViewSpendingHistoryClick = {})
-                }
-                item { Spacer(Modifier.height(14.dp)) }
-
-                item {
-                    SpendingOverviewCard(
-                        uiState.totalExpense,
-                        onViewSpendingHistoryClick = {}
-                    )
-                }
-                item { Spacer(Modifier.height(14.dp)) }
-
-                item {
-                    CreditScoreCard(iconRes = R.drawable.img_credit_icon_32px)
-                }
-                item { Spacer(Modifier.height(14.dp)) }
-
-                item {
-                    CreditScoreCard(iconRes = R.drawable.img_credit_icon_32px)
-                }
-
-                item {
-                    FinanceMenuSection()
-                }
-
-
-
-                item{
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(6.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.padding(vertical = 16.dp)
-
-                    ) {
-                        Spacer(Modifier.height(20.dp))
-
-                        Icon(
-                            imageVector = ImageVector.vectorResource(R.drawable.ic_plus_24px),
-                            contentDescription = null
-                        )
-
-                        Text(
-                            text = "자산추가하기",
-                            color = KakaoTheme.colors.black,
-                            style = KakaoTheme.typography.bodyB16
-                        )
-                    }
-                }
-
-
+            item {
+                SecuritiesAccountCard(money = uiState.kakaopayBalance)
             }
 
+            item { Spacer(Modifier.height(14.dp)) }
+
+            item {
+                FinancialAssetsCard(
+                    financialItems = uiState.favoriteAccounts,
+                    onViewSpendingHistoryClick = {})
+            }
+            item { Spacer(Modifier.height(14.dp)) }
+
+            item {
+                SpendingOverviewCard(
+                    uiState.totalExpense,
+                    onViewSpendingHistoryClick = {}
+                )
+            }
+            item { Spacer(Modifier.height(14.dp)) }
+
+            item {
+                CreditScoreCard(iconRes = R.drawable.img_credit_icon_32px)
+            }
+            item { Spacer(Modifier.height(14.dp)) }
+
+            item {
+                FinanceMenuSection()
+            }
+
+            item { Spacer(Modifier.height(14.dp)) }
+
+            item {
+                FinancialCtaButton()
+            }
+
+
         }
+
+    }
 }
 
 @Preview

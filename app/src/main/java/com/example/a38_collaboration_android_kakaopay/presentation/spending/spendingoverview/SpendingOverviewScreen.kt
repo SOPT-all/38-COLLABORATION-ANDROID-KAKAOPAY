@@ -110,7 +110,6 @@ fun SpendingOverviewScreen(
                 contentPadding = PaddingValues(
                     bottom = 123.dp
                 ),
-                modifier = Modifier,
             ) {
                 item {
                     Column(
