@@ -25,31 +25,16 @@ import com.example.a38_collaboration_android_kakaopay.R
 import com.example.a38_collaboration_android_kakaopay.core.common.util.toWonFormat
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
-import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.Transaction
-import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.TransactionCategory
 import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.TransactionMethod
 import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.TransactionType
+import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingoverview.model.TransactionsUiModel
+import kotlinx.collections.immutable.persistentListOf
 
 @Composable
 fun TransactionListItem(
-    transaction: Transaction,
+    transaction: TransactionsUiModel,
     modifier: Modifier = Modifier,
 ) {
-    val kakaobankKeyword = stringResource(R.string.spending_overview_kakaobank)
-
-    val thumbnail = when (transaction.transactionType) {
-        TransactionType.PAYMENT -> when (transaction.transactionCategory) {
-            TransactionCategory.TRANSPORTATION -> R.drawable.img_transport
-            TransactionCategory.COFFEE_DESSERT -> R.drawable.img_cafe
-            TransactionCategory.FOOD -> R.drawable.img_food
-            else -> R.drawable.img_profile_placeholder
-        }
-        else -> when {
-            transaction.transactionName.contains(kakaobankKeyword) -> R.drawable.img_kakaopay_logo
-            else -> R.drawable.img_profile_placeholder
-        }
-    }
-
     Row(
         modifier = modifier
             .fillMaxWidth()
@@ -58,7 +43,7 @@ fun TransactionListItem(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Image(
-            painter = painterResource(thumbnail),
+            painter = painterResource(transaction.thumbnail),
             contentDescription = null,
             modifier = Modifier
                 .size(36.dp)
@@ -70,7 +55,7 @@ fun TransactionListItem(
 
 @Composable
 private fun TransactionInfo(
-    transaction: Transaction,
+    transaction: TransactionsUiModel,
     modifier: Modifier = Modifier,
 ) {
     val amountColor = when {
@@ -99,7 +84,7 @@ private fun TransactionInfo(
 
 @Composable
 private fun CounterPartyInfo(
-    transaction: Transaction,
+    transaction: TransactionsUiModel,
     modifier: Modifier = Modifier,
 ) {
     Row(
@@ -172,86 +157,50 @@ private fun TransactionListItemPreview() {
     }
 }
 
-private val dummyTransactions = listOf(
-    Transaction(
+private val dummyTransactions = persistentListOf (
+    TransactionsUiModel(
         transactionId = 12,
         transactionType = TransactionType.TRANSFER_SEND,
         transactionMethod = TransactionMethod.PAY_MONEY,
         transactionName = "AN***NG(우리은행5376)",
-        transactionCategory = null,
         amount = -4787,
-        includeInTotal = true
+        includeInTotal = true,
+        thumbnail = R.drawable.img_profile_placeholder
     ),
-    Transaction(
+    TransactionsUiModel(
         transactionId = 13,
         transactionType = TransactionType.TRANSFER_SEND,
         transactionMethod = TransactionMethod.PAY_MONEY,
         transactionName = "염*원(카카오뱅크1234)",
-        transactionCategory = null,
         amount = -3475,
-        includeInTotal = true
+        includeInTotal = true,
+        thumbnail = R.drawable.img_kakaopay_logo
     ),
-    Transaction(
-        transactionId = 14,
-        transactionType = TransactionType.TRANSFER_SEND,
-        transactionMethod = TransactionMethod.PAY_MONEY,
-        transactionName = "박솝트(박솝트)",
-        transactionCategory = null,
-        amount = -84632,
-        includeInTotal = true
-    ),
-    Transaction(
+    TransactionsUiModel(
         transactionId = 4,
         transactionType = TransactionType.PAYMENT,
         transactionMethod = TransactionMethod.PAY_MONEY,
         transactionName = "교통공사·서울교통공사(기후동행카드)",
-        transactionCategory = TransactionCategory.TRANSPORTATION,
         amount = -55000,
-        includeInTotal = true
+        includeInTotal = true,
+        thumbnail = R.drawable.img_transport
     ),
-    Transaction(
-        transactionId = 5,
-        transactionType = TransactionType.PAYMENT,
-        transactionMethod = TransactionMethod.PAY_MONEY,
-        transactionName = "우아한형제들·요거트아이스크림의정석 중계점",
-        transactionCategory = TransactionCategory.DELIVERY,
-        amount = -6000,
-        includeInTotal = true
-    ),
-    Transaction(
+    TransactionsUiModel(
         transactionId = 6,
         transactionType = TransactionType.PAYMENT,
         transactionMethod = TransactionMethod.PAY_MONEY,
         transactionName = "카페무솔트·카페무솔트",
-        transactionCategory = TransactionCategory.COFFEE_DESSERT,
         amount = -3500,
-        includeInTotal = true
+        includeInTotal = true,
+        thumbnail = R.drawable.img_cafe
     ),
-    Transaction(
-        transactionId = 15,
-        transactionType = TransactionType.TRANSFER_SEND,
-        transactionMethod = TransactionMethod.PAY_MONEY,
-        transactionName = "염*원(카카오뱅크1234)",
-        transactionCategory = null,
-        amount = -8476,
-        includeInTotal = true
-    ),
-    Transaction(
-        transactionId = 16,
-        transactionType = TransactionType.TRANSFER_SEND,
-        transactionMethod = TransactionMethod.PAY_MONEY,
-        transactionName = "염*원(카카오뱅크1234)",
-        transactionCategory = null,
-        amount = -3637,
-        includeInTotal = true
-    ),
-    Transaction(
+    TransactionsUiModel(
         transactionId = 7,
         transactionType = TransactionType.PAYMENT,
         transactionMethod = TransactionMethod.PAY_MONEY,
         transactionName = "샹니·샹니마라탕",
-        transactionCategory = TransactionCategory.FOOD,
         amount = -38700,
-        includeInTotal = false
+        includeInTotal = false,
+        thumbnail = R.drawable.img_food
     )
 )
