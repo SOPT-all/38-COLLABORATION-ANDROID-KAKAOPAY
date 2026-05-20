@@ -4,11 +4,13 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Scaffold
@@ -96,8 +98,17 @@ fun FinancialOverviewScreen(
 ) {
     Scaffold(
         topBar = {
-            KakaoPayTopBar(onClick = {},
-                modifier = Modifier.systemBarsPadding())
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(KakaoTheme.colors.backgroundDefaultGrey)
+                    .statusBarsPadding()
+            ) {
+                KakaoPayTopBar(
+                    onClick = {}
+                )
+            }
+
         },
         bottomBar = {
             KakaoPayNavigatorBar(
@@ -105,15 +116,19 @@ fun FinancialOverviewScreen(
                 onTabSelected = onTabSelected,
                 modifier = Modifier
             )
-        })
+        },
+    )
+
     { innerPadding ->
         LazyColumn(
             contentPadding = innerPadding,
             modifier = modifier
                 .fillMaxSize()
                 .background(KakaoTheme.colors.backgroundDefaultGrey)
+                .consumeWindowInsets(innerPadding)
                 .padding(horizontal = 20.dp)
-                .padding(paddingValues)
+
+
         ) {
             item { FinancialBanner(modifier = Modifier.fillMaxWidth()) }
 
