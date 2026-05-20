@@ -1,5 +1,6 @@
 package com.example.a38_collaboration_android_kakaopay.core.designsystem.component
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -31,8 +32,9 @@ fun KakaoPayTopBar(
     Surface(
         modifier = modifier
             .fillMaxWidth()
+            .background(KakaoTheme.colors.backgroundDefaultGrey)
             .height(48.dp),
-        color = KakaoTheme.colors.white
+        color = KakaoTheme.colors.backgroundDefaultGrey
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),

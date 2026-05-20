@@ -2,11 +2,11 @@ package com.example.a38_collaboration_android_kakaopay.presentation.financialove
 
 data class FinancialOverviewUiModel(
     val kakaopayBalance: Long,
-    val favoriteAccounts: List<FavoriteAccountUiModel>,
+    val favoriteAccounts: List<FavoriteAccounts>,
     val totalExpense: Long,
 )
 
-data class FavoriteAccountUiModel(
+data class FavoriteAccounts(
     val accountId: Long,
     val accountInfo: String,
 )
