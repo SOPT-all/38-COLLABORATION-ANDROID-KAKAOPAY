@@ -7,6 +7,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.edgecase.EdgeCaseType
+import com.example.a38_collaboration_android_kakaopay.presentation.edgecase.EdgeCaseScreen
 import com.example.a38_collaboration_android_kakaopay.presentation.financialoverview.FinancialOverviewRoute
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendinganalysis.SpendingAnalysisRoute
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingdetails.SpendingDetailsRoute
@@ -16,7 +18,6 @@ import com.example.a38_collaboration_android_kakaopay.presentation.splash.Splash
 @Composable
 fun AppNaviHost(
     navController: NavHostController,
-
     innerPadding: PaddingValues = PaddingValues(),
 ) {
     NavHost(
@@ -45,6 +46,13 @@ fun AppNaviHost(
             )
         }
 
+        composable<SpendingOverview> {
+            SpendingOverviewRoute(
+                paddingValues = innerPadding,
+                navController = navController,
+            )
+        }
+
         composable<Asset> {
             FinancialOverviewRoute(
                 paddingValues = innerPadding,
@@ -61,29 +69,20 @@ fun AppNaviHost(
         }
 
         composable<Home> {
-            SpendingAnalysisRoute(
-                paddingValues = innerPadding,
-                navController = navController
-            )
+            EdgeCaseScreen(EdgeCaseType.Empty)
         }
 
         composable<Benefits> {
-            SpendingDetailsRoute(
-                paddingValues = innerPadding,
-                navController = navController
-            )
+            EdgeCaseScreen(EdgeCaseType.General)
         }
 
         composable<Pay> {
-            SpendingOverviewRoute(
-                paddingValues = innerPadding,
-                navController = navController,
-            )
+            EdgeCaseScreen(EdgeCaseType.Error404)
         }
 
-//        composable<Asset> {}
-
-        composable<Invest> {}
+        composable<Invest> {
+            EdgeCaseScreen(EdgeCaseType.Empty)
+        }
 
     }
 }

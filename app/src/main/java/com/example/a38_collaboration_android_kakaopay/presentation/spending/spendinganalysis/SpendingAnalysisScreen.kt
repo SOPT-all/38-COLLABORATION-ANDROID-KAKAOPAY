@@ -68,6 +68,7 @@ fun SpendingAnalysisRoute(
             SpendingAnalysisScreen(
                 paddingValues = paddingValues,
                 uiModel = state.data,
+                onBackClick = { navController.popBackStack() },
                 onMonthNavigate = { yearMonth ->
                     viewModel.getSpendingAnalysis(yearMonth)
                 })
@@ -87,6 +88,7 @@ fun SpendingAnalysisRoute(
 fun SpendingAnalysisScreen(
     paddingValues: PaddingValues,
     uiModel: SpendingAnalysisUiModel,
+    onBackClick: () -> Unit,
     onMonthNavigate: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -109,7 +111,7 @@ fun SpendingAnalysisScreen(
                     color = KakaoTheme.colors.black
                 )
             },
-            onBackClick = {},
+            onBackClick = onBackClick,
             modifier = Modifier.padding(horizontal = 4.dp)
         )
 
@@ -183,6 +185,10 @@ private fun SpendingAnalysisScreenPreview() {
 
     KakaoPayTheme {
         SpendingAnalysisScreen(
-            paddingValues = PaddingValues(), uiModel = mockUiModel, onMonthNavigate = {})
+            paddingValues = PaddingValues(),
+            uiModel = mockUiModel,
+            onBackClick = {},
+            onMonthNavigate = {}
+        )
     }
 }

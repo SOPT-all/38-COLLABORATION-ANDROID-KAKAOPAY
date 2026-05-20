@@ -1,4 +1,4 @@
-package com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingdetails.component
+package com.example.a38_collaboration_android_kakaopay.presentation.loading
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -53,7 +53,9 @@ fun SpendingDetailsLoadingScreen(
 
         Column(
             modifier = Modifier
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .background(KakaoTheme.colors.white)
+            ,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier.height(63.dp))
