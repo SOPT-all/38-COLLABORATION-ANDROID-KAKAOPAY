@@ -31,9 +31,9 @@ fun ExpenseSummary(
 
     val totalDiffTextMessage =
         if (isMoreSpent){
-            "지난 달 보다 +${totalDiffAmount} 더 쓰고 있어요"
+            "지난달 같은 기간보다 +${totalDiffAmount} 더 쓰고 있어요"
         } else {
-            "지난 달 보다 -${totalDiffAmount} 덜 쓰고 있어요"
+            "지난달 같은 기간보다 ${totalDiffAmount} 덜 쓰고 있어요"
         }
 
     val totalDiffTextColor =
@@ -74,7 +74,7 @@ fun ExpenseSummary(
 
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 private fun ExpenseSummaryPreview(){
     KakaoPayTheme {
