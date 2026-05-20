@@ -38,8 +38,7 @@ class SpendingAnalysisViewModel : ViewModel() {
                 remoteData.toUiModel(yearMonth = yearMonth, chartImageResId = imageResId)
             }.onSuccess { data ->
                 uiState = UiState.Success(data)
-            }.onFailure { throwable ->
-                uiState = UiState.Failure
+            }.onFailure {
             }
         }
     }

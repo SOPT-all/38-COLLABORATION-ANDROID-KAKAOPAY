@@ -34,6 +34,7 @@ fun KakaoPaySubTopBar(
             .fillMaxWidth()
             .background(KakaoTheme.colors.white)
             .height(48.dp),
+        color = KakaoTheme.colors.white
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
