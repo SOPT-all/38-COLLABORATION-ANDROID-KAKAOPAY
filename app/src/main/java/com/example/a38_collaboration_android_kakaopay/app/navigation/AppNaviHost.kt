@@ -22,16 +22,9 @@ fun AppNaviHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = FinancialOverview::class,
+        startDestination = Asset::class,
         modifier = Modifier.fillMaxSize()
     ) {
-        composable<FinancialOverview> {
-            FinancialOverviewRoute(
-                paddingValues = innerPadding,
-                navController = navController
-            )
-        }
-
         composable<SpendingAnalysis> {
             SpendingAnalysisRoute(
                 paddingValues = innerPadding,
