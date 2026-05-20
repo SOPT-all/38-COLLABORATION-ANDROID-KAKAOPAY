@@ -19,48 +19,66 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.a38_collaboration_android_kakaopay.R
+import com.example.a38_collaboration_android_kakaopay.core.common.state.UiState
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.binarytab.BinaryTabControl
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.button.KakaoPayScrollTopButton
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.dropdown.TransactionDropdown
+import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.monthcontrol.Month
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.monthcontrol.MonthControl
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.topbar.KakaoPaySubTopBar
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
 import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.SpendingSummary
-import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.DailyTransactions
-import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.Transaction
 import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.TransactionMethod
 import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.TransactionType
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingoverview.component.ActionContainer
+import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingoverview.component.ActionContainerSkeleton
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingoverview.component.SegmentControlBar
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingoverview.component.SwapViewButton
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingoverview.component.TransactionGroup
+import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingoverview.model.DailyTransactionsUiModel
+import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingoverview.model.SpendingOverviewUiModel
+import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingoverview.model.TransactionsUiModel
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.launch
 
 @Composable
 fun SpendingOverviewRoute(
     paddingValues: PaddingValues,
-    spendingSummary: SpendingSummary,
-    onCategoryAnalysisClick: () -> Unit,
-    dailyTransactions: List<DailyTransactions>,
     navController: NavController,
+    viewModel: SpendingOverviewViewModel = viewModel(),
 ) {
-    SpendingOverviewScreen(
-        paddingValues = paddingValues,
-        spendingSummary = spendingSummary,
-        onCategoryAnalysisClick = onCategoryAnalysisClick,
-        dailyTransactions = dailyTransactions
-    )
+    when (val uiState = viewModel.uiState) {
+        is UiState.Empty -> {}
+        is UiState.Failure -> {}
+        is UiState.Loading, is UiState.Success -> {
+            SpendingOverviewScreen(
+                paddingValues = paddingValues,
+                uiState = uiState,
+                selectedMonth = viewModel.selectedMonth,
+                onMonthChanged = { month -> viewModel.onMonthChanged(month) },
+                onCategoryAnalysisClick = {
+                    navController.navigate("") // 소비 분석 보기 경로
+                },
+                onTransactionClick = { transaction ->
+                    navController.navigate("") // 지출 상세 내역 경로
+                }
+            )
+        }
+    }
 }
 
 @Composable
 fun SpendingOverviewScreen(
     paddingValues: PaddingValues,
-    spendingSummary: SpendingSummary,
+    uiState: UiState<SpendingOverviewUiModel>,
+    selectedMonth: Month,
+    onMonthChanged: (Month) -> Unit,
     onCategoryAnalysisClick: () -> Unit,
-    dailyTransactions: List<DailyTransactions>,
+    onTransactionClick: (TransactionsUiModel) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val listState = rememberLazyListState()
@@ -71,7 +89,7 @@ fun SpendingOverviewScreen(
             .fillMaxSize()
             .background(KakaoTheme.colors.white)
     ) {
-        Column (
+        Column(
             modifier = Modifier
                 .padding(paddingValues)
         ) {
@@ -101,25 +119,37 @@ fun SpendingOverviewScreen(
                         Spacer(modifier = Modifier.height(24.dp))
 
                         OverviewSection(
-                            spendingSummary = spendingSummary,
+                            uiState = uiState,
+                            onMonthChanged = onMonthChanged,
+                            selectedMonth = selectedMonth,
                             onCategoryAnalysisClick = onCategoryAnalysisClick
                         )
 
-                        Spacer(modifier = Modifier.height(32.dp))
+                        if (uiState is UiState.Success) {
+                            Spacer(modifier = Modifier.height(32.dp))
 
-                        TransactionHeader()
+                            TransactionHeader()
+                        }
                     }
                 }
 
-                dailyTransactions.forEach { dailyTransaction ->
-                    item {
-                        TransactionGroup(
-                            dailyTransactions = dailyTransaction,
-                            modifier = Modifier
-                                .padding(bottom = 24.dp)
-                        )
+                when (uiState) {
+                    is UiState.Success -> {
+                        uiState.data.dailyTransactions.forEach { dailyTransaction ->
+                            item {
+                                TransactionGroup(
+                                    dailyTransactions = dailyTransaction,
+                                    onTransactionClick = onTransactionClick,
+                                    modifier = Modifier
+                                        .padding(bottom = 24.dp)
+                                )
+                            }
+                        }
                     }
+
+                    else -> {}
                 }
+
             }
 
         }
@@ -142,7 +172,9 @@ fun SpendingOverviewScreen(
 
 @Composable
 private fun OverviewSection(
-    spendingSummary: SpendingSummary,
+    uiState: UiState<SpendingOverviewUiModel>,
+    selectedMonth: Month,
+    onMonthChanged: (Month) -> Unit,
     onCategoryAnalysisClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -151,15 +183,23 @@ private fun OverviewSection(
             .fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(20.dp),
     ) {
-        DateControl()
+        DateControl(
+            selectedMonth = selectedMonth,
+            onMonthChanged = onMonthChanged
+        )
 
         SegmentControlBar()
 
-        ActionContainer(
-            spendingSummary = spendingSummary,
-            onCategoryAnalysisClick = onCategoryAnalysisClick,
-            modifier = Modifier.padding(horizontal = 16.dp)
-        )
+        when (uiState) {
+            is UiState.Success -> ActionContainer(
+                spendingSummary = uiState.data.spendingSummary,
+                onCategoryAnalysisClick = onCategoryAnalysisClick,
+                modifier = Modifier.padding(horizontal = 16.dp)
+            )
+
+            is UiState.Loading -> ActionContainerSkeleton()
+            else -> {}
+        }
     }
 }
 
@@ -181,6 +221,8 @@ private fun TransactionHeader(
 
 @Composable
 private fun DateControl(
+    selectedMonth: Month,
+    onMonthChanged: (Month) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Row(
@@ -193,7 +235,10 @@ private fun DateControl(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        MonthControl()
+        MonthControl(
+            selectedMonth = selectedMonth,
+            onMonthChanged = onMonthChanged,
+        )
 
         SwapViewButton(
             onClick = {}
@@ -202,57 +247,20 @@ private fun DateControl(
 }
 
 private val dummyDailyTransactions = listOf(
-    DailyTransactions(
+    DailyTransactionsUiModel(
         date = "2026-04-27",
         dayOfWeek = "월",
         dailyTotal = -16325,
         transactions = persistentListOf(
-            Transaction(
+            TransactionsUiModel(
                 transactionId = 1,
                 transactionType = TransactionType.PAYMENT,
                 transactionMethod = TransactionMethod.PAY_MONEY,
                 transactionName = "우아한형제들·마라로제 떡볶이X튀2 콤보",
                 amount = -11800,
-                includeInTotal = true
+                includeInTotal = true,
+                thumbnail = R.drawable.img_profile_placeholder
             ),
-            Transaction(
-                transactionId = 2,
-                transactionType = TransactionType.TRANSFER_SEND,
-                transactionMethod = TransactionMethod.PAY_MONEY,
-                transactionName = "염*원(카카오뱅크1234)",
-                amount = -4525,
-                includeInTotal = true
-            )
-        )
-    ),
-    DailyTransactions(
-        date = "2026-04-23",
-        dayOfWeek = "목",
-        dailyTotal = -3475,
-        transactions = persistentListOf(
-            Transaction(
-                transactionId = 3,
-                transactionType = TransactionType.TRANSFER_SEND,
-                transactionMethod = TransactionMethod.PAY_MONEY,
-                transactionName = "박솝트(박솝트)",
-                amount = -3475,
-                includeInTotal = false
-            )
-        )
-    ),
-    DailyTransactions(
-        date = "2026-04-16",
-        dayOfWeek = "목",
-        dailyTotal = 123000,
-        transactions = persistentListOf(
-            Transaction(
-                transactionId = 4,
-                transactionType = TransactionType.TRANSFER_RECEIVE,
-                transactionMethod = TransactionMethod.PAY_MONEY,
-                transactionName = "김솝트(김솝트)",
-                amount = 123000,
-                includeInTotal = true
-            )
         )
     )
 )
@@ -263,14 +271,21 @@ private fun SpendingOverviewScreenPreview() {
     KakaoPayTheme {
         SpendingOverviewScreen(
             paddingValues = PaddingValues(),
-            spendingSummary = SpendingSummary(
-                fixedExpense = 173253,
-                previousMonthTotal = 55000,
-                totalExpense = 79650,
-                totalIncome = 150000,
+            uiState = UiState.Success(
+                SpendingOverviewUiModel(
+                    spendingSummary = SpendingSummary(
+                        fixedExpense = 173253,
+                        previousMonthTotal = 55000,
+                        totalExpense = 79650,
+                        totalIncome = 150000,
+                    ),
+                    dailyTransactions = dummyDailyTransactions
+                )
             ),
+            selectedMonth = Month.MAY,
+            onMonthChanged = {},
             onCategoryAnalysisClick = {},
-            dailyTransactions = dummyDailyTransactions
+            onTransactionClick = {}
         )
     }
 }
