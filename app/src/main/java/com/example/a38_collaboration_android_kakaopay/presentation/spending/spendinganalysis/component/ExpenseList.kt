@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -37,12 +38,10 @@ fun ExpenseList(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .height(201.dp)
     ) {
         categoryExpenses.forEach { expenseItem ->
             ExpenseItem(
                 item = expenseItem,
-                modifier = Modifier.weight(1f)
             )
         }
     }
@@ -88,7 +87,8 @@ private fun ExpenseItem(
 
     Row(
         modifier = modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .padding(vertical = 8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Image(
