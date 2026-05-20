@@ -4,6 +4,8 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Immutable
 import com.example.a38_collaboration_android_kakaopay.R
+import kotlinx.collections.immutable.immutableListOf
+import kotlinx.collections.immutable.persistentListOf
 
 @Immutable
 data class FinanceMenuItem(
@@ -11,7 +13,34 @@ data class FinanceMenuItem(
     @StringRes val titleRes: Int,
 )
 
-val financeMenuItems = listOf(
+enum class FinanceTopCardStyle {
+    NEW,
+    RECOMMEND
+}
+
+@Immutable
+data class FinanceTopCardItem(
+    @DrawableRes val iconRes: Int,
+    @StringRes val labelRes: Int,
+    @StringRes val titleRes: Int,
+    val style: FinanceTopCardStyle,
+)
+
+val financeTopCardItems = persistentListOf(
+    FinanceTopCardItem(
+        iconRes = R.drawable.img_3d_01,
+        labelRes = R.string.finance_top_new,
+        titleRes = R.string.finance_top_kakao_friend_cost,
+        style = FinanceTopCardStyle.NEW
+    ),
+    FinanceTopCardItem(
+        iconRes = R.drawable.img_3d_02,
+        labelRes = R.string.finance_top_recommend,
+        titleRes = R.string.finance_top_investment_board,
+        style = FinanceTopCardStyle.RECOMMEND
+    ),
+)
+val financeMenuItems = persistentListOf(
     FinanceMenuItem(
         iconRes = R.drawable.ic_graphic_dividend_32px,
         titleRes = R.string.finance_menu_dividend

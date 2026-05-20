@@ -1,7 +1,9 @@
 package com.example.a38_collaboration_android_kakaopay.presentation.financialoverview
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -13,6 +15,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
@@ -31,6 +34,7 @@ import com.example.a38_collaboration_android_kakaopay.core.designsystem.componen
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
 import com.example.a38_collaboration_android_kakaopay.presentation.financialoverview.component.CreditScoreCard
+import com.example.a38_collaboration_android_kakaopay.presentation.financialoverview.component.FinanceMenuSection
 import com.example.a38_collaboration_android_kakaopay.presentation.financialoverview.component.FinancialAssetsCard
 import com.example.a38_collaboration_android_kakaopay.presentation.financialoverview.component.FinancialBanner
 import com.example.a38_collaboration_android_kakaopay.presentation.financialoverview.component.FinancialList
@@ -136,11 +140,20 @@ fun FinancialOverviewScreen(
                 }
 
                 item {
-                    CreditScoreCard(iconRes = R.drawable.img_credit_icon_32px)
+                    FinanceMenuSection()
                 }
 
+
+
                 item{
-                    KakaoPayBasicCard{
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(6.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.padding(vertical = 16.dp)
+
+                    ) {
+                        Spacer(Modifier.height(20.dp))
+
                         Icon(
                             imageVector = ImageVector.vectorResource(R.drawable.ic_plus_24px),
                             contentDescription = null
@@ -153,6 +166,8 @@ fun FinancialOverviewScreen(
                         )
                     }
                 }
+
+
             }
 
         }
