@@ -26,6 +26,7 @@ import com.example.a38_collaboration_android_kakaopay.core.common.util.toWonForm
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
 import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.Transaction
+import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.TransactionCategory
 import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.TransactionMethod
 import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.TransactionType
 
@@ -36,11 +37,17 @@ fun TransactionListItem(
 ) {
     val kakaobankKeyword = stringResource(R.string.spending_overview_kakaobank)
 
-    val thumbnail = when {
-        transaction.transactionType == TransactionType.PAYMENT -> R.drawable.img_baemin_logo_36px
-        transaction.transactionMethod == TransactionMethod.PAY_MONEY && transaction.transactionName.contains(kakaobankKeyword
-        ) -> R.drawable.img_kakaopay_logo
-        else -> R.drawable.img_profile_placeholder
+    val thumbnail = when (transaction.transactionType) {
+        TransactionType.PAYMENT -> when (transaction.transactionCategory) {
+            TransactionCategory.TRANSPORTATION -> R.drawable.img_transport
+            TransactionCategory.COFFEE_DESSERT -> R.drawable.img_cafe
+            TransactionCategory.FOOD -> R.drawable.img_food
+            else -> R.drawable.img_profile_placeholder
+        }
+        else -> when {
+            transaction.transactionName.contains(kakaobankKeyword) -> R.drawable.img_kakaopay_logo
+            else -> R.drawable.img_profile_placeholder
+        }
     }
 
     Row(
@@ -158,46 +165,93 @@ private fun TransactionListItemPreview() {
                 .padding(20.dp),
             verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
-            TransactionListItem(
-                transaction = Transaction(
-                    transactionId = 0,
-                    transactionType = TransactionType.PAYMENT,
-                    transactionMethod = TransactionMethod.PAY_MONEY,
-                    transactionName = "우아한형제들·마라로제 떡볶이X튀2 콤보",
-                    amount = -11800,
-                    includeInTotal = true,
-                )
-            )
-            TransactionListItem(
-                transaction = Transaction(
-                    transactionId = 1,
-                    transactionType = TransactionType.TRANSFER_SEND,
-                    transactionMethod = TransactionMethod.PAY_MONEY,
-                    transactionName = "염*원(카카오뱅크1234)",
-                    amount = -6525,
-                    includeInTotal = true,
-                )
-            )
-            TransactionListItem(
-                transaction = Transaction(
-                    transactionId = 2,
-                    transactionType = TransactionType.TRANSFER_SEND,
-                    transactionMethod = TransactionMethod.PAY_MONEY,
-                    transactionName = "박솝트(박솝트)",
-                    amount = -3475,
-                    includeInTotal = false,
-                )
-            )
-            TransactionListItem(
-                transaction = Transaction(
-                    transactionId = 3,
-                    transactionType = TransactionType.TRANSFER_RECEIVE,
-                    transactionMethod = TransactionMethod.PAY_MONEY,
-                    transactionName = "김솝트(김솝트)",
-                    amount = 123000,
-                    includeInTotal = true,
-                )
-            )
+            dummyTransactions.forEach { transaction ->
+                TransactionListItem(transaction = transaction)
+            }
         }
     }
 }
+
+private val dummyTransactions = listOf(
+    Transaction(
+        transactionId = 12,
+        transactionType = TransactionType.TRANSFER_SEND,
+        transactionMethod = TransactionMethod.PAY_MONEY,
+        transactionName = "AN***NG(우리은행5376)",
+        transactionCategory = null,
+        amount = -4787,
+        includeInTotal = true
+    ),
+    Transaction(
+        transactionId = 13,
+        transactionType = TransactionType.TRANSFER_SEND,
+        transactionMethod = TransactionMethod.PAY_MONEY,
+        transactionName = "염*원(카카오뱅크1234)",
+        transactionCategory = null,
+        amount = -3475,
+        includeInTotal = true
+    ),
+    Transaction(
+        transactionId = 14,
+        transactionType = TransactionType.TRANSFER_SEND,
+        transactionMethod = TransactionMethod.PAY_MONEY,
+        transactionName = "박솝트(박솝트)",
+        transactionCategory = null,
+        amount = -84632,
+        includeInTotal = true
+    ),
+    Transaction(
+        transactionId = 4,
+        transactionType = TransactionType.PAYMENT,
+        transactionMethod = TransactionMethod.PAY_MONEY,
+        transactionName = "교통공사·서울교통공사(기후동행카드)",
+        transactionCategory = TransactionCategory.TRANSPORTATION,
+        amount = -55000,
+        includeInTotal = true
+    ),
+    Transaction(
+        transactionId = 5,
+        transactionType = TransactionType.PAYMENT,
+        transactionMethod = TransactionMethod.PAY_MONEY,
+        transactionName = "우아한형제들·요거트아이스크림의정석 중계점",
+        transactionCategory = TransactionCategory.DELIVERY,
+        amount = -6000,
+        includeInTotal = true
+    ),
+    Transaction(
+        transactionId = 6,
+        transactionType = TransactionType.PAYMENT,
+        transactionMethod = TransactionMethod.PAY_MONEY,
+        transactionName = "카페무솔트·카페무솔트",
+        transactionCategory = TransactionCategory.COFFEE_DESSERT,
+        amount = -3500,
+        includeInTotal = true
+    ),
+    Transaction(
+        transactionId = 15,
+        transactionType = TransactionType.TRANSFER_SEND,
+        transactionMethod = TransactionMethod.PAY_MONEY,
+        transactionName = "염*원(카카오뱅크1234)",
+        transactionCategory = null,
+        amount = -8476,
+        includeInTotal = true
+    ),
+    Transaction(
+        transactionId = 16,
+        transactionType = TransactionType.TRANSFER_SEND,
+        transactionMethod = TransactionMethod.PAY_MONEY,
+        transactionName = "염*원(카카오뱅크1234)",
+        transactionCategory = null,
+        amount = -3637,
+        includeInTotal = true
+    ),
+    Transaction(
+        transactionId = 7,
+        transactionType = TransactionType.PAYMENT,
+        transactionMethod = TransactionMethod.PAY_MONEY,
+        transactionName = "샹니·샹니마라탕",
+        transactionCategory = TransactionCategory.FOOD,
+        amount = -38700,
+        includeInTotal = false
+    )
+)
