@@ -1,7 +1,6 @@
 package com.example.a38_collaboration_android_kakaopay.presentation.financialoverview
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,12 +8,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -24,6 +25,7 @@ import com.example.a38_collaboration_android_kakaopay.R
 import com.example.a38_collaboration_android_kakaopay.app.navigation.Asset
 import com.example.a38_collaboration_android_kakaopay.core.common.state.UiState
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.KakaoPayTopBar
+import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.card.KakaoPayBasicCard
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.navigation.KakaoPayNavigatorBar
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.navigation.MainTab
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
@@ -34,7 +36,6 @@ import com.example.a38_collaboration_android_kakaopay.presentation.financialover
 import com.example.a38_collaboration_android_kakaopay.presentation.financialoverview.component.FinancialList
 import com.example.a38_collaboration_android_kakaopay.presentation.financialoverview.component.SecuritiesAccountCard
 import com.example.a38_collaboration_android_kakaopay.presentation.financialoverview.component.SpendingOverviewCard
-import com.example.a38_collaboration_android_kakaopay.presentation.financialoverview.model.FavoriteAccounts
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
@@ -55,7 +56,7 @@ fun FinancialOverviewRoute(
         }
 
         is UiState.Failure -> {
-            Text("불러오기 실패")
+            Text(state.message ?: "불러오기 실패")
         }
 
         is UiState.Success -> {
@@ -68,7 +69,9 @@ fun FinancialOverviewRoute(
             )
         }
 
-        else -> {}
+        else -> {
+            Text("지금 안됨 왜 안될까 ")
+        }
     }
 
 }
@@ -106,12 +109,14 @@ fun FinancialOverviewScreen(
                     SecuritiesAccountCard(money = uiState.kakaopayBalance)
                 }
 
+                item { Spacer(Modifier.height(14.dp)) }
 
                 item {
                     FinancialAssetsCard(
                         financialItems = uiState.favoriteAccounts,
                         onViewSpendingHistoryClick = {})
                 }
+                item { Spacer(Modifier.height(14.dp)) }
 
                 item {
                     SpendingOverviewCard(
@@ -119,9 +124,34 @@ fun FinancialOverviewScreen(
                         onViewSpendingHistoryClick = {}
                     )
                 }
+                item { Spacer(Modifier.height(14.dp)) }
 
                 item {
                     CreditScoreCard(iconRes = R.drawable.img_credit_icon_32px)
+                }
+                item { Spacer(Modifier.height(14.dp)) }
+
+                item {
+                    CreditScoreCard(iconRes = R.drawable.img_credit_icon_32px)
+                }
+
+                item {
+                    CreditScoreCard(iconRes = R.drawable.img_credit_icon_32px)
+                }
+
+                item{
+                    KakaoPayBasicCard{
+                        Icon(
+                            imageVector = ImageVector.vectorResource(R.drawable.ic_plus_24px),
+                            contentDescription = null
+                        )
+
+                        Text(
+                            text = "자산추가하기",
+                            color = KakaoTheme.colors.black,
+                            style = KakaoTheme.typography.bodyB16
+                        )
+                    }
                 }
             }
 
