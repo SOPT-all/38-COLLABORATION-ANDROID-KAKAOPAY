@@ -12,11 +12,11 @@ data class SpendingAnalysisResponse(
     val previousMonthSamePeriodTotal: Long,
 
     @SerialName("categoryExpenses")
-    val categoryExpenses: List<CategoryResponse>,
+    val categoryExpenses: List<categoryExpenses>,
 )
 
 @Serializable
-data class CategoryResponse(
+data class categoryExpenses(
     @SerialName("category")
     val category: String,
 

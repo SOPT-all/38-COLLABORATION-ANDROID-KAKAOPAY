@@ -2,7 +2,7 @@ package com.example.a38_collaboration_android_kakaopay.data.mapper
 
 import android.util.Log
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.monthcontrol.Month
-import com.example.a38_collaboration_android_kakaopay.data.remote.dto.response.CategoryResponse
+import com.example.a38_collaboration_android_kakaopay.data.remote.dto.response.categoryExpenses
 import com.example.a38_collaboration_android_kakaopay.data.remote.dto.response.SpendingAnalysisResponse
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendinganalysis.component.CategoryExpenseItem
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendinganalysis.model.SpendingAnalysisUiModel
@@ -26,8 +26,7 @@ fun SpendingAnalysisResponse.toUiModel(
     )
 }
 
-fun CategoryResponse.toUiItem(): CategoryExpenseItem {
-    Log.d("SpendingAnalysisMapper", "Mapping category=$category")
+fun categoryExpenses.toUiItem(): CategoryExpenseItem {
     return CategoryExpenseItem(
         categoryType = SpendingCategoryModel.valueOf(this.category.uppercase()),
         currentMonthAmount = this.currentMonthAmount,
