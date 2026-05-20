@@ -1,5 +1,10 @@
 package com.example.a38_collaboration_android_kakaopay.data.remote.api
 
-interface ExpenseApi{
+import com.example.a38_collaboration_android_kakaopay.core.network.BaseResponse
+import com.example.a38_collaboration_android_kakaopay.data.remote.dto.response.ExpenseResponse
+import retrofit2.http.GET
 
+interface ExpenseApi{
+    @GET("api/v1/expenses")
+    suspend fun getExpenses(): BaseResponse<ExpenseResponse>
 }
