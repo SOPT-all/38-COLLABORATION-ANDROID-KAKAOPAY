@@ -7,7 +7,7 @@ import com.example.a38_collaboration_android_kakaopay.data.remote.dto.response.E
 class ExpenseDataSource(
     private val expenseApi: ExpenseApi
 ) {
-    suspend fun getExpenses(): BaseResponse<ExpenseResponse> {
-        return expenseApi.getExpenses()
+    suspend fun getExpenses(yearMonth: String): BaseResponse<ExpenseResponse> {
+        return expenseApi.getExpenses(yearMonth)
     }
 }
