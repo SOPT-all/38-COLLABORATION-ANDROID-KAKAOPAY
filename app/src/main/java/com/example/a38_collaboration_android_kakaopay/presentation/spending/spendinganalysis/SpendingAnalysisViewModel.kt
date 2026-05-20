@@ -1,5 +1,6 @@
 package com.example.a38_collaboration_android_kakaopay.presentation.spending.spendinganalysis
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -14,6 +15,10 @@ import com.example.a38_collaboration_android_kakaopay.presentation.spending.spen
 import kotlinx.coroutines.launch
 
 class SpendingAnalysisViewModel : ViewModel() {
+    companion object {
+        private const val TAG = "SpendingAnalysisVM"
+    }
+
     var uiState by mutableStateOf<UiState<SpendingAnalysisUiModel>>(UiState.Loading)
         private set
 
@@ -24,18 +29,31 @@ class SpendingAnalysisViewModel : ViewModel() {
     fun getSpendingAnalysis(yearMonth: String) {
         viewModelScope.launch {
             uiState = UiState.Loading
+            Log.d(TAG, "getSpendingAnalysis called. yearMonth=$yearMonth")
+
             runCatching {
-                val remoteData = SpendingAnalysisDataSource(RetrofitClient.spendingAnalysisApi)
+                val response = SpendingAnalysisDataSource(RetrofitClient.spendingAnalysisApi)
                     .getSpendingAnalysis(yearMonth)
-                    .data
+                Log.d(
+                    TAG,
+                    "API success. code=${response.code}, message=${response.message}, data=${response.data}"
+                )
+
+                val remoteData = response.data
 
                 val month = yearMonth.split("-").getOrNull(1)?.toIntOrNull() ?: 5
                 val imageResId = getChartImageResource(month)
 
                 remoteData.toUiModel(yearMonth = yearMonth, chartImageResId = imageResId)
             }.onSuccess { data ->
+                Log.d(TAG, "Mapped uiModel successfully. data=$data")
                 uiState = UiState.Success(data)
-            }.onFailure {
+            }.onFailure { throwable ->
+                Log.e(
+                    TAG,
+                    "getSpendingAnalysis failed. yearMonth=$yearMonth, error=${throwable.message}",
+                    throwable
+                )
                 uiState = UiState.Failure
             }
         }

@@ -1,5 +1,6 @@
 package com.example.a38_collaboration_android_kakaopay.presentation.spending.spendinganalysis
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,6 +17,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ProgressIndicatorDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -52,7 +54,18 @@ fun SpendingAnalysisRoute(
     navController: NavController,
     viewModel: SpendingAnalysisViewModel = viewModel()
 ) {
-    when (val state = viewModel.uiState) {
+    val state = viewModel.uiState
+
+    LaunchedEffect(state) {
+        when (state) {
+            is UiState.Loading -> Log.d("SpendingAnalysisRoute", "uiState=Loading")
+            is UiState.Success -> Log.d("SpendingAnalysisRoute", "uiState=Success")
+            is UiState.Empty -> Log.d("SpendingAnalysisRoute", "uiState=Empty")
+            is UiState.Failure -> Log.e("SpendingAnalysisRoute", "uiState=Failure")
+        }
+    }
+
+    when (state) {
         is UiState.Loading -> {
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator(color = ProgressIndicatorDefaults.circularColor)
