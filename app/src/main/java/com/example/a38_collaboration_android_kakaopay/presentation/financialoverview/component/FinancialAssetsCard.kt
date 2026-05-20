@@ -30,8 +30,8 @@ import kotlinx.collections.immutable.persistentListOf
 @Composable
 fun FinancialAssetsCard(
     financialItems: ImmutableList<FinancialList>,
-    onViewSpendingHistoryClick: () -> Unit,
     modifier: Modifier = Modifier,
+    onViewSpendingHistoryClick: () -> Unit = {},
 ) {
     KakaoPayBasicCard(
         enabled = true, onClick = onViewSpendingHistoryClick, modifier = modifier
