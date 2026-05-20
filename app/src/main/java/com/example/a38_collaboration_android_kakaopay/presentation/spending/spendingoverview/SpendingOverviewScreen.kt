@@ -35,10 +35,12 @@ import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverv
 import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.TransactionMethod
 import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.TransactionType
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingoverview.component.ActionContainer
+import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingoverview.component.ActionContainerSkeleton
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingoverview.component.SegmentControlBar
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingoverview.component.SwapViewButton
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingoverview.component.TransactionGroup
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingoverview.model.DailyTransactionsUiModel
+import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingoverview.model.SpendingOverviewUiModel
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingoverview.model.TransactionsUiModel
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.launch
@@ -51,31 +53,27 @@ fun SpendingOverviewRoute(
     viewModel: SpendingOverviewViewModel = viewModel(),
 ) {
     when (val uiState = viewModel.uiState) {
-        is UiState.Loading -> {}
-        is UiState.Success -> {
+        is UiState.Empty -> {}
+        is UiState.Failure -> {}
+        is UiState.Loading, is UiState.Success -> {
             SpendingOverviewScreen(
                 paddingValues = paddingValues,
-                spendingSummary = uiState.data.spendingSummary,
-                dailyTransactions = uiState.data.dailyTransactions,
+                uiState = uiState,
                 selectedMonth = viewModel.selectedMonth,
                 onMonthChanged = { month -> viewModel.onMonthChanged(month) },
                 onCategoryAnalysisClick = onCategoryAnalysisClick,
             )
         }
-
-        is UiState.Failure -> {}
-        is UiState.Empty -> {}
     }
 }
 
 @Composable
 fun SpendingOverviewScreen(
     paddingValues: PaddingValues,
-    spendingSummary: SpendingSummary,
+    uiState: UiState<SpendingOverviewUiModel>,
     selectedMonth: Month,
     onMonthChanged: (Month) -> Unit,
     onCategoryAnalysisClick: () -> Unit,
-    dailyTransactions: List<DailyTransactionsUiModel>,
     modifier: Modifier = Modifier,
 ) {
     val listState = rememberLazyListState()
@@ -116,27 +114,35 @@ fun SpendingOverviewScreen(
                         Spacer(modifier = Modifier.height(24.dp))
 
                         OverviewSection(
-                            spendingSummary = spendingSummary,
+                            uiState = uiState,
                             onMonthChanged = onMonthChanged,
                             selectedMonth = selectedMonth,
                             onCategoryAnalysisClick = onCategoryAnalysisClick
                         )
 
-                        Spacer(modifier = Modifier.height(32.dp))
+                        if (uiState is UiState.Success) {
+                            Spacer(modifier = Modifier.height(32.dp))
 
-                        TransactionHeader()
+                            TransactionHeader()
+                        }
                     }
                 }
 
-                dailyTransactions.forEach { dailyTransaction ->
-                    item {
-                        TransactionGroup(
-                            dailyTransactions = dailyTransaction,
-                            modifier = Modifier
-                                .padding(bottom = 24.dp)
-                        )
+                when (uiState) {
+                    is UiState.Success -> {
+                        uiState.data.dailyTransactions.forEach { dailyTransaction ->
+                            item {
+                                TransactionGroup(
+                                    dailyTransactions = dailyTransaction,
+                                    modifier = Modifier
+                                        .padding(bottom = 24.dp)
+                                )
+                            }
+                        }
                     }
+                    else -> {}
                 }
+
             }
 
         }
@@ -159,7 +165,7 @@ fun SpendingOverviewScreen(
 
 @Composable
 private fun OverviewSection(
-    spendingSummary: SpendingSummary,
+    uiState: UiState<SpendingOverviewUiModel>,
     selectedMonth: Month,
     onMonthChanged: (Month) -> Unit,
     onCategoryAnalysisClick: () -> Unit,
@@ -177,11 +183,15 @@ private fun OverviewSection(
 
         SegmentControlBar()
 
-        ActionContainer(
-            spendingSummary = spendingSummary,
-            onCategoryAnalysisClick = onCategoryAnalysisClick,
-            modifier = Modifier.padding(horizontal = 16.dp)
-        )
+        when (uiState) {
+            is UiState.Success -> ActionContainer(
+                spendingSummary = uiState.data.spendingSummary,
+                onCategoryAnalysisClick = onCategoryAnalysisClick,
+                modifier = Modifier.padding(horizontal = 16.dp)
+            )
+            is UiState.Loading -> ActionContainerSkeleton()
+            else -> {}
+        }
     }
 }
 
@@ -253,16 +263,20 @@ private fun SpendingOverviewScreenPreview() {
     KakaoPayTheme {
         SpendingOverviewScreen(
             paddingValues = PaddingValues(),
-            spendingSummary = SpendingSummary(
-                fixedExpense = 173253,
-                previousMonthTotal = 55000,
-                totalExpense = 79650,
-                totalIncome = 150000,
+            uiState = UiState.Success(
+                SpendingOverviewUiModel(
+                    spendingSummary = SpendingSummary(
+                        fixedExpense = 173253,
+                        previousMonthTotal = 55000,
+                        totalExpense = 79650,
+                        totalIncome = 150000,
+                    ),
+                    dailyTransactions = dummyDailyTransactions
+                )
             ),
             selectedMonth = Month.MAY,
             onMonthChanged = {},
             onCategoryAnalysisClick = {},
-            dailyTransactions = dummyDailyTransactions
         )
     }
 }

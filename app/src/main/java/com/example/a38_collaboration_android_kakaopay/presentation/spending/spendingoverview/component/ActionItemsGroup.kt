@@ -90,6 +90,7 @@ private fun ActionListItem(
         Row(
             modifier = Modifier,
             horizontalArrangement = Arrangement.spacedBy(6.dp),
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Icon(
                 imageVector = ImageVector.vectorResource(icon),
