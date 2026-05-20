@@ -7,10 +7,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -30,21 +26,23 @@ enum class Month(val value: Int) {
 
 @Composable
 fun MonthControl(
+    selectedMonth: Month = Month.MAY,
+    onMonthChanged: ((Month) -> Unit)? = null,
     modifier: Modifier = Modifier,
 ) {
-    var selectedMonth by remember { mutableStateOf(Month.APRIL) }
-
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center,
-    ){
+    ) {
 
         MonthArrow(
             iconResId = R.drawable.ic_chevron_left_black_24px,
             isEnabled = selectedMonth == Month.MAY,
             modifier = Modifier.noRippleClickable {
-                if (selectedMonth == Month.MAY) selectedMonth = Month.APRIL
+                if (selectedMonth == Month.MAY) {
+                    onMonthChanged?.invoke(Month.APRIL)
+                }
             }
         )
 
@@ -69,22 +67,23 @@ fun MonthControl(
             iconResId = R.drawable.ic_chevron_right_black_24px,
             isEnabled = selectedMonth == Month.APRIL,
             modifier = Modifier.noRippleClickable {
-                if (selectedMonth == Month.APRIL) selectedMonth = Month.MAY
+                if (selectedMonth == Month.APRIL) {
+                    onMonthChanged?.invoke(Month.MAY)
+                }
             }
         )
 
 
-
-        }
-
     }
+
+}
 
 @Composable
 private fun MonthArrow(
     iconResId: Int,
     isEnabled: Boolean,
     modifier: Modifier = Modifier,
-){
+) {
     Icon(
         imageVector = ImageVector.vectorResource(id = iconResId),
         contentDescription = null,
@@ -98,6 +97,9 @@ private fun MonthArrow(
 @Composable
 private fun MonthControlPreview() {
     KakaoPayTheme {
-        MonthControl()
+        MonthControl(
+            selectedMonth = Month.MAY,
+            onMonthChanged = {}
+        )
     }
 }

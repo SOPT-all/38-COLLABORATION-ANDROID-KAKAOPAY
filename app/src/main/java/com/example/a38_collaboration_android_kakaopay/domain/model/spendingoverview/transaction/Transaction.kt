@@ -5,6 +5,7 @@ data class Transaction (
     val transactionType: TransactionType,
     val transactionMethod: TransactionMethod,
     val transactionName: String,
+    val transactionCategory: TransactionCategory? = null,
     val amount: Int,
     val includeInTotal: Boolean,
 )

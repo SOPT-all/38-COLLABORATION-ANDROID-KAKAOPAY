@@ -9,17 +9,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.a38_collaboration_android_kakaopay.R
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
-import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.DailyTransactions
-import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.Transaction
 import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.TransactionMethod
 import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.TransactionType
-import kotlinx.collections.immutable.ImmutableList
+import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingoverview.model.DailyTransactionsUiModel
+import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingoverview.model.TransactionsUiModel
+import kotlinx.collections.immutable.persistentListOf
 
 @Composable
 fun TransactionGroup(
-    dailyTransactions: DailyTransactions,
+    dailyTransactions: DailyTransactionsUiModel,
+    onTransactionClick: (TransactionsUiModel) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -28,9 +30,10 @@ fun TransactionGroup(
     ) {
         TransactionGroupHeader(dailyTransactions)
 
-        dailyTransactions.transactions.forEach {
+        dailyTransactions.transactions.forEach { transaction ->
             TransactionListItem(
-                transaction = it
+                transaction = transaction,
+                onClick = { onTransactionClick(transaction) }
             )
         }
     }
@@ -38,7 +41,7 @@ fun TransactionGroup(
 
 @Composable
 private fun TransactionGroupHeader(
-    dailyTransactions: DailyTransactions,
+    dailyTransactions: DailyTransactionsUiModel,
     modifier: Modifier = Modifier
 ) {
     val day = dailyTransactions.date.split("-").lastOrNull() ?: ""
@@ -69,29 +72,32 @@ private fun TransactionGroupHeader(
 private fun TransactionGroupPreview() {
     KakaoPayTheme {
         TransactionGroup(
-            dailyTransactions = DailyTransactions(
+            dailyTransactions = DailyTransactionsUiModel (
                 date = "2026-04-23",
                 dayOfWeek = "목",
                 dailyTotal = -3475,
-                transactions = listOf(
-                    Transaction(
+                transactions = persistentListOf(
+                    TransactionsUiModel (
                         transactionId = 13,
                         transactionType = TransactionType.TRANSFER_SEND,
                         transactionMethod = TransactionMethod.PAY_MONEY,
                         transactionName = "염*원(카카오뱅크1234)",
                         amount = -3475,
-                        includeInTotal = true
+                        includeInTotal = true,
+                        thumbnail = R.drawable.img_kakaopay_logo
                     ),
-                    Transaction(
+                    TransactionsUiModel (
                         transactionId = 14,
                         transactionType = TransactionType.TRANSFER_SEND,
                         transactionMethod = TransactionMethod.PAY_MONEY,
                         transactionName = "박솝트(박솝트)",
                         amount = -84632,
-                        includeInTotal = false
+                        includeInTotal = false,
+                        thumbnail = R.drawable.img_profile_placeholder
                     )
-                ) as ImmutableList<Transaction>
-            )
+                )
+            ),
+            onTransactionClick = {}
         )
     }
 }

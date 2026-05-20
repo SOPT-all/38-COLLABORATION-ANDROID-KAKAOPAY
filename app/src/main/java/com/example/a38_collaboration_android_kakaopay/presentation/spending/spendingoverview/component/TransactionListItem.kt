@@ -22,36 +22,34 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.a38_collaboration_android_kakaopay.R
+import com.example.a38_collaboration_android_kakaopay.core.common.extension.noRippleClickableWithPressedColor
 import com.example.a38_collaboration_android_kakaopay.core.common.util.toWonFormat
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
-import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.Transaction
 import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.TransactionMethod
 import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.TransactionType
+import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingoverview.model.TransactionsUiModel
+import kotlinx.collections.immutable.persistentListOf
 
 @Composable
 fun TransactionListItem(
-    transaction: Transaction,
+    transaction: TransactionsUiModel,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val kakaobankKeyword = stringResource(R.string.spending_overview_kakaobank)
-
-    val thumbnail = when {
-        transaction.transactionType == TransactionType.PAYMENT -> R.drawable.img_baemin_logo_36px
-        transaction.transactionMethod == TransactionMethod.PAY_MONEY && transaction.transactionName.contains(kakaobankKeyword
-        ) -> R.drawable.img_kakaopay_logo
-        else -> R.drawable.img_profile_placeholder
-    }
-
     Row(
         modifier = modifier
             .fillMaxWidth()
+            .noRippleClickableWithPressedColor(
+                pressedColor = KakaoTheme.colors.buttonSecondaryPressed,
+                onClick = onClick,
+            )
             .padding(16.dp),
         horizontalArrangement = Arrangement.spacedBy(12.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Image(
-            painter = painterResource(thumbnail),
+            painter = painterResource(transaction.thumbnail),
             contentDescription = null,
             modifier = Modifier
                 .size(36.dp)
@@ -63,7 +61,7 @@ fun TransactionListItem(
 
 @Composable
 private fun TransactionInfo(
-    transaction: Transaction,
+    transaction: TransactionsUiModel,
     modifier: Modifier = Modifier,
 ) {
     val amountColor = when {
@@ -92,7 +90,7 @@ private fun TransactionInfo(
 
 @Composable
 private fun CounterPartyInfo(
-    transaction: Transaction,
+    transaction: TransactionsUiModel,
     modifier: Modifier = Modifier,
 ) {
     Row(
@@ -158,46 +156,60 @@ private fun TransactionListItemPreview() {
                 .padding(20.dp),
             verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
-            TransactionListItem(
-                transaction = Transaction(
-                    transactionId = 0,
-                    transactionType = TransactionType.PAYMENT,
-                    transactionMethod = TransactionMethod.PAY_MONEY,
-                    transactionName = "우아한형제들·마라로제 떡볶이X튀2 콤보",
-                    amount = -11800,
-                    includeInTotal = true,
+            dummyTransactions.forEach { transaction ->
+                TransactionListItem(
+                    transaction = transaction,
+                    onClick = {}
                 )
-            )
-            TransactionListItem(
-                transaction = Transaction(
-                    transactionId = 1,
-                    transactionType = TransactionType.TRANSFER_SEND,
-                    transactionMethod = TransactionMethod.PAY_MONEY,
-                    transactionName = "염*원(카카오뱅크1234)",
-                    amount = -6525,
-                    includeInTotal = true,
-                )
-            )
-            TransactionListItem(
-                transaction = Transaction(
-                    transactionId = 2,
-                    transactionType = TransactionType.TRANSFER_SEND,
-                    transactionMethod = TransactionMethod.PAY_MONEY,
-                    transactionName = "박솝트(박솝트)",
-                    amount = -3475,
-                    includeInTotal = false,
-                )
-            )
-            TransactionListItem(
-                transaction = Transaction(
-                    transactionId = 3,
-                    transactionType = TransactionType.TRANSFER_RECEIVE,
-                    transactionMethod = TransactionMethod.PAY_MONEY,
-                    transactionName = "김솝트(김솝트)",
-                    amount = 123000,
-                    includeInTotal = true,
-                )
-            )
+            }
         }
     }
 }
+
+private val dummyTransactions = persistentListOf (
+    TransactionsUiModel(
+        transactionId = 12,
+        transactionType = TransactionType.TRANSFER_SEND,
+        transactionMethod = TransactionMethod.PAY_MONEY,
+        transactionName = "AN***NG(우리은행5376)",
+        amount = -4787,
+        includeInTotal = true,
+        thumbnail = R.drawable.img_profile_placeholder
+    ),
+    TransactionsUiModel(
+        transactionId = 13,
+        transactionType = TransactionType.TRANSFER_SEND,
+        transactionMethod = TransactionMethod.PAY_MONEY,
+        transactionName = "염*원(카카오뱅크1234)",
+        amount = -3475,
+        includeInTotal = true,
+        thumbnail = R.drawable.img_kakaopay_logo
+    ),
+    TransactionsUiModel(
+        transactionId = 4,
+        transactionType = TransactionType.PAYMENT,
+        transactionMethod = TransactionMethod.PAY_MONEY,
+        transactionName = "교통공사·서울교통공사(기후동행카드)",
+        amount = -55000,
+        includeInTotal = true,
+        thumbnail = R.drawable.img_transport
+    ),
+    TransactionsUiModel(
+        transactionId = 6,
+        transactionType = TransactionType.PAYMENT,
+        transactionMethod = TransactionMethod.PAY_MONEY,
+        transactionName = "카페무솔트·카페무솔트",
+        amount = -3500,
+        includeInTotal = true,
+        thumbnail = R.drawable.img_cafe
+    ),
+    TransactionsUiModel(
+        transactionId = 7,
+        transactionType = TransactionType.PAYMENT,
+        transactionMethod = TransactionMethod.PAY_MONEY,
+        transactionName = "샹니·샹니마라탕",
+        amount = -38700,
+        includeInTotal = false,
+        thumbnail = R.drawable.img_food
+    )
+)
