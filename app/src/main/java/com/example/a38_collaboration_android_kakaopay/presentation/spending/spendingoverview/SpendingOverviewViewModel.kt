@@ -25,7 +25,7 @@ class SpendingOverviewViewModel : ViewModel() {
             uiState = UiState.Loading
             runCatching {
                 ExpenseDataSource(RetrofitClient.expenseApi)
-                    .getExpenses(yearMonth = "2026-05")
+                    .getExpenses(yearMonth = "2026-04")
                     .data
                     .toUiModel()
             }.onSuccess { data ->
