@@ -2,6 +2,7 @@ package com.example.a38_collaboration_android_kakaopay.data.remote
 
 import com.example.a38_collaboration_android_kakaopay.BuildConfig
 import com.example.a38_collaboration_android_kakaopay.data.remote.api.AssetsApi
+import com.example.a38_collaboration_android_kakaopay.data.remote.api.ExpenseApi
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
@@ -31,5 +32,9 @@ object RetrofitClient {
 
     val assetsApi: AssetsApi by lazy {
         create(AssetsApi::class.java)
+    }
+
+    val expenseApi: ExpenseApi by lazy {
+        create(ExpenseApi::class.java)
     }
 }
