@@ -1,6 +1,5 @@
 package com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingdetails.component
 
-import androidx.compose.ui.graphics.Color
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,14 +16,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.a38_collaboration_android_kakaopay.R
-import com.example.a38_collaboration_android_kakaopay.core.common.util.toWonFormat
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
-import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingdetails.model.SpendingDetailGroupModel
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingdetails.model.SpendingDetailPaymentModel
 
 @Composable
@@ -36,11 +33,19 @@ fun SpendingDetailStoreInfo(
         modifier = modifier.fillMaxWidth(),
         verticalAlignment = Alignment.Top
     ) {
-        SpendingDetailGroup(
-            groupData = paymentInfo.mainInfo,
-            titleStyle = KakaoTheme.typography.titleB20,
-            modifier = Modifier.weight(1f)
-        )
+        Column(modifier = Modifier.weight(1f)) {
+            Text(
+                text = paymentInfo.expenseName,
+                color = KakaoTheme.colors.black,
+                style = KakaoTheme.typography.titleB20,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis
+            )
+
+            Spacer(modifier = Modifier.height(6.dp))
+
+            SpendingInfoRow(label = paymentInfo.paymentMethod, value = "결제")
+        }
 
         Image(
             painter = painterResource(id = paymentInfo.icon),
@@ -57,30 +62,16 @@ fun SpendingDetailAmountInfo(
     paymentInfo: SpendingDetailPaymentModel,
     modifier: Modifier = Modifier,
 ) {
-    SpendingDetailGroup(
-        groupData = paymentInfo.amountInfo,
-        titleStyle = KakaoTheme.typography.titleB26,
-        modifier = modifier.fillMaxWidth()
-    )
-}
-
-@Composable
-private fun SpendingDetailGroup(
-    groupData: SpendingDetailGroupModel,
-    titleStyle: TextStyle,
-    modifier: Modifier = Modifier,
-    titleColor: Color = KakaoTheme.colors.black,
-) {
-    Column(modifier = modifier) {
+    Column(modifier = modifier.fillMaxWidth()) {
         Text(
-            text = groupData.title,
-            color = titleColor,
-            style = titleStyle,
+            text = paymentInfo.formattedSplitAmount,
+            color = KakaoTheme.colors.black,
+            style = KakaoTheme.typography.titleB26,
         )
 
         Spacer(modifier = Modifier.height(6.dp))
 
-        SpendingInfoRow(label = groupData.label, value = groupData.value)
+        SpendingInfoRow(label = "총 결제", value = paymentInfo.formattedTotalAmount)
     }
 }
 
@@ -121,18 +112,13 @@ private fun SpendingDetailSummaryCardsPreview() {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
+                .padding(16.dp)
         ) {
             val mockData = SpendingDetailPaymentModel(
-                mainInfo = SpendingDetailGroupModel(
-                    title = "마라로제 떡볶이X튀2 콤보 1개",
-                    label = "페이머니",
-                    value = "결제"
-                ),
-                amountInfo = SpendingDetailGroupModel(
-                    title = 11800L.toWonFormat(),
-                    label = "총 결제",
-                    value = 30000L.toWonFormat()
-                ),
+                expenseName = "마라로제 떡볶이X튀2 콤보 1개",
+                paymentMethod = "페이머니",
+                splitAmount = 11800L,
+                totalAmount = 30000L,
                 icon = R.drawable.img_baemin_logo_48px
             )
 
