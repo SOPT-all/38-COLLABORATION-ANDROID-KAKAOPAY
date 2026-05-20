@@ -1,6 +1,5 @@
 package com.example.a38_collaboration_android_kakaopay.presentation.spending.spendinganalysis
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -10,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
@@ -55,15 +53,6 @@ fun SpendingAnalysisRoute(
     viewModel: SpendingAnalysisViewModel = viewModel()
 ) {
     val state = viewModel.uiState
-
-    LaunchedEffect(state) {
-        when (state) {
-            is UiState.Loading -> Log.d("SpendingAnalysisRoute", "uiState=Loading")
-            is UiState.Success -> Log.d("SpendingAnalysisRoute", "uiState=Success")
-            is UiState.Empty -> Log.d("SpendingAnalysisRoute", "uiState=Empty")
-            is UiState.Failure -> Log.e("SpendingAnalysisRoute", "uiState=Failure")
-        }
-    }
 
     when (state) {
         is UiState.Loading -> {
@@ -199,7 +188,7 @@ private fun SpendingAnalysisScreenPreview() {
         categoryExpenses = listOf(
             CategoryExpenseItem(SpendingCategoryModel.TRANSPORTATION, 58450L, 68450L),
             CategoryExpenseItem(SpendingCategoryModel.FOOD, 23900L, 13900L),
-            CategoryExpenseItem(SpendingCategoryModel.COFFEE_DESERT, 5000L, -5000L)
+            CategoryExpenseItem(SpendingCategoryModel.COFFEE_DESSERT, 5000L, -5000L)
         ).toImmutableList()
     )
 

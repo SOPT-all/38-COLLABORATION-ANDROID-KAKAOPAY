@@ -15,9 +15,6 @@ import com.example.a38_collaboration_android_kakaopay.presentation.spending.spen
 import kotlinx.coroutines.launch
 
 class SpendingAnalysisViewModel : ViewModel() {
-    companion object {
-        private const val TAG = "SpendingAnalysisVM"
-    }
 
     var uiState by mutableStateOf<UiState<SpendingAnalysisUiModel>>(UiState.Loading)
         private set
@@ -29,15 +26,10 @@ class SpendingAnalysisViewModel : ViewModel() {
     fun getSpendingAnalysis(yearMonth: String) {
         viewModelScope.launch {
             uiState = UiState.Loading
-            Log.d(TAG, "getSpendingAnalysis called. yearMonth=$yearMonth")
 
             runCatching {
                 val response = SpendingAnalysisDataSource(RetrofitClient.spendingAnalysisApi)
                     .getSpendingAnalysis(yearMonth)
-                Log.d(
-                    TAG,
-                    "API success. code=${response.code}, message=${response.message}, data=${response.data}"
-                )
 
                 val remoteData = response.data
 
@@ -46,14 +38,8 @@ class SpendingAnalysisViewModel : ViewModel() {
 
                 remoteData.toUiModel(yearMonth = yearMonth, chartImageResId = imageResId)
             }.onSuccess { data ->
-                Log.d(TAG, "Mapped uiModel successfully. data=$data")
                 uiState = UiState.Success(data)
             }.onFailure { throwable ->
-                Log.e(
-                    TAG,
-                    "getSpendingAnalysis failed. yearMonth=$yearMonth, error=${throwable.message}",
-                    throwable
-                )
                 uiState = UiState.Failure
             }
         }

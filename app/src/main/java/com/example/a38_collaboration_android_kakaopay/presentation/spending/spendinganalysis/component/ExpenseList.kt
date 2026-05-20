@@ -1,12 +1,10 @@
 package com.example.a38_collaboration_android_kakaopay.presentation.spending.spendinganalysis.component
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -155,7 +153,7 @@ private fun ExpenseListPreview() {
             previousMonthAmount = 3900
         ),
         CategoryExpenseItem(
-            categoryType = SpendingCategoryModel.COFFEE_DESERT,
+            categoryType = SpendingCategoryModel.COFFEE_DESSERT,
             currentMonthAmount = 5000,
             previousMonthAmount = 3000
         )
