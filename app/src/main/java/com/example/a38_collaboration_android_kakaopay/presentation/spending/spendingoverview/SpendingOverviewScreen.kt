@@ -48,7 +48,6 @@ import kotlinx.coroutines.launch
 @Composable
 fun SpendingOverviewRoute(
     paddingValues: PaddingValues,
-    onCategoryAnalysisClick: () -> Unit,
     navController: NavController,
     viewModel: SpendingOverviewViewModel = viewModel(),
 ) {
@@ -61,9 +60,11 @@ fun SpendingOverviewRoute(
                 uiState = uiState,
                 selectedMonth = viewModel.selectedMonth,
                 onMonthChanged = { month -> viewModel.onMonthChanged(month) },
-                onCategoryAnalysisClick = onCategoryAnalysisClick,
-                onTransactionClick = {
-                    navController.navigate("") // 경로 추가
+                onCategoryAnalysisClick = {
+                    navController.navigate("") // 소비 분석 보기 경로 추가
+                },
+                onTransactionClick = { transaction ->
+                    navController.navigate("") // 상세 지출 내역 경로 추가
                 }
             )
         }
