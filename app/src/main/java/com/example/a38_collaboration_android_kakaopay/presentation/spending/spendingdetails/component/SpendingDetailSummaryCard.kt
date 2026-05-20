@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.a38_collaboration_android_kakaopay.R
@@ -27,39 +28,46 @@ import com.example.a38_collaboration_android_kakaopay.presentation.spending.spen
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingdetails.model.SpendingDetailPaymentModel
 
 @Composable
-fun SpendingDetailSummaryCard(
+fun SpendingDetailStoreInfo(
     paymentInfo: SpendingDetailPaymentModel,
     modifier: Modifier = Modifier,
 ) {
-    Column(modifier = modifier.fillMaxWidth()) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.Top
-        ) {
-            SpendingDetailGroup(
-                groupData = paymentInfo.mainInfo,
-                modifier = Modifier.weight(1f)
-            )
-
-            Image(
-                painter = painterResource(id = paymentInfo.icon),
-                contentDescription = null,
-                modifier = Modifier
-                    .size(48.dp)
-                    .clip(RoundedCornerShape(18.dp))
-            )
-        }
-
-        Spacer(modifier = Modifier.weight(1f))
+    Row(
+        modifier = modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.Top
+    ) {
         SpendingDetailGroup(
-            groupData = paymentInfo.amountInfo
+            groupData = paymentInfo.mainInfo,
+            titleStyle = KakaoTheme.typography.titleB20,
+            modifier = Modifier.weight(1f)
+        )
+
+        Image(
+            painter = painterResource(id = paymentInfo.icon),
+            contentDescription = null,
+            modifier = Modifier
+                .size(48.dp)
+                .clip(RoundedCornerShape(18.dp))
         )
     }
 }
 
 @Composable
+fun SpendingDetailAmountInfo(
+    paymentInfo: SpendingDetailPaymentModel,
+    modifier: Modifier = Modifier,
+) {
+    SpendingDetailGroup(
+        groupData = paymentInfo.amountInfo,
+        titleStyle = KakaoTheme.typography.titleB26,
+        modifier = modifier.fillMaxWidth()
+    )
+}
+
+@Composable
 private fun SpendingDetailGroup(
     groupData: SpendingDetailGroupModel,
+    titleStyle: TextStyle,
     modifier: Modifier = Modifier,
     titleColor: Color = KakaoTheme.colors.black,
 ) {
@@ -67,7 +75,7 @@ private fun SpendingDetailGroup(
         Text(
             text = groupData.title,
             color = titleColor,
-            style = KakaoTheme.typography.titleB26,
+            style = titleStyle,
         )
 
         Spacer(modifier = Modifier.height(6.dp))
@@ -108,28 +116,29 @@ private fun SpendingInfoRow(
 
 @Preview(showBackground = true)
 @Composable
-private fun SpendingDetailSummaryCardPreview() {
+private fun SpendingDetailSummaryCardsPreview() {
     KakaoPayTheme {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(156.dp)
         ) {
-            SpendingDetailSummaryCard(
-                paymentInfo = SpendingDetailPaymentModel(
-                    mainInfo = SpendingDetailGroupModel(
-                        title = "마라로제 떡볶이X튀2 콤보 1개",
-                        label = "페이머니",
-                        value = "결제"
-                    ),
-                    amountInfo = SpendingDetailGroupModel(
-                        title = 11800L.toWonFormat(),
-                        label = "총 결제",
-                        value = 30000L.toWonFormat()
-                    ),
-                    icon = R.drawable.img_baemin_logo_48px
-                )
+            val mockData = SpendingDetailPaymentModel(
+                mainInfo = SpendingDetailGroupModel(
+                    title = "마라로제 떡볶이X튀2 콤보 1개",
+                    label = "페이머니",
+                    value = "결제"
+                ),
+                amountInfo = SpendingDetailGroupModel(
+                    title = 11800L.toWonFormat(),
+                    label = "총 결제",
+                    value = 30000L.toWonFormat()
+                ),
+                icon = R.drawable.img_baemin_logo_48px
             )
+
+            SpendingDetailStoreInfo(paymentInfo = mockData)
+            Spacer(modifier = Modifier.height(32.dp))
+            SpendingDetailAmountInfo(paymentInfo = mockData)
         }
     }
 }
