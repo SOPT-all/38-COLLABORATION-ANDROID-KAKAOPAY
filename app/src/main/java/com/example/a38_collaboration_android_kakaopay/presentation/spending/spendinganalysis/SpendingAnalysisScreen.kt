@@ -15,7 +15,6 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ProgressIndicatorDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -50,7 +49,7 @@ import kotlinx.collections.immutable.toImmutableList
 fun SpendingAnalysisRoute(
     paddingValues: PaddingValues,
     navController: NavController,
-    viewModel: SpendingAnalysisViewModel = viewModel()
+    viewModel: SpendingAnalysisViewModel = viewModel(),
 ) {
     val state = viewModel.uiState
 
@@ -67,8 +66,7 @@ fun SpendingAnalysisRoute(
                 uiModel = state.data,
                 onMonthNavigate = { yearMonth ->
                     viewModel.getSpendingAnalysis(yearMonth)
-                }
-            )
+                })
         }
 
         is UiState.Failure -> {
@@ -86,7 +84,7 @@ fun SpendingAnalysisScreen(
     paddingValues: PaddingValues,
     uiModel: SpendingAnalysisUiModel,
     onMonthNavigate: (String) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     var currentTab by remember { mutableStateOf(SegmentTab.SUMMARY) }
     val scrollState = rememberScrollState()
@@ -104,10 +102,7 @@ fun SpendingAnalysisScreen(
                     style = KakaoTheme.typography.bodyM16,
                     color = KakaoTheme.colors.black
                 )
-            },
-            onBackClick = {},
-            modifier = Modifier
-                .padding(horizontal = 4.dp)
+            }, onBackClick = {}, modifier = Modifier.padding(horizontal = 4.dp)
         )
 
         Spacer(modifier = Modifier.height(14.dp))
@@ -117,22 +112,18 @@ fun SpendingAnalysisScreen(
             onTabSelected = { selected ->
                 currentTab = selected
             },
-            modifier = Modifier
-                .padding(horizontal = 16.dp),
+            modifier = Modifier.padding(horizontal = 16.dp),
         )
 
         Spacer(modifier = Modifier.height(35.dp))
 
         MonthControl(
-            modifier = Modifier
-                .padding(start = 16.dp, bottom = 6.dp),
+            modifier = Modifier.padding(start = 16.dp, bottom = 6.dp),
             selectedMonth = uiModel.selectedMonth,
             onMonthChanged = { newMonth ->
                 val targetYearMonth = if (newMonth == Month.APRIL) "2026-04" else "2026-05"
                 onMonthNavigate(targetYearMonth)
-            }
-        )
-
+            })
 
         ExpenseSummary(
             currentMonthTotal = uiModel.currentMonthTotal,
@@ -154,10 +145,7 @@ fun SpendingAnalysisScreen(
 
         Spacer(modifier = Modifier.height(27.dp))
 
-        AssetAction(
-            modifier = Modifier
-                .padding(horizontal = 16.dp)
-        )
+        AssetAction(modifier = Modifier.padding(horizontal = 16.dp))
 
         Spacer(modifier = Modifier.height(30.dp))
 
@@ -174,7 +162,6 @@ fun SpendingAnalysisScreen(
     }
 
 }
-
 
 @Preview(showBackground = true)
 @Composable
@@ -194,9 +181,6 @@ private fun SpendingAnalysisScreenPreview() {
 
     KakaoPayTheme {
         SpendingAnalysisScreen(
-            paddingValues = PaddingValues(),
-            uiModel = mockUiModel,
-            onMonthNavigate = {}
-        )
+            paddingValues = PaddingValues(), uiModel = mockUiModel, onMonthNavigate = {})
     }
 }

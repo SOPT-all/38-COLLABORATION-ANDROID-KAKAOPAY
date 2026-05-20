@@ -34,8 +34,7 @@ fun ExpenseList(
     modifier: Modifier = Modifier
 ) {
     Column(
-        modifier = modifier
-            .fillMaxWidth()
+        modifier = modifier.fillMaxWidth()
     ) {
         categoryExpenses.forEach { expenseItem ->
             ExpenseItem(
@@ -51,7 +50,6 @@ data class CategoryExpenseItem(
     val previousMonthAmount: Long
 )
 
-
 fun calculateDiff(current: Long, previous: Long): Boolean {
     val diff = current - previous
 
@@ -61,7 +59,6 @@ fun calculateDiff(current: Long, previous: Long): Boolean {
         else -> true
     }
 }
-
 
 @Composable
 private fun ExpenseItem(
@@ -89,6 +86,7 @@ private fun ExpenseItem(
             .padding(vertical = 8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
+
         Image(
             painter = painterResource(id = item.categoryType.imageResId),
             contentDescription = null,
@@ -110,7 +108,7 @@ private fun ExpenseItem(
         Column(
             horizontalAlignment = Alignment.End
         ) {
-            // 이번 달 지출 금액
+
             Text(
                 text = item.currentMonthAmount.toWonFormat(),
                 style = KakaoTheme.typography.bodyM16,
@@ -124,7 +122,6 @@ private fun ExpenseItem(
                 style = KakaoTheme.typography.labelR12,
                 color = diffTextColor
             )
-
         }
 
         Spacer(modifier = Modifier.width(2.dp))

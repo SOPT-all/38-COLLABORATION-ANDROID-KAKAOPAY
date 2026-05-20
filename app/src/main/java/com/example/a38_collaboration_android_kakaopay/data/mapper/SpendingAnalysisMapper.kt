@@ -1,6 +1,5 @@
 package com.example.a38_collaboration_android_kakaopay.data.mapper
 
-import android.util.Log
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.monthcontrol.Month
 import com.example.a38_collaboration_android_kakaopay.data.remote.dto.response.categoryExpenses
 import com.example.a38_collaboration_android_kakaopay.data.remote.dto.response.SpendingAnalysisResponse
