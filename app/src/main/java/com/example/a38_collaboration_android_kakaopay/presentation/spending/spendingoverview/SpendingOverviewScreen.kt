@@ -19,7 +19,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.a38_collaboration_android_kakaopay.R
+import com.example.a38_collaboration_android_kakaopay.core.common.state.UiState
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.binarytab.BinaryTabControl
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.button.KakaoPayScrollTopButton
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.dropdown.TransactionDropdown
@@ -28,31 +31,39 @@ import com.example.a38_collaboration_android_kakaopay.core.designsystem.componen
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
 import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.SpendingSummary
-import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.DailyTransactions
-import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.Transaction
 import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.TransactionMethod
 import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.TransactionType
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingoverview.component.ActionContainer
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingoverview.component.SegmentControlBar
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingoverview.component.SwapViewButton
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingoverview.component.TransactionGroup
+import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingoverview.model.DailyTransactionsUiModel
+import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingoverview.model.TransactionsUiModel
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.launch
 
 @Composable
 fun SpendingOverviewRoute(
     paddingValues: PaddingValues,
-    spendingSummary: SpendingSummary,
     onCategoryAnalysisClick: () -> Unit,
-    dailyTransactions: List<DailyTransactions>,
     navController: NavController,
+    viewModel: SpendingOverviewViewModel = viewModel(),
 ) {
-    SpendingOverviewScreen(
-        paddingValues = paddingValues,
-        spendingSummary = spendingSummary,
-        onCategoryAnalysisClick = onCategoryAnalysisClick,
-        dailyTransactions = dailyTransactions
-    )
+    val uiState = viewModel.uiState
+
+    when (uiState) {
+        is UiState.Loading -> {}
+        is UiState.Success -> {
+            SpendingOverviewScreen(
+                paddingValues = paddingValues,
+                spendingSummary = uiState.data.spendingSummary,
+                dailyTransactions = uiState.data.dailyTransactions,
+                onCategoryAnalysisClick = onCategoryAnalysisClick,
+            )
+        }
+        is UiState.Failure -> {}
+        is UiState.Empty -> {}
+    }
 }
 
 @Composable
@@ -60,7 +71,7 @@ fun SpendingOverviewScreen(
     paddingValues: PaddingValues,
     spendingSummary: SpendingSummary,
     onCategoryAnalysisClick: () -> Unit,
-    dailyTransactions: List<DailyTransactions>,
+    dailyTransactions: List<DailyTransactionsUiModel>,
     modifier: Modifier = Modifier,
 ) {
     val listState = rememberLazyListState()
@@ -202,57 +213,20 @@ private fun DateControl(
 }
 
 private val dummyDailyTransactions = listOf(
-    DailyTransactions(
+    DailyTransactionsUiModel(
         date = "2026-04-27",
         dayOfWeek = "월",
         dailyTotal = -16325,
         transactions = persistentListOf(
-            Transaction(
+            TransactionsUiModel(
                 transactionId = 1,
                 transactionType = TransactionType.PAYMENT,
                 transactionMethod = TransactionMethod.PAY_MONEY,
                 transactionName = "우아한형제들·마라로제 떡볶이X튀2 콤보",
                 amount = -11800,
-                includeInTotal = true
+                includeInTotal = true,
+                thumbnail = R.drawable.img_profile_placeholder
             ),
-            Transaction(
-                transactionId = 2,
-                transactionType = TransactionType.TRANSFER_SEND,
-                transactionMethod = TransactionMethod.PAY_MONEY,
-                transactionName = "염*원(카카오뱅크1234)",
-                amount = -4525,
-                includeInTotal = true
-            )
-        )
-    ),
-    DailyTransactions(
-        date = "2026-04-23",
-        dayOfWeek = "목",
-        dailyTotal = -3475,
-        transactions = persistentListOf(
-            Transaction(
-                transactionId = 3,
-                transactionType = TransactionType.TRANSFER_SEND,
-                transactionMethod = TransactionMethod.PAY_MONEY,
-                transactionName = "박솝트(박솝트)",
-                amount = -3475,
-                includeInTotal = false
-            )
-        )
-    ),
-    DailyTransactions(
-        date = "2026-04-16",
-        dayOfWeek = "목",
-        dailyTotal = 123000,
-        transactions = persistentListOf(
-            Transaction(
-                transactionId = 4,
-                transactionType = TransactionType.TRANSFER_RECEIVE,
-                transactionMethod = TransactionMethod.PAY_MONEY,
-                transactionName = "김솝트(김솝트)",
-                amount = 123000,
-                includeInTotal = true
-            )
         )
     )
 )
