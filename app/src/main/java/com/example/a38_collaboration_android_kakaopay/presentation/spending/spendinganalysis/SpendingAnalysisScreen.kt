@@ -96,11 +96,10 @@ fun SpendingAnalysisScreen(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .verticalScroll(scrollState)
             .background(KakaoTheme.colors.white)
-            .systemBarsPadding()
-            .navigationBarsPadding()
+            .padding(paddingValues)
             .padding(horizontal = 16.dp)
+            .verticalScroll(scrollState)
     ) {
         KakaoPaySubTopBar(
             title = {
@@ -115,7 +114,6 @@ fun SpendingAnalysisScreen(
         )
 
         Spacer(modifier = Modifier.weight(12f))
-//        Spacer(modifier = Modifier.height(12.dp))
 
         KakaoPaySegmentControl(
             selectedTab = currentTab,
@@ -125,7 +123,6 @@ fun SpendingAnalysisScreen(
         )
 
         Spacer(modifier = Modifier.weight(21f))
-//        Spacer(modifier = Modifier.height(21.dp))
 
         MonthControl(
             selectedMonth = uiModel.selectedMonth,
@@ -143,7 +140,6 @@ fun SpendingAnalysisScreen(
         )
 
         Spacer(modifier = Modifier.weight(16f))
-//        Spacer(modifier = Modifier.height(16.dp))
 
         Image(
             painter = painterResource(id = uiModel.chartImageResId),
@@ -153,23 +149,17 @@ fun SpendingAnalysisScreen(
         )
 
         Spacer(modifier = Modifier.weight(27f))
-//        Spacer(modifier = Modifier.height(27.dp))
 
         AssetAction(modifier = Modifier.fillMaxWidth())
 
         Spacer(modifier = Modifier.weight(30f))
-//        Spacer(modifier = Modifier.height(30.dp))
 
         ExpenseList(
             categoryExpenses = uiModel.categoryExpenses,
-            modifier = Modifier
-                .fillMaxWidth()
-//                .weight(1f)
-//                .padding(vertical = 12.dp)
+            modifier = Modifier.fillMaxWidth()
         )
 
         Spacer(modifier = Modifier.weight(43f))
-//        Spacer(modifier = Modifier.height(43.dp))
 
     }
 
