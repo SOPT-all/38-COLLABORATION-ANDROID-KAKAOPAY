@@ -126,4 +126,9 @@
     <string name="finance_menu_for_me_insurance">나를위한보험</string>
     <string name="finance_menu_finance_assistant">금융비서</string>
 
+    <string name="finance_top_new">새로 나온</string>
+    <string name="finance_top_recommend">추천</string>
+    <string name="finance_top_kakao_friend_cost">카톡친구비용</string>
+    <string name="finance_top_investment_board">금손들의 투자판단</string>
+
 </resources>
