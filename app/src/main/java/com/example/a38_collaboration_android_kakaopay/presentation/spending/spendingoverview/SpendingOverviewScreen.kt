@@ -61,10 +61,10 @@ fun SpendingOverviewRoute(
                 selectedMonth = viewModel.selectedMonth,
                 onMonthChanged = { month -> viewModel.onMonthChanged(month) },
                 onCategoryAnalysisClick = {
-                    navController.navigate("") // 소비 분석 보기 경로 추가
+                    navController.navigate("") // 소비 분석 보기 경로
                 },
                 onTransactionClick = { transaction ->
-                    navController.navigate("") // 상세 지출 내역 경로 추가
+                    navController.navigate("") // 지출 상세 내역 경로
                 }
             )
         }

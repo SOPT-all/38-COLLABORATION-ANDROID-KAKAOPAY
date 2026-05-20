@@ -27,7 +27,7 @@ enum class Month(val value: Int) {
 @Composable
 fun MonthControl(
     selectedMonth: Month = Month.MAY,
-    onMonthChanged: (Month) -> Unit,
+    onMonthChanged: ((Month) -> Unit)? = null,
     modifier: Modifier = Modifier,
 ) {
     Row(
@@ -41,7 +41,7 @@ fun MonthControl(
             isEnabled = selectedMonth == Month.MAY,
             modifier = Modifier.noRippleClickable {
                 if (selectedMonth == Month.MAY) {
-                    onMonthChanged(Month.APRIL)
+                    onMonthChanged?.invoke(Month.APRIL)
                 }
             }
         )
@@ -68,7 +68,7 @@ fun MonthControl(
             isEnabled = selectedMonth == Month.APRIL,
             modifier = Modifier.noRippleClickable {
                 if (selectedMonth == Month.APRIL) {
-                    onMonthChanged(Month.MAY)
+                    onMonthChanged?.invoke(Month.MAY)
                 }
             }
         )

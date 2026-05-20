@@ -78,7 +78,6 @@ fun AppNaviHost(
             SpendingOverviewRoute(
                 paddingValues = innerPadding,
                 navController = navController,
-                onCategoryAnalysisClick = {}
             )
         }
 
