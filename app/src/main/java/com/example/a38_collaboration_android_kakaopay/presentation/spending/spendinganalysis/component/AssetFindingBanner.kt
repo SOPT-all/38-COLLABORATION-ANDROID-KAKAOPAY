@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -27,7 +28,7 @@ fun AssetAction(
 ){
 
     Row(
-        modifier = modifier,
+        modifier = modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
     ){
         Image(
@@ -52,8 +53,8 @@ fun AssetAction(
 }
 
 @Composable
-private fun AssetFinding(){
-    Column {
+private fun AssetFinding(modifier: Modifier = Modifier){
+    Column(modifier = modifier) {
         Text(
             text = stringResource(id = R.string.asset_finding_1),
             style = KakaoTheme.typography.labelR12,

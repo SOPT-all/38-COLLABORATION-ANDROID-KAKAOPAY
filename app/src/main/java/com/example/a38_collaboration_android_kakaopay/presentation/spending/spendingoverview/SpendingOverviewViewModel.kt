@@ -45,7 +45,7 @@ class SpendingOverviewViewModel : ViewModel() {
             }.onSuccess { data ->
                 uiState = UiState.Success(data)
             }.onFailure {
-                uiState = UiState.Failure
+
             }
         }
     }
