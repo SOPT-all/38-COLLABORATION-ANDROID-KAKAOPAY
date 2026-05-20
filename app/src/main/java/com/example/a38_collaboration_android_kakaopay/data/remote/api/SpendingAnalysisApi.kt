@@ -7,7 +7,7 @@ import retrofit2.http.Query
 
 interface SpendingAnalysisApi {
 
-    @GET("/api/v1/expenses/analysis?yearMonth={yearMonth}")
+    @GET("/api/v1/expenses/analysis")
     suspend fun getSpendingAnalysis(
         @Query("yearMonth") yearMonth: String,
     ): BaseResponse<SpendingAnalysisResponse>

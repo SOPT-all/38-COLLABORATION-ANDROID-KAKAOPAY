@@ -1,5 +1,6 @@
 package com.example.a38_collaboration_android_kakaopay.data.mapper
 
+import android.util.Log
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.monthcontrol.Month
 import com.example.a38_collaboration_android_kakaopay.data.remote.dto.response.CategoryResponse
 import com.example.a38_collaboration_android_kakaopay.data.remote.dto.response.SpendingAnalysisResponse
@@ -26,6 +27,7 @@ fun SpendingAnalysisResponse.toUiModel(
 }
 
 fun CategoryResponse.toUiItem(): CategoryExpenseItem {
+    Log.d("SpendingAnalysisMapper", "Mapping category=$category")
     return CategoryExpenseItem(
         categoryType = SpendingCategoryModel.valueOf(this.category.uppercase()),
         currentMonthAmount = this.currentMonthAmount,
