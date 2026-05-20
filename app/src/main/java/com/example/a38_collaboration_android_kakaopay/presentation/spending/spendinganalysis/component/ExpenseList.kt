@@ -1,10 +1,12 @@
 package com.example.a38_collaboration_android_kakaopay.presentation.spending.spendinganalysis.component
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -32,9 +34,16 @@ fun ExpenseList(
     categoryExpenses: ImmutableList<CategoryExpenseItem>,
     modifier: Modifier = Modifier
 ) {
-    Column(modifier = modifier.fillMaxWidth()) {
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .height(201.dp)
+    ) {
         categoryExpenses.forEach { expenseItem ->
-            ExpenseItem(item = expenseItem)
+            ExpenseItem(
+                item = expenseItem,
+                modifier = Modifier.weight(1f)
+            )
         }
     }
 }
@@ -44,7 +53,6 @@ data class CategoryExpenseItem(
     val currentMonthAmount: Long,
     val previousMonthAmount: Long
 )
-
 
 
 fun calculateDiff(current: Long, previous: Long): Boolean {
@@ -73,9 +81,9 @@ private fun ExpenseItem(
 
     val diffTextMessage =
         if (calculateDiff(current = item.currentMonthAmount, previous = item.previousMonthAmount)) {
-            "+${kotlin.math.abs(item.currentMonthAmount-item.previousMonthAmount).toWonFormat()}"
+            "+${kotlin.math.abs(item.currentMonthAmount - item.previousMonthAmount).toWonFormat()}"
         } else {
-            "-${kotlin.math.abs(item.currentMonthAmount-item.previousMonthAmount).toWonFormat()}"
+            "-${kotlin.math.abs(item.currentMonthAmount - item.previousMonthAmount).toWonFormat()}"
         }
 
     Row(
