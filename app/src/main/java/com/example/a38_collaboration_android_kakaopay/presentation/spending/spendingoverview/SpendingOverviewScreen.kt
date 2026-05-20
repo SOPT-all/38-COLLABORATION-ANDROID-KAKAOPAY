@@ -73,7 +73,6 @@ fun SpendingOverviewScreen(
     ) {
         Column (
             modifier = Modifier
-                .fillMaxSize()
                 .padding(paddingValues)
         ) {
             KakaoPaySubTopBar(
@@ -93,8 +92,7 @@ fun SpendingOverviewScreen(
                 contentPadding = PaddingValues(
                     bottom = 123.dp
                 ),
-                modifier = Modifier
-                    .fillMaxSize()
+                modifier = Modifier,
             ) {
                 item {
                     Column(
