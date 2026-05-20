@@ -4,7 +4,6 @@ import com.example.a38_collaboration_android_kakaopay.core.designsystem.componen
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendinganalysis.component.CategoryExpenseItem
 import kotlinx.collections.immutable.ImmutableList
 
-
 data class SpendingAnalysisUiModel(
     val selectedMonth: Month,
     val currentMonthTotal: Long,
@@ -12,4 +11,3 @@ data class SpendingAnalysisUiModel(
     val chartImageResId: Int,
     val categoryExpenses: ImmutableList<CategoryExpenseItem>
 )
-

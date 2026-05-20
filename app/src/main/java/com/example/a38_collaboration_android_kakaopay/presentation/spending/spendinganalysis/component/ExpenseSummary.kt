@@ -25,12 +25,13 @@ fun ExpenseSummary(
     currentMonthTotal: Long,
     previousMonthTotal: Long,
     modifier: Modifier = Modifier,
-){
+) {
     val isMoreSpent = calculateDiff(current = currentMonthTotal, previous = previousMonthTotal)
+
     val totalDiffAmount = kotlin.math.abs(currentMonthTotal - previousMonthTotal).toWonFormat()
 
     val totalDiffTextMessage =
-        if (isMoreSpent){
+        if (isMoreSpent) {
             "지난달 같은 기간보다 +${totalDiffAmount} 더 쓰고 있어요"
         } else {
             "지난달 같은 기간보다 ${totalDiffAmount} 덜 쓰고 있어요"
@@ -43,12 +44,10 @@ fun ExpenseSummary(
             KakaoTheme.colors.highlightPrimaryBlue
         }
 
-    Column(
-        modifier = modifier.fillMaxWidth()
-    ){
+    Column(modifier = modifier.fillMaxWidth()) {
         Row(
             verticalAlignment = Alignment.CenterVertically
-        ){
+        ) {
             Text(
                 text = currentMonthTotal.toWonFormat(),
                 style = KakaoTheme.typography.titleB24,
@@ -71,12 +70,11 @@ fun ExpenseSummary(
         )
 
     }
-
 }
 
 @Preview(showBackground = true)
 @Composable
-private fun ExpenseSummaryPreview(){
+private fun ExpenseSummaryPreview() {
     KakaoPayTheme {
         ExpenseSummary(
             currentMonthTotal = 184270,
