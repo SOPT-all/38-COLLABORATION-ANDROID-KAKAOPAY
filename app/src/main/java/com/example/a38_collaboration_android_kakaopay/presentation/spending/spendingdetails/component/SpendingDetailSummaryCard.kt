@@ -35,7 +35,7 @@ fun SpendingDetailStoreInfo(
     ) {
         Column(modifier = Modifier.weight(1f)) {
             Text(
-                text = paymentInfo.expenseName,
+                text = paymentInfo.expenseName, // "마라로제 떡볶이..." 딲!
                 color = KakaoTheme.colors.black,
                 style = KakaoTheme.typography.titleB20,
                 maxLines = 2,
@@ -64,7 +64,7 @@ fun SpendingDetailAmountInfo(
 ) {
     Column(modifier = modifier.fillMaxWidth()) {
         Text(
-            text = paymentInfo.formattedSplitAmount,
+            text = paymentInfo.formattedSplitAmount, // 게터로 가공된 "11,800원" 딲!
             color = KakaoTheme.colors.black,
             style = KakaoTheme.typography.titleB26,
         )
