@@ -13,17 +13,15 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.a38_collaboration_android_kakaopay.R
-import com.example.a38_collaboration_android_kakaopay.core.common.util.toWonFormat
+import com.example.a38_collaboration_android_kakaopay.core.common.state.UiState
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.topbar.KakaoPaySubTopBar
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
@@ -31,53 +29,52 @@ import com.example.a38_collaboration_android_kakaopay.presentation.spending.spen
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingdetails.component.SpendingDetailBanner
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingdetails.component.SpendingDetailButtonGroup
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingdetails.component.SpendingDetailStoreInfo
+import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingdetails.component.SpendingDetailsLoadingScreen
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingdetails.component.SpendingInfoCard
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingdetails.component.SpendingSummaryCard
-import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingdetails.model.SpendingDetailGroupModel
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingdetails.model.SpendingDetailPaymentModel
+import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingdetails.model.SpendingDetailsViewModel
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingdetails.model.SpendingInfoModel
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingdetails.model.SpendingSummaryModel
 
 @Composable
 fun SpendingDetailsRoute(
     paddingValues: PaddingValues,
-    navController: NavController
+    navController: NavController,
+    modifier: Modifier = Modifier,
+    transactionId: Long = 1L,
+    viewModel: SpendingDetailsViewModel = viewModel()
 ) {
-    var isIncluded by remember { mutableStateOf(true) }
+    LaunchedEffect(transactionId) {
+        viewModel.getExpenseDetail(transactionId)
+    }
 
-    SpendingDetailsScreen(
-        paddingValues = paddingValues,
-        paymentInfo = SpendingDetailPaymentModel(
-            mainInfo = SpendingDetailGroupModel(
-                title = "마라로제 떡볶이X튀2 콤보 1개",
-                label = "페이머니",
-                value = "결제"
-            ),
-            amountInfo = SpendingDetailGroupModel(
-                title = 11800L.toWonFormat(),
-                label = "총 결제",
-                value = 11800L.toWonFormat()
-            ),
-            icon = R.drawable.img_baemin_logo_48px
-        ),
-        summaryInfo = SpendingSummaryModel(
-            splitAmount = 11800L,
-            memo = "",
-            isIncludedInTotal = isIncluded,
-            isSettlementComplete = true
-        ),
-        detailInfo = SpendingInfoModel(
-            orderAmount = 11800L,
-            paymentAmount = 11800L,
-            orderNumber = "202604270L7M2W06J",
-            dateTime = "2026. 04. 27.(월) 21:39",
-            category = "배달"
-        ),
-        onBackClick = { navController.popBackStack() },
-        onToggleChange = { newValue ->
-            isIncluded = newValue
+    when (val uiState = viewModel.uiState) {
+        is UiState.Loading -> {
+            SpendingDetailsLoadingScreen(paddingValues = paddingValues)
         }
-    )
+
+        is UiState.Success -> {
+            val data = uiState.data
+
+            SpendingDetailsScreen(
+                paddingValues = paddingValues,
+                paymentInfo = data.paymentInfo,
+                summaryInfo = data.summaryInfo,
+                detailInfo = data.detailInfo,
+                onBackClick = { navController.popBackStack() },
+                onToggleChange = { newValue ->
+                    viewModel.onToggleChanged(newValue)
+                }
+            )
+        }
+
+        is UiState.Failure -> {
+            Text(text = "해당 지출 상세 내역을 찾을 수 없습니다. (404)")
+        }
+
+        is UiState.Empty -> Unit
+    }
 }
 
 @Composable
@@ -119,7 +116,6 @@ fun SpendingDetailsScreen(
                 .fillMaxSize()
                 .verticalScroll(scrollState)
         ) {
-
             Spacer(modifier = Modifier.height(29.dp))
 
             SpendingDetailStoreInfo(paymentInfo = paymentInfo)
@@ -167,16 +163,10 @@ private fun SpendingDetailsScreenPreview() {
         SpendingDetailsScreen(
             paddingValues = PaddingValues(),
             paymentInfo = SpendingDetailPaymentModel(
-                mainInfo = SpendingDetailGroupModel(
-                    title = "마라로제 떡볶이X튀2 콤보 1개",
-                    label = "페이머니",
-                    value = "결제"
-                ),
-                amountInfo = SpendingDetailGroupModel(
-                    title = 11800L.toWonFormat(),
-                    label = "총 결제",
-                    value = 11800L.toWonFormat()
-                ),
+                expenseName = "마라로제 떡볶이X튀2 콤보 1개",
+                paymentMethod = "페이머니",
+                splitAmount = 11800L,
+                totalAmount = 30000L,
                 icon = R.drawable.img_baemin_logo_48px
             ),
             summaryInfo = SpendingSummaryModel(
@@ -186,13 +176,13 @@ private fun SpendingDetailsScreenPreview() {
                 isSettlementComplete = true
             ),
             detailInfo = SpendingInfoModel(
-                orderAmount = 11800L,
+                orderAmount = 30000L,
                 paymentAmount = 11800L,
                 orderNumber = "202604270L7M2W06J",
                 dateTime = "2026. 04. 27.(월) 21:39",
                 category = "배달"
             ),
-            onBackClick= {},
+            onBackClick = {},
             onToggleChange = {},
         )
     }
