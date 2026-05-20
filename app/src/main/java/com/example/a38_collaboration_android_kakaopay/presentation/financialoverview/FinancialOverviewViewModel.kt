@@ -1,20 +1,21 @@
 package com.example.a38_collaboration_android_kakaopay.presentation.financialoverview
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.a38_collaboration_android_kakaopay.core.common.state.UiState
 import com.example.a38_collaboration_android_kakaopay.data.mapper.toUiModel
 import com.example.a38_collaboration_android_kakaopay.data.remote.RetrofitClient
 import com.example.a38_collaboration_android_kakaopay.data.remote.datasource.AssetDataSource
-import com.example.a38_collaboration_android_kakaopay.presentation.financialoverview.model.FinancialOverviewUiModel
+import kotlinx.collections.immutable.toImmutableList
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class FinancialOverviewViewModel : ViewModel() {
-    var uiState by mutableStateOf<UiState<FinancialOverviewUiModel>>(UiState.Loading)
-        private set
+
+    private val _uiState = MutableStateFlow<UiState<FinancialOverviewUiState>>(UiState.Loading)
+    val uiState: StateFlow<UiState<FinancialOverviewUiState>> = _uiState.asStateFlow()
 
     init {
         getAssets()
@@ -22,16 +23,25 @@ class FinancialOverviewViewModel : ViewModel() {
 
     fun getAssets() {
         viewModelScope.launch {
-            uiState = UiState.Loading
+            _uiState.value = UiState.Loading
             runCatching {
-                AssetDataSource(RetrofitClient.assetsApi)
+             AssetDataSource(RetrofitClient.assetsApi)
                     .getAssets()
                     .data
                     .toUiModel()
             }.onSuccess { data ->
-                uiState = UiState.Success(data)
+                _uiState.value = UiState.Success(
+                    data = FinancialOverviewUiState(
+                       kakaopayBalance =  data.kakaopayBalance,
+                        totalExpense = data.totalExpense,
+                       favoriteAccounts =  data.favoriteAccounts
+                           .map { it.toFinancialList() }
+                           .toImmutableList()
+                    )
+                )
+
             }.onFailure {
-                uiState = UiState.Failure
+                _uiState.value = UiState.Failure
             }
         }
     }
