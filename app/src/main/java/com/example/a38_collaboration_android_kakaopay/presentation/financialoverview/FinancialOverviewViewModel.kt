@@ -41,7 +41,6 @@ class FinancialOverviewViewModel : ViewModel() {
                 )
 
             }.onFailure {
-                _uiState.value = UiState.Failure
             }
         }
     }
