@@ -1,5 +1,6 @@
 package com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingoverview
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -25,6 +26,7 @@ import com.example.a38_collaboration_android_kakaopay.core.designsystem.componen
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.monthcontrol.MonthControl
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.topbar.KakaoPaySubTopBar
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
+import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
 import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.SpendingSummary
 import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.DailyTransactions
 import com.example.a38_collaboration_android_kakaopay.domain.model.spendingoverview.transaction.Transaction
@@ -65,7 +67,9 @@ fun SpendingOverviewScreen(
     val coroutineScope = rememberCoroutineScope()
 
     Box(
-        modifier = modifier.fillMaxSize()
+        modifier = modifier
+            .fillMaxSize()
+            .background(KakaoTheme.colors.white)
     ) {
         Column (
             modifier = Modifier
