@@ -167,6 +167,9 @@ fun FinancialOverviewScreen(
             item { Spacer(Modifier.height(14.dp)) }
 
             item { FinancialCtaButton() }
+
+
+            item { Spacer(Modifier.height(19.dp)) }
         }
 
     }
