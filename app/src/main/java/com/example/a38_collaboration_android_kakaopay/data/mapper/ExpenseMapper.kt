@@ -61,7 +61,7 @@ private fun Transactions.toThumbnail(): Int {
 
     return when (type) {
         TransactionType.PAYMENT -> when (category) {
-            TransactionCategory.DELIVERY -> R.drawable.img_transport // 배달이 따로 없어서 이것으로 구현
+            TransactionCategory.DELIVERY -> R.drawable.img_baemin_logo_36px
             TransactionCategory.TRANSPORTATION -> R.drawable.img_transport
             TransactionCategory.COFFEE_DESSERT -> R.drawable.img_cafe
             TransactionCategory.FOOD -> R.drawable.img_food
