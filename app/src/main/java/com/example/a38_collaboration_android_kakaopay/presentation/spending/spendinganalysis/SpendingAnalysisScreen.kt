@@ -1,5 +1,6 @@
 package com.example.a38_collaboration_android_kakaopay.presentation.spending.spendinganalysis
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -65,7 +66,7 @@ fun SpendingAnalysisRoute(
         }
 
         is UiState.Success -> {
-            SpendingAnalysisScreen(
+           SpendingAnalysisScreen(
                 paddingValues = paddingValues,
                 uiModel = state.data,
                 onBackClick = { navController.popBackStack() },
@@ -131,7 +132,8 @@ fun SpendingAnalysisScreen(
             onMonthChanged = { newMonth ->
                 val targetYearMonth = if (newMonth == Month.APRIL) "2026-04" else "2026-05"
                 onMonthNavigate(targetYearMonth)
-            }
+            },
+            textType = "월 지출"
         )
 
         Spacer(modifier = Modifier.height(4.dp))
@@ -173,8 +175,8 @@ private fun SpendingAnalysisScreenPreview() {
 
     val mockUiModel = SpendingAnalysisUiModel(
         selectedMonth = Month.MAY,
-        currentMonthTotal = 11800L,
-        previousMonthTotal = 64500L,
+        currentMonthTotal = 1200L,
+        previousMonthTotal = 64000L,
         chartImageResId = R.drawable.img_chart_may,
         categoryExpenses = listOf(
             CategoryExpenseItem(SpendingCategoryModel.TRANSPORTATION, 58450L, 68450L),

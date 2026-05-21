@@ -29,7 +29,11 @@ fun MonthControl(
     selectedMonth: Month = Month.MAY,
     onMonthChanged: ((Month) -> Unit)? = null,
     modifier: Modifier = Modifier,
+   textType : String = "월"
 ) {
+    var monthText : String = ""
+    if(textType != "월") { monthText  = "월 지출"}
+    else {monthText = "월"}
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
@@ -49,7 +53,7 @@ fun MonthControl(
         Spacer(modifier = Modifier.width(12.dp))
 
         Text(
-            text = "${selectedMonth.value}월",
+            text = "${selectedMonth.value}$monthText",
             color = KakaoTheme.colors.black,
             style = KakaoTheme.typography.titleB20
         )
@@ -99,7 +103,8 @@ private fun MonthControlPreview() {
     KakaoPayTheme {
         MonthControl(
             selectedMonth = Month.MAY,
-            onMonthChanged = {}
+            onMonthChanged = {},
+            textType = "월 지출"
         )
     }
 }
