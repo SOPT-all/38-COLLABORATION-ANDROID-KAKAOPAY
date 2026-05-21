@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.systemBarsPadding
@@ -81,7 +82,7 @@ fun FinancialOverviewRoute(
                 onTabSelected = { tab ->
                     navController.navigate(tab.route)
                 },
-                onNavigator = {navController.navigate(SpendingOverview)}
+                onNavigator = { navController.navigate(SpendingOverview) }
             )
         }
 
@@ -92,7 +93,7 @@ fun FinancialOverviewRoute(
 fun FinancialOverviewScreen(
     paddingValues: PaddingValues,
     onTabSelected: (MainTab) -> Unit,
-    onNavigator : () -> Unit,
+    onNavigator: () -> Unit,
     uiState: FinancialOverviewUiState,
     modifier: Modifier = Modifier,
 ) {
@@ -105,7 +106,8 @@ fun FinancialOverviewScreen(
                     .statusBarsPadding()
             ) {
                 KakaoPayTopBar(
-                    onClick = {}
+                    onClick = {},
+                    modifier = Modifier.fillMaxWidth()
                 )
             }
 
@@ -126,10 +128,13 @@ fun FinancialOverviewScreen(
                 .fillMaxSize()
                 .background(KakaoTheme.colors.backgroundDefaultGrey)
                 .consumeWindowInsets(innerPadding)
+
                 .padding(horizontal = 20.dp)
 
 
         ) {
+            item { Spacer(Modifier.height(12.dp)) }
+
             item { FinancialBanner(modifier = Modifier.fillMaxWidth()) }
 
             item { Spacer(Modifier.height(10.dp)) }
