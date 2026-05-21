@@ -4,7 +4,6 @@ import com.example.a38_collaboration_android_kakaopay.BuildConfig
 import com.example.a38_collaboration_android_kakaopay.data.remote.api.AssetsApi
 import com.example.a38_collaboration_android_kakaopay.data.remote.api.ExpenseApi
 import com.example.a38_collaboration_android_kakaopay.data.remote.api.SpendingAnalysisApi
-import com.example.a38_collaboration_android_kakaopay.data.remote.api.ExpenseApi
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
