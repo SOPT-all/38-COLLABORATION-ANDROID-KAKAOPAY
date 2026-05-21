@@ -35,7 +35,7 @@
     <string name="financial_securities_account_send">송금</string>
 
     <string name="financial_spending">지출</string>
-    <string name="financial_spending_april_view">4월 내역</string>
+    <string name="financial_spending_april_view">5월 내역</string>
     <string name="financial_spending_view">내역보기</string>
     <string name="financial_spending_upcoming_card_payment">결제 예정 카드값</string>
     <string name="financial_spending_schedule">금융일정</string>
@@ -78,7 +78,7 @@
     <string name="financial_frequently_used">자주 쓰는</string>
     <string name="financial_protection_required">보호필요</string>
     <string name="financial_edit">편집</string>
-    <string name="financial_valuation_amount_view">평과금 보기</string>
+    <string name="financial_valuation_amount_view">평가금 보기</string>
     <string name="financial_point_membership">포인트 멤버십</string>
     <string name="financial_total_assets_view">내 총 자산 보기</string>
     <string name="financial_balance_view">잔액보기</string>
