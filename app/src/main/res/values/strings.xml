@@ -95,7 +95,7 @@
     <string name="spending_detail_settlement_info">정산 정보</string>
     <string name="spending_detail_settlement_complete">정산완료</string>
     <string name="spending_detail_memo">메모</string>
-    <string name="spending_detail_memo_placeholder">메모를 남겨주세요</string>
+    <string name="spending_detail_memo_placeholder">메모를 남겨보세요</string>
     <string name="spending_detail_include_total">지출 합계에 포함</string>
 
     <string name="spending_detail_info_order_amount">주문금액</string>
