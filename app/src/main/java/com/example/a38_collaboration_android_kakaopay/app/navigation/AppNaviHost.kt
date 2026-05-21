@@ -16,7 +16,6 @@ import com.example.a38_collaboration_android_kakaopay.presentation.spending.spen
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingdetails.SpendingDetailsRoute
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingoverview.SpendingOverviewRoute
 import com.example.a38_collaboration_android_kakaopay.presentation.splash.SplashRoute
-import com.example.a38_collaboration_android_kakaopay.presentation.splash.SplashScreen
 
 @Composable
 fun AppNaviHost(

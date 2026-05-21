@@ -33,7 +33,6 @@ fun KakaoPayTopBar(
         modifier = modifier
             .fillMaxWidth()
             .background(KakaoTheme.colors.backgroundDefaultGrey),
-//            .height(48.dp),
         color = KakaoTheme.colors.backgroundDefaultGrey
     ) {
         Row(
