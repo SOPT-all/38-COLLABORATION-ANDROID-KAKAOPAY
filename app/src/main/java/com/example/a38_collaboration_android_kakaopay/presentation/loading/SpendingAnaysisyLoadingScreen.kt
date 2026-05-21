@@ -1,4 +1,4 @@
-package com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingdetails.component
+package com.example.a38_collaboration_android_kakaopay.presentation.loading
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -12,21 +12,29 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.a38_collaboration_android_kakaopay.core.common.util.KakaoPullToIndicator
+import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.segmentcontrol.KakaoPaySegmentControl
+import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.segmentcontrol.SegmentTab
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.topbar.KakaoPaySubTopBar
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
 
 @Composable
-fun SpendingDetailsLoadingScreen(
+fun SpendingAnaysisyLoadingScreen(
     paddingValues: PaddingValues,
     modifier: Modifier = Modifier,
 ) {
+    var currentTab by remember { mutableStateOf(SegmentTab.SUMMARY) }
+
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -34,21 +42,22 @@ fun SpendingDetailsLoadingScreen(
             .padding(horizontal = 16.dp)
     ) {
         KakaoPaySubTopBar(
-            onBackClick = {},
-            modifier = Modifier
-                .padding(top = paddingValues.calculateTopPadding())
-                .background(KakaoTheme.colors.white),
             title = {
                 Text(
-                    text = "상세내역",
-                    style = KakaoTheme.typography.bodyB16,
-                    color = KakaoTheme.colors.black,
-                    textAlign = TextAlign.Start,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 12.dp)
+                    text = "소비분석",
+                    style = KakaoTheme.typography.bodyM16,
+                    color = KakaoTheme.colors.black
                 )
-            }
+            },
+            onBackClick = {},
+            modifier = Modifier.padding(horizontal = 4.dp)
+        )
+
+        KakaoPaySegmentControl(
+            selectedTab = currentTab,
+            onTabSelected = { selected ->
+                currentTab = selected
+            },
         )
 
         Column(
@@ -56,7 +65,7 @@ fun SpendingDetailsLoadingScreen(
                 .fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Spacer(modifier = Modifier.height(63.dp))
+            Spacer(modifier = Modifier.height(2.dp))
 
             Box(
                 modifier = Modifier.size(36.dp),
@@ -75,8 +84,8 @@ fun SpendingDetailsLoadingScreen(
 
 @Preview(showBackground = true)
 @Composable
-private fun SpendingDetailsLoadingScreenPreview() {
+private fun SpendingAnaysisyLoadingScreenPreview() {
     KakaoPayTheme {
-        SpendingDetailsLoadingScreen(paddingValues = PaddingValues())
+        SpendingAnaysisyLoadingScreen(paddingValues = PaddingValues())
     }
 }

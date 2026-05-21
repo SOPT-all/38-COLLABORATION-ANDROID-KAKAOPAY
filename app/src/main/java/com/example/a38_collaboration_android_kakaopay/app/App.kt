@@ -30,25 +30,27 @@ fun App() {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         bottomBar = {
-            KakaoPayNavigatorBar(
-                currentRoute = currentRoute,
-                onTabSelected = { tab ->
-                    val route = when (tab) {
-                        MainTab.HOME -> Home
-                        MainTab.BENEFITS -> Benefits
-                        MainTab.PAY -> Pay
-                        MainTab.ASSET -> Asset
-                        MainTab.INVEST -> Invest
-                    }
-                    navController.navigate(route) {
-                        popUpTo(navController.graph.startDestinationId) {
-                            saveState = true
+            if (currentRoute != null) {
+                KakaoPayNavigatorBar(
+                    currentRoute = currentRoute,
+                    onTabSelected = { tab ->
+                        val route = when (tab) {
+                            MainTab.HOME -> Home
+                            MainTab.BENEFITS -> Benefits
+                            MainTab.PAY -> Pay
+                            MainTab.ASSET -> Asset
+                            MainTab.INVEST -> Invest
                         }
-                        launchSingleTop = true
-                        restoreState = true
+                        navController.navigate(route) {
+                            popUpTo(navController.graph.startDestinationId) {
+                                saveState = true
+                            }
+                            launchSingleTop = true
+                            restoreState = true
+                        }
                     }
-                }
-            )
+                )
+            }
         }) { innerPadding ->
         AppNaviHost(
             navController = navController,

@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -83,7 +84,7 @@ private fun ExpenseItem(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(vertical = 8.dp),
+            .padding(vertical = 12.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
 
@@ -99,7 +100,7 @@ private fun ExpenseItem(
 
         Text(
             text = item.categoryType.koreanName,
-            style = KakaoTheme.typography.bodyR14,
+            style = KakaoTheme.typography.bodyM16,
             color = KakaoTheme.colors.black
         )
 
@@ -115,7 +116,7 @@ private fun ExpenseItem(
                 color = KakaoTheme.colors.black
             )
 
-
+            Spacer(modifier = Modifier.height(4.dp))
 
             Text(
                 text = "지난달보다 $diffTextMessage",

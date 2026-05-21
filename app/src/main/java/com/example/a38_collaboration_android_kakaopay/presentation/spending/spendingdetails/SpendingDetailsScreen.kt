@@ -22,14 +22,16 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.a38_collaboration_android_kakaopay.R
 import com.example.a38_collaboration_android_kakaopay.core.common.state.UiState
+import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.edgecase.EdgeCaseType
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.topbar.KakaoPaySubTopBar
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
+import com.example.a38_collaboration_android_kakaopay.presentation.edgecase.EdgeCaseScreen
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingdetails.component.SpendingDetailAmountInfo
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingdetails.component.SpendingDetailBanner
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingdetails.component.SpendingDetailButtonGroup
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingdetails.component.SpendingDetailStoreInfo
-import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingdetails.component.SpendingDetailsLoadingScreen
+import com.example.a38_collaboration_android_kakaopay.presentation.loading.SpendingDetailsLoadingScreen
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingdetails.component.SpendingInfoCard
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingdetails.component.SpendingSummaryCard
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingdetails.model.SpendingDetailPaymentModel
@@ -41,7 +43,6 @@ import com.example.a38_collaboration_android_kakaopay.presentation.spending.spen
 fun SpendingDetailsRoute(
     paddingValues: PaddingValues,
     navController: NavController,
-    modifier: Modifier = Modifier,
     transactionId: Long = 1L,
     viewModel: SpendingDetailsViewModel = viewModel()
 ) {
@@ -70,10 +71,12 @@ fun SpendingDetailsRoute(
         }
 
         is UiState.Failure -> {
-            Text(text = "해당 지출 상세 내역을 찾을 수 없습니다. (404)")
+            EdgeCaseScreen(type = EdgeCaseType.General)
         }
 
-        is UiState.Empty -> Unit
+        is UiState.Empty -> {
+            EdgeCaseScreen(type = EdgeCaseType.Empty)
+        }
     }
 }
 

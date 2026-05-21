@@ -26,6 +26,7 @@ fun KakaoPayNavigatorBar(
 //            .background(KakaoTheme.colors.white)
             .navigationBarsPadding(),
         shape = RoundedCornerShape(topStart = 26.dp, topEnd = 26.dp),
+        color = KakaoTheme.colors.white
     ) {
         Row(
             modifier = Modifier

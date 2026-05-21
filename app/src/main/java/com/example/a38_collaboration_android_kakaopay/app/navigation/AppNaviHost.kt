@@ -7,30 +7,25 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.edgecase.EdgeCaseType
+import com.example.a38_collaboration_android_kakaopay.presentation.edgecase.EdgeCaseScreen
 import com.example.a38_collaboration_android_kakaopay.presentation.financialoverview.FinancialOverviewRoute
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendinganalysis.SpendingAnalysisRoute
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingdetails.SpendingDetailsRoute
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingoverview.SpendingOverviewRoute
 import com.example.a38_collaboration_android_kakaopay.presentation.splash.SplashRoute
+import com.example.a38_collaboration_android_kakaopay.presentation.splash.SplashScreen
 
 @Composable
 fun AppNaviHost(
     navController: NavHostController,
-
     innerPadding: PaddingValues = PaddingValues(),
 ) {
     NavHost(
         navController = navController,
-        startDestination = FinancialOverview::class,
+        startDestination = Splash::class,
         modifier = Modifier.fillMaxSize()
     ) {
-        composable<FinancialOverview> {
-            FinancialOverviewRoute(
-                paddingValues = innerPadding,
-                navController = navController
-            )
-        }
-
         composable<SpendingAnalysis> {
             SpendingAnalysisRoute(
                 paddingValues = innerPadding,
@@ -42,6 +37,13 @@ fun AppNaviHost(
             SpendingDetailsRoute(
                 paddingValues = innerPadding,
                 navController = navController
+            )
+        }
+
+        composable<SpendingOverview> {
+            SpendingOverviewRoute(
+                paddingValues = innerPadding,
+                navController = navController,
             )
         }
 
@@ -61,29 +63,20 @@ fun AppNaviHost(
         }
 
         composable<Home> {
-            SpendingAnalysisRoute(
-                paddingValues = innerPadding,
-                navController = navController
-            )
+            EdgeCaseScreen(EdgeCaseType.Empty)
         }
 
         composable<Benefits> {
-            SpendingDetailsRoute(
-                paddingValues = innerPadding,
-                navController = navController
-            )
+            EdgeCaseScreen(EdgeCaseType.General)
         }
 
         composable<Pay> {
-            SpendingOverviewRoute(
-                paddingValues = innerPadding,
-                navController = navController,
-            )
+            EdgeCaseScreen(EdgeCaseType.Error404)
         }
 
-//        composable<Asset> {}
-
-        composable<Invest> {}
+        composable<Invest> {
+            EdgeCaseScreen(EdgeCaseType.Empty)
+        }
 
     }
 }

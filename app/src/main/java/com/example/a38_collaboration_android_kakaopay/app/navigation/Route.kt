@@ -9,9 +9,6 @@ sealed interface Route
 data object Splash : Route
 
 @Serializable
-data object FinancialOverview : Route
-
-@Serializable
 data object SpendingAnalysis : Route
 
 @Serializable

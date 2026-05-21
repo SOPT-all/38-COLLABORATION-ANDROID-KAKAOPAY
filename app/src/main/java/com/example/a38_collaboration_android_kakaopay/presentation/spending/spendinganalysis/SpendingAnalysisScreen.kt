@@ -1,6 +1,7 @@
 package com.example.a38_collaboration_android_kakaopay.presentation.spending.spendinganalysis
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -8,7 +9,10 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
@@ -28,6 +32,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.a38_collaboration_android_kakaopay.R
 import com.example.a38_collaboration_android_kakaopay.core.common.state.UiState
+import com.example.a38_collaboration_android_kakaopay.core.common.util.KakaoPullToIndicator
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.edgecase.EdgeCaseType
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.monthcontrol.Month
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.component.monthcontrol.MonthControl
@@ -37,6 +42,7 @@ import com.example.a38_collaboration_android_kakaopay.core.designsystem.componen
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoTheme
 import com.example.a38_collaboration_android_kakaopay.presentation.edgecase.EdgeCaseScreen
+import com.example.a38_collaboration_android_kakaopay.presentation.loading.SpendingAnaysisyLoadingScreen
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendinganalysis.component.AssetAction
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendinganalysis.component.CategoryExpenseItem
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendinganalysis.component.ExpenseList
@@ -55,15 +61,14 @@ fun SpendingAnalysisRoute(
 
     when (state) {
         is UiState.Loading -> {
-            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                CircularProgressIndicator(color = ProgressIndicatorDefaults.circularColor)
-            }
+            SpendingAnaysisyLoadingScreen(paddingValues = paddingValues)
         }
 
         is UiState.Success -> {
             SpendingAnalysisScreen(
                 paddingValues = paddingValues,
                 uiModel = state.data,
+                onBackClick = { navController.popBackStack() },
                 onMonthNavigate = { yearMonth ->
                     viewModel.getSpendingAnalysis(yearMonth)
                 })
@@ -83,6 +88,7 @@ fun SpendingAnalysisRoute(
 fun SpendingAnalysisScreen(
     paddingValues: PaddingValues,
     uiModel: SpendingAnalysisUiModel,
+    onBackClick: () -> Unit,
     onMonthNavigate: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -92,8 +98,10 @@ fun SpendingAnalysisScreen(
     Column(
         modifier = modifier
             .fillMaxSize()
+            .background(KakaoTheme.colors.white)
+            .padding(paddingValues)
+            .padding(horizontal = 16.dp)
             .verticalScroll(scrollState)
-            .padding(bottom = paddingValues.calculateBottomPadding())
     ) {
         KakaoPaySubTopBar(
             title = {
@@ -102,62 +110,58 @@ fun SpendingAnalysisScreen(
                     style = KakaoTheme.typography.bodyM16,
                     color = KakaoTheme.colors.black
                 )
-            }, onBackClick = {}, modifier = Modifier.padding(horizontal = 4.dp)
+            },
+            onBackClick = onBackClick,
+            modifier = Modifier.padding(horizontal = 4.dp)
         )
 
-        Spacer(modifier = Modifier.height(14.dp))
+        Spacer(modifier = Modifier.weight(12f))
 
         KakaoPaySegmentControl(
             selectedTab = currentTab,
             onTabSelected = { selected ->
                 currentTab = selected
             },
-            modifier = Modifier.padding(horizontal = 16.dp),
         )
 
-        Spacer(modifier = Modifier.height(35.dp))
+        Spacer(modifier = Modifier.weight(21f))
 
         MonthControl(
-            modifier = Modifier.padding(start = 16.dp, bottom = 6.dp),
             selectedMonth = uiModel.selectedMonth,
             onMonthChanged = { newMonth ->
                 val targetYearMonth = if (newMonth == Month.APRIL) "2026-04" else "2026-05"
                 onMonthNavigate(targetYearMonth)
-            })
+            }
+        )
+
+        Spacer(modifier = Modifier.height(4.dp))
 
         ExpenseSummary(
             currentMonthTotal = uiModel.currentMonthTotal,
             previousMonthTotal = uiModel.previousMonthTotal,
-            modifier = Modifier.padding(horizontal = 16.dp)
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.weight(16f))
 
         Image(
             painter = painterResource(id = uiModel.chartImageResId),
             contentDescription = null,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp)
-                .height(179.dp),
+            modifier = Modifier.fillMaxWidth(),
             alignment = Alignment.Center
         )
 
-        Spacer(modifier = Modifier.height(27.dp))
+        Spacer(modifier = Modifier.weight(27f))
 
-        AssetAction(modifier = Modifier.padding(horizontal = 16.dp))
+        AssetAction(modifier = Modifier.fillMaxWidth())
 
-        Spacer(modifier = Modifier.height(30.dp))
+        Spacer(modifier = Modifier.weight(30f))
 
         ExpenseList(
             categoryExpenses = uiModel.categoryExpenses,
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f)
-                .padding(vertical = 12.dp, horizontal = 16.dp)
+            modifier = Modifier.fillMaxWidth()
         )
 
-        Spacer(modifier = Modifier.height(43.dp))
+        Spacer(modifier = Modifier.weight(43f))
 
     }
 
@@ -181,6 +185,10 @@ private fun SpendingAnalysisScreenPreview() {
 
     KakaoPayTheme {
         SpendingAnalysisScreen(
-            paddingValues = PaddingValues(), uiModel = mockUiModel, onMonthNavigate = {})
+            paddingValues = PaddingValues(),
+            uiModel = mockUiModel,
+            onBackClick = {},
+            onMonthNavigate = {}
+        )
     }
 }

@@ -7,8 +7,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.a38_collaboration_android_kakaopay.core.designsystem.theme.KakaoPayTheme
+import com.example.a38_collaboration_android_kakaopay.app.navigation.Asset
 import com.example.a38_collaboration_android_kakaopay.app.navigation.Benefits
-import com.example.a38_collaboration_android_kakaopay.app.navigation.FinancialOverview
 import com.example.a38_collaboration_android_kakaopay.app.navigation.Home
 import com.example.a38_collaboration_android_kakaopay.app.navigation.Invest
 import com.example.a38_collaboration_android_kakaopay.app.navigation.Pay
@@ -28,7 +28,7 @@ fun MainScreen(modifier: Modifier = Modifier)  {
         route ->
         when {
             route.contains("Home") -> Home
-            route.contains("FinancialOverview") -> FinancialOverview
+            route.contains("Asset") -> Asset
             route.contains("SpendingAnalysis") -> SpendingAnalysis
             route.contains("SpendingDetails") -> SpendingDetails
             route.contains("SpendingOverview") -> SpendingOverview
