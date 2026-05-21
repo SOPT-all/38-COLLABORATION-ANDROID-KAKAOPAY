@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -81,7 +80,7 @@ fun FinancialOverviewRoute(
                 onTabSelected = { tab ->
                     navController.navigate(tab.route)
                 },
-                onNavigator = {navController.navigate(SpendingOverview)}
+                onNavigator = { navController.navigate(SpendingOverview) }
             )
         }
 
@@ -92,7 +91,7 @@ fun FinancialOverviewRoute(
 fun FinancialOverviewScreen(
     paddingValues: PaddingValues,
     onTabSelected: (MainTab) -> Unit,
-    onNavigator : () -> Unit,
+    onNavigator: () -> Unit,
     uiState: FinancialOverviewUiState,
     modifier: Modifier = Modifier,
 ) {
@@ -105,7 +104,8 @@ fun FinancialOverviewScreen(
                     .statusBarsPadding()
             ) {
                 KakaoPayTopBar(
-                    onClick = {}
+                    onClick = {},
+                    modifier = Modifier.fillMaxWidth()
                 )
             }
 
@@ -126,10 +126,13 @@ fun FinancialOverviewScreen(
                 .fillMaxSize()
                 .background(KakaoTheme.colors.backgroundDefaultGrey)
                 .consumeWindowInsets(innerPadding)
+
                 .padding(horizontal = 20.dp)
 
 
         ) {
+            item { Spacer(Modifier.height(12.dp)) }
+
             item { FinancialBanner(modifier = Modifier.fillMaxWidth()) }
 
             item { Spacer(Modifier.height(10.dp)) }
@@ -162,6 +165,9 @@ fun FinancialOverviewScreen(
             item { Spacer(Modifier.height(14.dp)) }
 
             item { FinancialCtaButton() }
+
+
+            item { Spacer(Modifier.height(19.dp)) }
         }
 
     }

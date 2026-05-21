@@ -32,8 +32,7 @@ fun KakaoPayTopBar(
     Surface(
         modifier = modifier
             .fillMaxWidth()
-            .background(KakaoTheme.colors.backgroundDefaultGrey)
-            .height(48.dp),
+            .background(KakaoTheme.colors.backgroundDefaultGrey),
         color = KakaoTheme.colors.backgroundDefaultGrey
     ) {
         Row(
@@ -56,9 +55,7 @@ fun KakaoPayTopBar(
             Row(
                 modifier = Modifier
                     .padding(end = 16.dp)
-                    .noRippleClickableWithPressedColor {
-                        onClick()
-                    },
+                    .noRippleClickableWithPressedColor { onClick() },
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(24.dp)
             ) {

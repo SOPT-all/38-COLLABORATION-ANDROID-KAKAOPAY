@@ -1,5 +1,7 @@
 package com.example.a38_collaboration_android_kakaopay.app.navigation
 
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
@@ -14,7 +16,6 @@ import com.example.a38_collaboration_android_kakaopay.presentation.spending.spen
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingdetails.SpendingDetailsRoute
 import com.example.a38_collaboration_android_kakaopay.presentation.spending.spendingoverview.SpendingOverviewRoute
 import com.example.a38_collaboration_android_kakaopay.presentation.splash.SplashRoute
-import com.example.a38_collaboration_android_kakaopay.presentation.splash.SplashScreen
 
 @Composable
 fun AppNaviHost(
@@ -24,6 +25,10 @@ fun AppNaviHost(
     NavHost(
         navController = navController,
         startDestination = Splash::class,
+        enterTransition = { EnterTransition.None },
+        exitTransition = { ExitTransition.None },
+        popEnterTransition = { EnterTransition.None },
+        popExitTransition = { ExitTransition.None },
         modifier = Modifier.fillMaxSize()
     ) {
         composable<SpendingAnalysis> {

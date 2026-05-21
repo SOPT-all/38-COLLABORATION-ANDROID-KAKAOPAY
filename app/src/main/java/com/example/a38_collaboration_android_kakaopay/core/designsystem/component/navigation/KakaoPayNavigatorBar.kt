@@ -7,6 +7,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.a38_collaboration_android_kakaopay.app.navigation.Home
@@ -23,7 +24,8 @@ fun KakaoPayNavigatorBar(
     Surface(
         modifier = modifier
             .fillMaxWidth()
-//            .background(KakaoTheme.colors.white)
+            .clip(RoundedCornerShape(topStart = 26.dp, topEnd = 26.dp))
+            .background(KakaoTheme.colors.white)
             .navigationBarsPadding(),
         shape = RoundedCornerShape(topStart = 26.dp, topEnd = 26.dp),
         color = KakaoTheme.colors.white
@@ -31,7 +33,6 @@ fun KakaoPayNavigatorBar(
         Row(
             modifier = Modifier
                 .fillMaxWidth(),
-//                .height(53.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             MainTab.entries.forEach { tab ->

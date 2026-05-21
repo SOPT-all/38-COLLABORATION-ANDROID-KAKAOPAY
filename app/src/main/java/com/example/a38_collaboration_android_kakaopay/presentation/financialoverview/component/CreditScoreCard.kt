@@ -28,7 +28,7 @@ fun CreditScoreCard(
         Column {
             FinancialOverviewRow(
                 icon = iconRes,
-                modifier = Modifier.padding(horizontal = 20.dp, vertical = 10.dp),
+                modifier = Modifier.padding(horizontal = 20.dp, vertical = 16.dp),
                 trailingContent = {
                     KakaoPaySecondaryButton(
                         text = stringResource(R.string.financial_credit_score_raise),
@@ -60,6 +60,7 @@ fun CreditScoreCard(
                     R.string.financial_loan_apply,
                     R.string.financial_card_issue,
                 ),
+                modifier = Modifier.fillMaxWidth().padding( vertical = 6.dp),
                 textStyle = KakaoTheme.typography.bodyB16
             )
         }
@@ -76,4 +77,3 @@ private fun CreditScoreCardPreview() {
         )
     }
 }
-

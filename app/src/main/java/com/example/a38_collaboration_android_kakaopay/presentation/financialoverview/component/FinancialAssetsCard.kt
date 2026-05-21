@@ -61,7 +61,8 @@ fun FinancialAssetsCard(
                     R.string.financial_valuation_amount_view,
                     R.string.financial_point_membership,
                     R.string.financial_total_assets_view,
-                )
+                ),
+                modifier = Modifier.padding(horizontal = 14.dp, vertical = 6.dp)
             )
         }
     }
