@@ -141,46 +141,64 @@ fun SpendingOverviewScreen(
                     bottom = 123.dp
                 ),
             ) {
-                item {
-                    Column(
-                        modifier = Modifier,
-                    ) {
-                        Spacer(modifier = Modifier.height(24.dp))
+                LazyColumn(
+                    state = listState,
+                    contentPadding = PaddingValues(
+                        bottom = 123.dp
+                    ),
+                    modifier = Modifier,
+                ) {
+                    item {
+                        Column(
+                            modifier = Modifier,
+                        ) {
+                            Spacer(modifier = Modifier.height(24.dp))
 
-                        OverviewSection(
-                            uiState = uiState,
-                            onMonthChanged = onMonthChanged,
-                            selectedMonth = selectedMonth,
-                            onCategoryAnalysisClick = onCategoryAnalysisClick
-                        )
+                            OverviewSection(
+                                uiState = uiState,
+                                onMonthChanged = onMonthChanged,
+                                selectedMonth = selectedMonth,
+                                onCategoryAnalysisClick = onCategoryAnalysisClick
+                            )
 
-                        if (uiState is UiState.Success) {
-                            Spacer(modifier = Modifier.height(32.dp))
+                            if (uiState is UiState.Success) {
+                                Spacer(modifier = Modifier.height(32.dp))
 
-                            TransactionHeader()
-                        }
-                    }
-                }
-
-                when (uiState) {
-                    is UiState.Success -> {
-                        uiState.data.dailyTransactions.forEach { dailyTransaction ->
-                            item {
-                                TransactionGroup(
-                                    dailyTransactions = dailyTransaction,
-                                    onTransactionClick = onTransactionClick,
-                                    modifier = Modifier
-                                        .padding(bottom = 24.dp)
-                                )
+                                TransactionHeader()
                             }
                         }
                     }
 
-                    else -> {}
+                    when (uiState) {
+                        is UiState.Success -> {
+                            uiState.data.dailyTransactions.forEach { dailyTransaction ->
+                                item {
+                                    TransactionGroup(
+                                        dailyTransactions = dailyTransaction,
+                                        onTransactionClick = onTransactionClick,
+                                        modifier = Modifier
+                                            .padding(bottom = 24.dp)
+                                    )
+                                }
+                            }
+                        }
+
+                        else -> {}
+                    }
+
+                }
+
+                if (uiState is UiState.Loading) {
+                    KakaoPullToIndicator(
+                        isRefreshing = true,
+                        onRefresh = {},
+                        modifier = Modifier
+                            .align(Alignment.TopCenter)
+                            .padding(top = 18.dp)
+                    ) { }
                 }
 
             }
-
         }
 
         KakaoPayScrollTopButton(
