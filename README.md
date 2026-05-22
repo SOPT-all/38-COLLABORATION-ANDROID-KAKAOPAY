@@ -1,3 +1,7 @@
+
+
+https://github.com/user-attachments/assets/a902c7ba-88af-4be0-8586-688754608367
+
 # 38-COLLABORATION-ANDROID-KAKAOPAY
 > **LET'S SOPT 38기 안드로이드 3조**
 > 🤑카카오페이(KAKAOPAY)
@@ -106,4 +110,9 @@ com.example.a38_collaboration_android_kakaopay // 프로젝트 루트 패키지
 
 - [시연 영상 보러가기](링크-추가-예정)
 
+https://github.com/user-attachments/assets/f32829c0-2147-4d8b-96e8-59fc5f5909bb
+
 </details>
+
+
+
