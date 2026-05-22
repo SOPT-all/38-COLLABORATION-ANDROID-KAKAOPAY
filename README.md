@@ -11,3 +11,7 @@
 |                               `자산 탭 메인화면`                                |                                `지출 통합 내역`                                 |                              `지출 상세 내역`                              |                             `상세 소비 내역`                             |
 
 ---
+
+## 🎬 Video
+https://github.com/user-attachments/assets/4f67caaa-6b7e-441f-b119-b8faf49bf8af
+
