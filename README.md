@@ -15,7 +15,7 @@
 ## UX 개선 사항
 
 기존 화면은 주요 기능 진입 경로가 분산되어 있고, 지출 데이터가 단순 나열 중심으로 제공되어 사용자가 핵심 기능을 빠르게 실행하거나 데이터를 이해하기 어려운 구조였습니다.  
-이를 개선하기 위해 `핵심 기능 접근성`, `정보 표기 일관성`, `지출 데이터 이해도`를 중심으로 UX를 재설계했습니다.
+이를 개선하기 위해 `핵심 기능 접근성`, `정보 표기 일관성`, `지출 데이터 이해도`를 중심으로 UX를 재설계했습니다. ☺️
 
 ### 1. 기능 구성 및 표기 방식 일관성 강화
 
@@ -54,19 +54,23 @@
 ## 📁 Folder Structure
 ```plaintext
 com.example.a38_collaboration_android_kakaopay // 프로젝트 루트 패키지
-├── app // 앱 진입점과 전역 앱 설정
-│   ├── MainActivity // 앱 시작 Activity
-│   ├── App // 최상위 Compose App 구성
+├── app     // 앱 진입점과 전역 앱 설정
+│   ├── MainActivity 
+│   ├── App     // 최상위 Compose App 구성
 │   └── navigation // 전체 화면 이동 경로 정의
-│       ├── AppNaviHost // Navigation Host 설정
-│       └── Route // 화면별 Route 정의
+│       ├── AppNaviHost
+│       └── Route 
+│
 ├── core // 여러 계층에서 공통으로 사용하는 모듈
 │   ├── common // 공통 확장 함수, 상태, 유틸 모음
 │   ├── designsystem // 공통 UI 컴포넌트와 테마 시스템
 │   │   ├── theme // 색상, 타이포그래피, 테마 정의
 │   │   └── component // 재사용 가능한 디자인 시스템 컴포넌트
+│   │
 │   ├── local // 로컬 저장소 관련 공통 구현
 │   └── network // 네트워크 공통 응답 모델 및 설정
+│   
+│   
 ├── data // 데이터 획득 및 변환을 담당하는 계층
 │   ├── local // 로컬 데이터 소스 구현
 │   ├── mapper // DTO와 Domain/UI 모델 간 매핑
@@ -77,10 +81,7 @@ com.example.a38_collaboration_android_kakaopay // 프로젝트 루트 패키지
 │   │       ├── request // 요청 DTO
 │   │       └── response // 응답 DTO
 │   └── repository // Repository 구현체
-├── domain // 비즈니스 로직과 도메인 모델 계층
-│   ├── model // 핵심 도메인 모델
-│   ├── repository // Repository 추상화 인터페이스
-│   └── usecase // 기능별 유스케이스
+│   
 └── presentation // 화면 UI와 상태 관리 계층
     ├── splash // 스플래시 화면
     ├── loading // 로딩 전용 화면
