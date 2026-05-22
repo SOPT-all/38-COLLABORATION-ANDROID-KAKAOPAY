@@ -6,8 +6,9 @@
 ---
 
 ## 👥 Team
-| [남궁혜민 (LEAD)](https://github.com/hyeminililo) | [조예슬](https://github.com/joyrii) | [강승희](https://github.com/seunghee0321) | [윤갑유](https://github.com/gahbyu) | 
-|:--------------------------------------------------------------------:|:-------------------------------------------------------------------:|:-------------------------------------------------------------------:|
-| <img src="https://github.com/hyeminililo.png" alt="혜민" width="150"/> | <img src="https://github.com/joyrii.png" alt="예슬" width="150"/> | <img src="https://github.com/seunghee0321.png" alt="승희" width="150"/> | <img src="https://github.com/gahbyu.png" alt="갑유" width="150"/> |
-|                              `상품 결제 화면`                              |                             `상품 상세 화면`                              |                               `홈 화면`                                |                               `홈 화면`                                |
+|             [한유빈 (LEAD)](https://github.com/oilbeaneda)             |                [전도연](https://github.com/doyeon0307)                 |                [김동연](https://github.com/0yeonnnn0)                 |                           [이예림](https://github.com/yerim0829)                           |
+|:-------------------------------------------------------------------:|:-------------------------------------------------------------------:|:------------------------------------------------------------------:|:---------------------------------------------------------------------------------------:|
+| <img src="https://github.com/oilbeaneda.png" alt="유빈" width="150"/> | <img src="https://github.com/doyeon0307.png" alt="도연" width="150"/> | <img src="https://github.com/0yeonnnn0.png" alt="동연" width="150"/> | <img src="https://github.com/yerim0829.png" alt="예림" width="150"/> |
+|                               `홈 상단`                                |                                `쇼핑`                                 |                              `브랜드 상세`                              |                             `홈 하단`                             |
+
 ---
