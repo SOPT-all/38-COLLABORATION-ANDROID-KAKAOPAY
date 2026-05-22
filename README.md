@@ -1,7 +1,4 @@
 
-
-https://github.com/user-attachments/assets/a902c7ba-88af-4be0-8586-688754608367
-
 # 38-COLLABORATION-ANDROID-KAKAOPAY
 > **LET'S SOPT 38기 안드로이드 3조**
 > 🤑카카오페이(KAKAOPAY)
