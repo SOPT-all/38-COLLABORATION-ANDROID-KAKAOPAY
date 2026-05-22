@@ -79,6 +79,7 @@ fun SegmentControlBar(
         ) {
             Row(
                 modifier = Modifier,
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 secondarySegments.forEach { segment ->
                     SegmentItem(
