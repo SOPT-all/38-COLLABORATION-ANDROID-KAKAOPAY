@@ -105,8 +105,6 @@ com.example.a38_collaboration_android_kakaopay // 프로젝트 루트 패키지
 <details>
 <summary>시연 영상 보기</summary>
 
-- [시연 영상 보러가기](링크-추가-예정)
-
 https://github.com/user-attachments/assets/f32829c0-2147-4d8b-96e8-59fc5f5909bb
 
 </details>
